@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
+import apolloClient from '../../../../client'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 import Subheader from '../../../../components/Subheader'
 import BodyText from '../../../../components/BodyText'
@@ -8,7 +9,7 @@ import FormWrapper from '../../../../components/FormWrapper'
 import TextInput from '../../../../components/TextInput'
 import Row from '../../../../components/Row'
 import { Span } from '../RequestScreen/styles'
-import { GET_USER } from './graphql'
+import { GET_USER, PAYMENT } from './graphql'
 
 export default class ContributeScreen extends Component {
   constructor(props) {
@@ -31,8 +32,23 @@ export default class ContributeScreen extends Component {
       production:
         'AS9vvZrYslvm34pUsOcsT_rUntr-msY2GkSsEJYB9kyk8WzsDHzf3-5bvuTdZM_Gu-X6xs3Iu9cLC-1j'
     }
-    const onSuccess = payment => {
+    const onSuccess = async payment => {
       console.log('The payment was succeeded!', payment)
+
+      try {
+        await apolloClient.mutate({
+          mutation: PAYMENT,
+          variables: {
+            input: {
+              amount: Number(this.state.amount),
+              payerId: String(payment.payerID),
+              paymentId: String(payment.paymentID)
+            }
+          }
+        })
+      } catch (error) {
+        throw error
+      }
     }
 
     const onCancel = data => {

@@ -14,3 +14,13 @@ export const GET_USER = gql`
     }
   }
 `
+export const PAYMENT = gql`
+  mutation payment($input: PaymentInput!) {
+    payment(input: $input) {
+      error {
+        message
+      }
+      success
+    }
+  }
+`

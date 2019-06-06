@@ -1,0 +1,49 @@
+language: node_js
+node_js:
+  - '8'
+sudo: false
+jobs:
+  include:
+    - stage: linting
+      name: Run lint
+      script: npm run lint
+    - stage: Staging deploy
+      name: Deploy to AWS staging
+      if: branch = master AND commit_message =~ /\[DEPLOY\]/
+      env:
+        - REACT_APP_DEPLOY_ENV=staging
+        - REACT_APP_API_URL=https://boost-api-staging.herokuapp.com/graphql
+      before_deploy:
+        - npm run build
+      deploy:
+        provider: s3
+        access_key_id: '$AWS_ACCESS_KEY_ID'
+        secret_access_key: '$AWS_SECRET_ACCESS_KEY'
+        on:
+          branch: master
+          condition: '$REACT_APP_DEPLOY_ENV = staging'
+        bucket: boost-web-staging
+        local_dir: build
+        skip_cleanup: true
+    - stage: Production deploy
+      name: Deploy to AWS production
+      if: branch = production
+      env:
+        - REACT_APP_DEPLOY_ENV=production
+        - REACT_APP_API_URL=https://boost-api-production.herokuapp.com/graphql
+      before_deploy:
+        - npm run build
+      deploy:
+        provider: s3
+        access_key_id: '$AWS_ACCESS_KEY_ID'
+        secret_access_key: '$AWS_SECRET_ACCESS_KEY'
+        on:
+          branch: production
+          condition: '$REACT_APP_DEPLOY_ENV = production'
+        bucket: boost-web-production
+        local_dir: build
+        skip_cleanup: true
+env:
+  global:
+    - secure: jqLxRtF0ppNxflE8fqlOlJFOVHOWwAY7mJ4mmCCmiREIs1WfzXuoQtQzRarTZ3xtd1EEnDm2mpadXsWaLzmataARGxaG9mtCqgu2rbb0/KnNHQK45ljIoGR2d9BlYt3/uofPynjKE0w0QoTslMfxzyojYhtqesmhDaqy4rTvKPoW2LWvh1TTZcOzwgbvRod1TfmLmSJd9tCTeevZLCaEB46TwrJq+CyrPqjn8gU9u9ONcpGqRg0p2b6BId6ZJTYZdVystZjBnYjGnLBrr+C+8EX8t8pdd9OJj9JXW9gWgS+q1BZqOwpCaEnltavggRGlOyLBreM0cegKppx1DzmqfHaZPZDVmHsqUjq/wsu4QMOVtg/Z+jO5AykrdZvS/X2p+eNQg5jsNoIHVU5eg2kx1O8fr0ZoH3Be8c9dD7gXMbeglfLoPOxnGOJ2HeeoTwthJiZvT+ITE0lO1odNMqJ5sarb/aYfnvZCfHxWbKaUGfuEGcCcGDdPABPXG49ckMhylbfblGjYgBY028idPPILN0spvBHnzuvmN1oa4aQzMcOYOB8JGcRUj9kAvhjvSWuZq9SXn7R0Q9cS8tfV1tsaPI/1Cbwu6fvXy617846BtJYmJYNJ0l/7p/z9IUtoXGp8AWuwV1SYQIE6/Oz0c1mezzliSeQ9I/cxvdkIPuZJqK8=
+    - secure: WVGyKk2WCJv3PeINNYmomUZ+DaX0nWxYCN37ZdV/J20Nmw4lykPSec6D5zwK4ZSGiHBK9R5NJuqg+jCvI/UMaT1hAZZDVuMQcrvDjICQQvqCHNgoCBl+pUlv73ABrxjUG2IkjxXo23+HiWZAVZdjySNRGHbz5Pekex/bKaVI1NCh4iuySjWXvU/fIv7QTuDPd5Zl/HtLOnaCCjaJfu1DuLgMXLCbx+gV4dMyxCyVXSL2VVPnaxtFLuMYqQgT+odtBQwPybKhsOwbtnsGZspRw3YYU7NAOkxODoQFOI6HsaOXmhTmTq1FIghiOSdTam2cN36lO7fRYzH9gaDQI68GRuo8B/Qc6VKkqAw638LzTsi8V0rkmx/qct0aOKhAspwSdFoqxwD3HoWLDOr0CXWSSpJ5RcnBMD6Xjd1mpZJ0LigqU/HWJvi5bQLWW+FK2I9REOvK/G00XMQhdXEmNx0DdNjLnlRv6x5YkOOupFskxj7iE3+wHhmolZVWyhwkDVFPvGKHF3fWpWMe42s686vdc4OOrbZUDeJY6i1AthLyBDZyqzbeypG+5NoVk4+oHgPoZngpKfGcqtHRsBMHtCvS5Je6C60GMC87mWfIbbhtk7M5pAJbfEPQgN24p0ULoAMPyxX2BOjNBGOEmRT7fWypNWs7zxljlUrGeH7FPicYPLw=

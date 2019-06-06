@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import HomeIcon from '@material-ui/icons/Home'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -34,7 +35,13 @@ const HeaderBar = classes => {
             aria-label="Menu"
             onClick={() => setLeft(true)}
           >
-            <MenuIcon />
+            {isLoggedIn ? (
+              <MenuIcon />
+            ) : (
+              <a href="login">
+                <HomeIcon style={{ color: 'white' }} />
+              </a>
+            )}
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -48,21 +55,14 @@ const HeaderBar = classes => {
         >
           <div className={classes.list}>
             <List>
-              {isLoggedIn ? (
+              {isLoggedIn &&
                 headerItems.map(({ text, url }) => (
                   <Link key={text} to={url}>
                     <ListItem button key={text}>
                       <ListItemText primary={text} />
                     </ListItem>
                   </Link>
-                ))
-              ) : (
-                <Link key="Login" to="/login">
-                  <ListItem button key="Login">
-                    <ListItemText primary="Login" />
-                  </ListItem>
-                </Link>
-              )}
+                ))}
             </List>
           </div>
         </div>

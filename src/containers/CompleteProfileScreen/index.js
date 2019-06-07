@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
 class CompleteProfileScreen extends Component {
   state = {
     registerInput: {
-      birthday: this.props.registerInfo.birthday || '',
+      birthday: this.props.registerInfo.birthday || 0,
       children: this.props.registerInfo.children || '',
       adults: this.props.registerInfo.adults || '',
       maritalStatus: this.props.registerInfo.maritalStatus || '',
@@ -143,6 +143,7 @@ class CompleteProfileScreen extends Component {
     const reduxStore = store.store.getState().registrationReducer
     const input = {
       ...reduxStore,
+      birthday: Number(reduxStore.birthday),
       children: Number(reduxStore.children),
       adults: Number(reduxStore.adults),
       householdIncome: Number(reduxStore.householdIncome)
@@ -186,8 +187,8 @@ class CompleteProfileScreen extends Component {
 
           <DatePicker
             id="date"
-            label="Birthday"
-            type="date"
+            label="Birthday year"
+            type="number"
             InputLabelProps={{
               shrink: true
             }}

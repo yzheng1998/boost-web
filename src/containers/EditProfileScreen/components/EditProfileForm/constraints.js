@@ -27,7 +27,15 @@ const constraints = {
       message: '^\nNot a valid zip code'
     }
   },
-  birthday: { presence },
+  birthday: {
+    presence,
+    numericality: {
+      onlyInteger: true,
+      greaterThanOrEqualTo: 1850,
+      lessThanOrEqualTo: 3000,
+      notGreaterThanOrEqualTo: '^Invalid year'
+    }
+  },
   children: {
     presence,
     numericality: {

@@ -71,9 +71,9 @@ export default class ContributeScreen extends Component {
               const { user } = data.viewer
               return (
                 <Subheader
-                  text={`Worker Contributions have also funded your grant of $${user.requests.toFixed(
+                  text={`Worker Contributions have also funded your total grant of $${user.requests.toFixed(
                     2
-                  )} on July 15th, 2019`}
+                  )} as of ${user.lastRequest}`}
                   style={{ marginBottom: 30 }}
                 />
               )

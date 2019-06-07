@@ -6,6 +6,7 @@ export const GET_USER = gql`
       user {
         uuid
         requests
+        lastRequest
       }
       error {
         message

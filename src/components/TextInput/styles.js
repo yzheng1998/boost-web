@@ -1,17 +1,16 @@
-import purple from '@material-ui/core/colors/purple'
 import theme from '../../theme'
 
 const styles = {
   root: {},
   cssLabel: {
     '&$cssFocused': {
-      color: purple[500]
+      color: theme.colors.secondary
     }
   },
   cssFocused: {},
   cssUnderline: {
     '&:after': {
-      borderBottomColor: purple[500]
+      borderBottomColor: theme.colors.secondary
     }
   },
   input: {

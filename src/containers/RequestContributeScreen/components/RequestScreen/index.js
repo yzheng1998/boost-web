@@ -33,7 +33,8 @@ class RequestScreen extends Component {
       displayErrors: {},
       errors: {},
       touched: {},
-      user: {}
+      contributions: 0,
+      requests: 0
     }
   }
 
@@ -184,7 +185,10 @@ class RequestScreen extends Component {
             <Query
               query={GET_USER}
               onCompleted={data => {
-                this.setState({ user: data.viewer.user })
+                this.setState({
+                  contributions: data.viewer.user.contributions,
+                  requests: data.viewer.user.requests
+                })
               }}
             >
               {({ loading, data, error }) => {
@@ -344,8 +348,8 @@ class RequestScreen extends Component {
             {(request, { loading }) => {
               const variables = {
                 input: {
-                  contributions: this.state.user.contributions,
-                  requests: this.state.user.requests,
+                  contributions: this.state.contributions,
+                  requests: this.state.requests,
                   amount: Number(amount),
                   reason: selectedBoostReasons.concat([otherReason]).join(', '),
                   financialHardship: Boolean(experiencedHardship),

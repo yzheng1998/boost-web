@@ -187,7 +187,7 @@ class EditProfileForm extends Component {
         />
         <DatePicker
           id="date"
-          label="Birthday"
+          label="Birth year"
           type="number"
           InputLabelProps={{
             shrink: true

@@ -187,7 +187,7 @@ class CompleteProfileScreen extends Component {
 
           <DatePicker
             id="date"
-            label="Birthday year"
+            label="Birth year"
             type="number"
             InputLabelProps={{
               shrink: true

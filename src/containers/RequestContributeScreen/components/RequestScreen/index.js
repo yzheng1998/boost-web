@@ -32,7 +32,9 @@ class RequestScreen extends Component {
       payPalEmail: '',
       displayErrors: {},
       errors: {},
-      touched: {}
+      touched: {},
+      contributions: 0,
+      requests: 0
     }
   }
 
@@ -180,7 +182,15 @@ class RequestScreen extends Component {
           />
           <Row justifyContent="flex-start">
             <BodyText text="Your Boost funds available: " />
-            <Query query={GET_USER}>
+            <Query
+              query={GET_USER}
+              onCompleted={data => {
+                this.setState({
+                  contributions: data.viewer.user.contributions,
+                  requests: data.viewer.user.requests
+                })
+              }}
+            >
               {({ loading, data, error }) => {
                 if (loading) return 'Loading data...'
                 if (error) return `Error! ${error.messsage}`
@@ -338,6 +348,8 @@ class RequestScreen extends Component {
             {(request, { loading }) => {
               const variables = {
                 input: {
+                  contributions: this.state.contributions,
+                  requests: this.state.requests,
                   amount: Number(amount),
                   reason: selectedBoostReasons.concat([otherReason]).join(', '),
                   financialHardship: Boolean(experiencedHardship),

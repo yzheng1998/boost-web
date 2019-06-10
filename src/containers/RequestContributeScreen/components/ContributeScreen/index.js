@@ -85,14 +85,16 @@ export default class ContributeScreen extends Component {
               if (loading) return 'Loading data...'
               if (error) return `Error! ${error.messsage}`
               const { user } = data.viewer
-              return (
-                <Subheader
-                  text={`Worker Contributions have also funded your grant of $${user.requests.toFixed(
-                    2
-                  )} on July 15th, 2019`}
-                  style={{ marginBottom: 30 }}
-                />
-              )
+              if (user.requests)
+                return (
+                  <Subheader
+                    text={`Worker Contributions have also funded your total grant of $${user.requests.toFixed(
+                      2
+                    )} as of ${user.lastRequest}`}
+                    style={{ marginBottom: 30 }}
+                  />
+                )
+              return null
             }}
           </Query>
 

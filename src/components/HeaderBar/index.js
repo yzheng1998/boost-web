@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import localStore from 'store'
-import { styles } from './styles'
-import { withStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -26,8 +24,8 @@ const HeaderBar = classes => {
   ]
 
   return (
-    <div>
-      <AppBar position="static" className={classes.appBar}>
+    <React.Fragment>
+      <AppBar color="primary" position="static" className={classes.appBar}>
         <Toolbar>
           <IconButton
             className={classes.menuButton}
@@ -67,8 +65,8 @@ const HeaderBar = classes => {
           </div>
         </div>
       </Drawer>
-    </div>
+    </React.Fragment>
   )
 }
 
-export default withStyles(styles)(HeaderBar)
+export default HeaderBar

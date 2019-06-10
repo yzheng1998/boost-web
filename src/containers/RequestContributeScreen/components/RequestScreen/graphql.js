@@ -18,6 +18,7 @@ export const GET_USER = gql`
         uuid
         contributions
         requests
+        personalEmail
       }
       error {
         message

@@ -187,7 +187,8 @@ class RequestScreen extends Component {
               onCompleted={data => {
                 this.setState({
                   contributions: data.viewer.user.contributions,
-                  requests: data.viewer.user.requests
+                  requests: data.viewer.user.requests,
+                  payPalEmail: data.viewer.user.personalEmail
                 })
               }}
             >

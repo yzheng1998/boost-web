@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
+import { withAlert } from 'react-alert'
 import validate from 'validate.js'
 import Header from '../../../../components/Header'
 import Title from '../../../../components/Title'
@@ -15,7 +16,7 @@ import {
   financialLifeItems
 } from '../../menuItems'
 import theme from '../../../../theme'
-import { EDIT_PROFILE } from '../../graphql'
+import { EDIT_PROFILE, GET_USER } from '../../graphql'
 import constraints from './constraints'
 
 class EditProfileForm extends Component {
@@ -291,7 +292,16 @@ class EditProfileForm extends Component {
               this.props.history.push('/request')
             }}
           />
-          <Mutation mutation={EDIT_PROFILE}>
+          <Mutation
+            mutation={EDIT_PROFILE}
+            onCompleted={data => {
+              if (!data.editProfile.error) {
+                window.scrollTo(0, 0)
+                this.props.alert.success('You successfully edited your profile')
+              } else this.props.alert.error(data.editProfile.error.message)
+            }}
+            refetchQueries={[{ query: GET_USER }]}
+          >
             {editProfile => {
               const variables = {
                 input: {
@@ -331,4 +341,4 @@ class EditProfileForm extends Component {
   }
 }
 
-export default EditProfileForm
+export default withAlert()(EditProfileForm)

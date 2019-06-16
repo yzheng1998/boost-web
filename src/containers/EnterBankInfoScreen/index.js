@@ -49,15 +49,17 @@ class EnterBankInfo extends Component {
               : `Press here to connect to your bank with Plaid`}
           </StyledPlaidLink>
         </PlaidLinkContainer>
-        <PrimaryButton
-          text="Continue"
-          style={{
-            backgroundColor: theme.colors.tertiary,
-            color: theme.colors.primary
-          }}
-          onClick={() => history.push('/complete-profile')}
-          disabled={!enabled}
-        />
+        {this.state.bank && (
+          <PrimaryButton
+            text="Continue"
+            style={{
+              backgroundColor: theme.colors.tertiary,
+              color: theme.colors.primary
+            }}
+            onClick={() => history.push('/complete-profile')}
+            disabled={!enabled}
+          />
+        )}
       </Background>
     )
   }

@@ -96,7 +96,6 @@ class UserDetailsScreen extends Component {
   }
 
   render() {
-    console.log(this.state)
     const { firstName, lastName, phone, zipCode } = this.state.registerInput
     const enabled = !this.state.errors
     return (

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
+import { withAlert } from 'react-alert'
 import apolloClient from '../../../../client'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 import Subheader from '../../../../components/Subheader'
@@ -11,7 +12,7 @@ import Row from '../../../../components/Row'
 import { Span } from '../RequestScreen/styles'
 import { GET_USER, PAYMENT } from './graphql'
 
-export default class ContributeScreen extends Component {
+class ContributeScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -33,7 +34,8 @@ export default class ContributeScreen extends Component {
         'AS9vvZrYslvm34pUsOcsT_rUntr-msY2GkSsEJYB9kyk8WzsDHzf3-5bvuTdZM_Gu-X6xs3Iu9cLC-1j'
     }
     const onSuccess = async payment => {
-      console.log('The payment was succeeded!', payment)
+      console.log('The payment has succeeded!', payment)
+      this.props.alert.success('The payment has succeeded!')
 
       try {
         await apolloClient.mutate({
@@ -53,10 +55,12 @@ export default class ContributeScreen extends Component {
 
     const onCancel = data => {
       console.log('The payment was cancelled!', data)
+      this.props.alert.show('The payment was cancelled')
     }
 
     const onError = err => {
       console.log('Error!', err)
+      this.props.alert.error('The payment has failed!')
     }
 
     const env = 'sandbox'
@@ -123,3 +127,5 @@ export default class ContributeScreen extends Component {
     )
   }
 }
+
+export default withAlert()(ContributeScreen)

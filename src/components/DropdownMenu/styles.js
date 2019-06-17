@@ -4,5 +4,8 @@ export const styles = {
   },
   formControl: {
     minWidth: 120
+  },
+  cssError: {
+    color: 'red'
   }
 }

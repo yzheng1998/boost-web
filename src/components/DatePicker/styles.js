@@ -8,5 +8,8 @@ export const styles = theme => ({
   textField: {
     marginRight: theme.spacing.unit,
     width: 200
+  },
+  cssError: {
+    color: 'red'
   }
 })

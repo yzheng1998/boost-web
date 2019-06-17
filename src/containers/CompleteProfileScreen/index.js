@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
 class CompleteProfileScreen extends Component {
   state = {
     registerInput: {
-      birthday: this.props.registerInfo.birthday || 0,
+      birthday: this.props.registerInfo.birthday || '',
       children: this.props.registerInfo.children || '',
       adults: this.props.registerInfo.adults || '',
       maritalStatus: this.props.registerInfo.maritalStatus || '',

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import validate from 'validate.js'
+import { addInfo } from '../../redux/actions'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import TextInput from '../../components/TextInput'
 import PrimaryButton from '../../components/PrimaryButton'
 import theme from '../../theme'
-import { addInfo } from '../../redux/actions'
 import constraints from './constraints'
 
 const mapStateToProps = state => ({
@@ -75,12 +75,24 @@ class UserDetailsScreen extends Component {
   }
 
   handleSubmit = path => {
-    this.setState({ isLoading: true })
-    Object.keys(this.state.registerInput).forEach(key =>
-      this.props.addInfo({ key, value: this.state.registerInput[key] })
+    const formattedPhone = String(this.state.registerInput.phone).replace(
+      /[()-]/g,
+      ''
     )
-    this.setState({ isLoading: false })
-    this.props.history.push(path)
+    this.setState(
+      {
+        registerInput: { ...this.state.registerInput, phone: formattedPhone },
+        isLoading: true
+      },
+      () => {
+        Object.keys(this.state.registerInput).forEach(key =>
+          this.props.addInfo({ key, value: this.state.registerInput[key] })
+        )
+        this.setState({ isLoading: false }, () => {
+          this.props.history.push(path)
+        })
+      }
+    )
   }
 
   render() {

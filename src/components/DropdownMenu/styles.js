@@ -4,5 +4,11 @@ export const styles = {
   },
   formControl: {
     minWidth: 120
+  },
+  selectorStyle: {
+    maxWidth: '50%'
+  },
+  cssError: {
+    color: 'red'
   }
 }

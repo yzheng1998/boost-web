@@ -1,3 +1,5 @@
+import themes from '../../theme'
+
 export const styles = theme => ({
   container: {
     display: 'flex',
@@ -10,6 +12,6 @@ export const styles = theme => ({
     width: 200
   },
   cssError: {
-    color: 'red'
+    color: themes.colors.error
   }
 })

@@ -23,24 +23,28 @@ const HeaderBar = classes => {
     { text: 'Sign Out', url: '/login' }
   ]
 
+  const onLoginPage = String(window.location.href).includes('/login')
+
   return (
     <React.Fragment>
       <AppBar color="primary" position="static" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-            onClick={() => setLeft(true)}
-          >
-            {isLoggedIn ? (
-              <MenuIcon />
-            ) : (
-              <a href="login">
-                <HomeIcon style={{ color: 'white' }} />
-              </a>
-            )}
-          </IconButton>
+          {!onLoginPage && (
+            <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+              onClick={() => setLeft(true)}
+            >
+              {isLoggedIn ? (
+                <MenuIcon />
+              ) : (
+                <a href="login">
+                  <HomeIcon style={{ color: 'white' }} />
+                </a>
+              )}
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
 

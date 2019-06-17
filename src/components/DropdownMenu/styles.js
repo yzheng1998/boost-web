@@ -1,3 +1,5 @@
+import theme from '../../theme'
+
 export const styles = {
   form: {
     marginBottom: 10
@@ -9,6 +11,6 @@ export const styles = {
     maxWidth: '50%'
   },
   cssError: {
-    color: 'red'
+    color: theme.colors.error
   }
 }

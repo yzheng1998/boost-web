@@ -33,11 +33,18 @@ const DropdownMenu = ({
           name: inputName,
           id: 'demo-controlled-open-select'
         }}
+        MenuProps={{ classes: { paper: classes.selectorStyle } }}
         {...rest}
       >
         {Object.keys(menuItems).map(key => (
           <MenuItem key={key} value={menuItems[key]}>
-            {menuItems[key]}
+            <div
+              style={{
+                whiteSpace: 'normal'
+              }}
+            >
+              {menuItems[key]}
+            </div>
           </MenuItem>
         ))}
       </Select>

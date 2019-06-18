@@ -1,4 +1,11 @@
 // Add global styles and fonts here
+import { load } from 'webfontloader'
+
+load({
+  google: {
+    families: ['Neue Helvetica: 500, 600']
+  }
+})
 
 const theme = {
   colors: {
@@ -18,6 +25,16 @@ const theme = {
     mobile: {
       floor: '700px',
       ceiling: '701px'
+    }
+  },
+  fonts: {
+    medium: {
+      family: 'Neue Helvetica',
+      weight: 500
+    },
+    semiBold: {
+      family: 'Neue Helvetica',
+      weight: 600
     }
   }
 }

@@ -4,6 +4,6 @@ import { Flex } from 'grid-styled'
 export const StyledHeader = styled(Flex)`
   color: ${({ color }) => color || 'white'};
   font-size: 24px;
-  font-family: 'Roboto';
+  font-family: ${({ theme }) => theme.fonts.medium};
   align-self: ${({ style }) => style || 'left'};
 `

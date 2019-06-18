@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Flex } from 'grid-styled'
 
 export const InnerText = styled(Flex)`
-  font-family: 'Roboto';
+  font-family: ${({ theme }) => theme.fonts.medium};
   font-size: 14px;
   align-self: center;
   color: ${({ theme }) => theme.colors.tertiary};
@@ -10,7 +10,7 @@ export const InnerText = styled(Flex)`
 `
 
 export const LineText = styled(Flex)`
-  font-family: 'Roboto';
+  font-family: ${({ theme }) => theme.fonts.medium};
   font-size: 14px;
   align-self: center;
   color: ${({ theme }) => theme.colors.grey};

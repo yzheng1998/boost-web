@@ -4,7 +4,7 @@ import { Flex } from 'grid-styled'
 export const Span = styled(Flex)`
   color: ${({ theme }) => theme.colors.tertiary};
   font-size: 24px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: ${({ theme }) => theme.fonts.medium};
   flex-direction: column;
   justify-content: center;
   padding-right: 10px;

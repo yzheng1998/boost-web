@@ -38,6 +38,7 @@
     "store": "^2.0.12",
     "styled-components": "^4.2.0",
     "validate.js": "^0.12.0",
+    "webfontloader": "^1.6.28",
     "webpack": "^4.28.3"
   },
   "devDependencies": {

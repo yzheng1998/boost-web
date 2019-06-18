@@ -13,7 +13,7 @@ export const BtnWrapper = styled(Flex)`
 `
 
 export const Label = styled(Flex)`
-  font-family: 'Roboto';
+  font-family: ${({ theme }) => theme.fonts.medium};
   font-size: 14px;
   margin-bottom: 12px;
   color: ${({ theme }) => theme.colors.black};
@@ -21,7 +21,7 @@ export const Label = styled(Flex)`
   text-align: center;
 `
 export const CenterParagraph = styled(Flex)`
-  font-family: 'Roboto';
+  font-family: ${({ theme }) => theme.fonts.medium};
   padding-left: 20px;
   padding-right: 20px;
   font-size: 14px;

@@ -99,13 +99,11 @@ class UserDetailsScreen extends Component {
     const { firstName, lastName, phone, zipCode } = this.state.registerInput
     const enabled = !this.state.errors
     return (
-      <Background
-        style={{ backgroundColor: theme.colors.tertiary, paddingTop: 50 }}
-      >
+      <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
           text="Please tell us more about yourself!"
-          color={theme.colors.primary}
-          style={{ alignSelf: 'center' }}
+          color={theme.colors.header}
+          style={{ alignSelf: 'center', paddingBottom: 10 }}
         />
         <TextInput
           name="firstName"
@@ -191,6 +189,10 @@ class UserDetailsScreen extends Component {
           text={this.state.isLoading ? 'Loading...' : 'Continue'}
           onClick={() => this.handleSubmit('/bank-info')}
           disabled={!enabled || this.state.isLoading}
+          style={{
+            backgroundColor: theme.colors.tertiary,
+            color: theme.colors.primary
+          }}
         />
       </Background>
     )

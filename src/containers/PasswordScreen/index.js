@@ -89,13 +89,11 @@ class PasswordScreen extends Component {
   render() {
     const enabled = !this.state.errors
     return (
-      <Background
-        style={{ backgroundColor: theme.colors.tertiary, paddingTop: 50 }}
-      >
+      <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
           text="Set-up account details"
-          color={theme.colors.primary}
-          style={{ alignSelf: 'center' }}
+          color={theme.colors.header}
+          style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
         <TextInput
           name="personalEmail"
@@ -168,6 +166,10 @@ class PasswordScreen extends Component {
                     verifyPersonalEmail({ variables })
                   )
                 }
+                style={{
+                  backgroundColor: theme.colors.tertiary,
+                  color: theme.colors.primary
+                }}
                 disabled={!enabled || loading}
               />
             )

@@ -174,7 +174,6 @@ class CompleteProfileScreen extends Component {
       <Background
         style={{
           backgroundColor: theme.colors.tertiary,
-          paddingTop: 50,
           justifyContent: 'flex-start'
         }}
       >

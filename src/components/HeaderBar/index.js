@@ -27,7 +27,7 @@ const HeaderBar = classes => {
 
   return (
     <React.Fragment>
-      <AppBar color="primary" position="static" className={classes.appBar}>
+      <AppBar color="primary" position="sticky" className={classes.appBar}>
         <Toolbar>
           {!onLoginPage && (
             <IconButton

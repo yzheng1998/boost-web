@@ -174,7 +174,8 @@ class CompleteProfileScreen extends Component {
       <Background
         style={{
           backgroundColor: theme.colors.tertiary,
-          justifyContent: 'flex-start'
+          justifyContent: 'flex-start',
+          paddingTop: 50
         }}
       >
         <ProfileWrapper>

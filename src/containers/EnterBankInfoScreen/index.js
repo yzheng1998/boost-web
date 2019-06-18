@@ -4,7 +4,7 @@ import Background from '../../components/Background'
 import Header from '../../components/Header'
 import PrimaryButton from '../../components/PrimaryButton'
 import theme from '../../theme'
-import { StyledPlaidLink, PlaidLinkContainer } from './styles'
+import { StyledPlaidLink, PlaidLinkContainer, StyledText } from './styles'
 import { addPayment } from '../../redux/actions'
 
 const mapStateToProps = state => ({
@@ -26,14 +26,16 @@ class EnterBankInfo extends Component {
     const enabled = this.state.bank
     const { history } = this.props
     return (
-      <Background
-        style={{ backgroundColor: theme.colors.primary, paddingTop: 50 }}
-      >
+      <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
           text="Enter Bank Info"
-          color={theme.colors.tertiary}
-          style={{ alignSelf: 'center' }}
+          color={theme.colors.header}
+          style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
+        <StyledText>
+          Ipsum Dolor asdhsaekjfb kjbfkwajebf jwkbajkasdfnds f asdfjnawekjf
+          sdkjfwjkEFAEJ
+        </StyledText>
         <PlaidLinkContainer>
           <StyledPlaidLink
             active={this.state.buttonActive}

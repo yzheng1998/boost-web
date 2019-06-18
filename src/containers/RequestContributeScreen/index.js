@@ -7,6 +7,7 @@ import Background from '../../components/Background'
 import RequestScreen from './components/RequestScreen'
 import ContributeScreen from './components/ContributeScreen'
 import { styles } from './styles'
+import theme from '../../theme'
 
 class CenteredTabs extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class CenteredTabs extends React.Component {
     return (
       <Background
         style={{
-          backgroundColor: 'white',
+          backgroundColor: theme.colors.background,
           justifyContent: 'flex-start'
         }}
       >

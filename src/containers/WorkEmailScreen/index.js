@@ -86,13 +86,11 @@ class WorkEmailScreen extends Component {
   render() {
     const enabled = !this.state.errors
     return (
-      <Background
-        style={{ backgroundColor: theme.colors.tertiary, paddingTop: 50 }}
-      >
+      <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
           text="Verify work email"
-          color={theme.colors.primary}
-          style={{ alignSelf: 'center' }}
+          color={theme.colors.header}
+          style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
         <TextInput
           name="workEmail"
@@ -124,6 +122,10 @@ class WorkEmailScreen extends Component {
                     verifyWorkEmail({ variables })
                   )
                 }
+                style={{
+                  backgroundColor: theme.colors.tertiary,
+                  color: theme.colors.primary
+                }}
                 disabled={!enabled || loading}
               />
             )

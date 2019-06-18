@@ -22,3 +22,11 @@ export const StyledPlaidLink = styled(PlaidLink)`
   cursor: ${({ active }) => (active ? 'pointer' : 'not-allowed')};
   pointer-events: ${({ active }) => (active ? 'auto' : 'none')};
 `
+
+export const StyledText = styled(Flex)`
+  font-family: 'Roboto';
+  align-self: center;
+  width: 30%;
+  flex-wrap: wrap;
+  text-align: center;
+`

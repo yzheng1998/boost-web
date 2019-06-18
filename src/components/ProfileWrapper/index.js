@@ -7,9 +7,10 @@ const ProfileWrapper = styled(Flex)`
   align-items: flex-start;
   height: 100%;
   width: 40%;
-  align-self: center;
+  /* align-self: center; */
   background-color: white;
   padding: 25px;
+  margin-left: 5px;
   border-top: 10px solid #3f51b5;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {

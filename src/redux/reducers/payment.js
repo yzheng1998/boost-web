@@ -1,7 +1,7 @@
 import { ADD_PAYMENT } from '../constants/action-types'
 
 const paymentState = {
-  plaidPublicToken: ''
+  plaidPublicToken: []
 }
 const paymentReducer = (state = paymentState, action) => {
   switch (action.type) {

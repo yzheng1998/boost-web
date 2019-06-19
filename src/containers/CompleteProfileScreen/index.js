@@ -54,10 +54,6 @@ class CompleteProfileScreen extends Component {
     this.validateForm(false)
   }
 
-  componentDidMount = () => {
-    this.validateForm(false)
-  }
-
   onChange = e => {
     this.setState(
       {

@@ -59,7 +59,7 @@ class EnterBankInfo extends Component {
         </PlaidLinkContainer>
         <PlaidLinkContainer>
           <StyledPlaidLink
-            active={true}
+            active
             clientName="Boost"
             env="sandbox"
             product={['auth', 'transactions']}

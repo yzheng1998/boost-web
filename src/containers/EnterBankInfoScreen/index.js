@@ -16,10 +16,15 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class EnterBankInfo extends Component {
-  state = { bank: '', buttonActive: true }
+  state = { bank: '', token: [], buttonActive: true }
+
   handleOnSuccess = (token, data) => {
-    this.setState({ bank: data.institution.name, buttonActive: false })
-    this.props.addPayment({ key: 'plaidPublicToken', value: token })
+    this.state.token.push(token)
+    this.setState({
+      bank: data.institution.name,
+      buttonActive: false
+    })
+    this.props.addPayment({ key: 'plaidPublicTokens', value: this.state.token })
   }
 
   render() {
@@ -46,9 +51,25 @@ class EnterBankInfo extends Component {
             onExit={this.handleOnExit}
             onSuccess={this.handleOnSuccess}
           >
-            {!this.state.buttonActive
-              ? `Connected${this.state.bank && ` to ${this.state.bank}`}`
-              : `Press here to connect to your bank with Plaid`}
+            {!this.state.token.length &&
+              `Press here to connect to your bank with Plaid`}
+            {this.state.token.length === 1 &&
+              `Connected${this.state.bank && ` to ${this.state.bank}`}`}
+            {this.state.token.length > 1 &&
+              `Connected to ${this.state.token.length} accounts`}
+          </StyledPlaidLink>
+        </PlaidLinkContainer>
+        <PlaidLinkContainer>
+          <StyledPlaidLink
+            active
+            clientName="Boost"
+            env="sandbox"
+            product={['auth', 'transactions']}
+            publicKey="fce3ab4dab4752ede9cb3363e3c575"
+            onExit={this.handleOnExit}
+            onSuccess={this.handleOnSuccess}
+          >
+            Connect to more accounts
           </StyledPlaidLink>
         </PlaidLinkContainer>
         {this.state.bank && (

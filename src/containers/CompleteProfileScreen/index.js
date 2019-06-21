@@ -54,10 +54,6 @@ class CompleteProfileScreen extends Component {
     this.validateForm(false)
   }
 
-  componentDidMount = () => {
-    this.validateForm(false)
-  }
-
   onChange = e => {
     this.setState(
       {
@@ -285,16 +281,16 @@ class CompleteProfileScreen extends Component {
               <Mutation
                 mutation={GET_ACCESS_TOKEN}
                 variables={{
-                  plaidPublicToken: this.props.paymentInfo.plaidPublicToken
+                  plaidPublicTokens: this.props.paymentInfo.plaidPublicTokens
                 }}
               >
-                {getAccessToken => (
+                {getAccessTokens => (
                   <Mutation
                     mutation={REGISTER_USER}
                     onCompleted={async data => {
                       const { token } = data.register
                       await localStore.set('user', { token })
-                      getAccessToken()
+                      getAccessTokens()
                     }}
                   >
                     {(register, { loading }) => (

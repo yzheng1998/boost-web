@@ -24,7 +24,7 @@ class EnterBankInfo extends Component {
       bank: data.institution.name,
       buttonActive: false
     })
-    this.props.addPayment({ key: 'plaidPublicToken', value: this.state.token })
+    this.props.addPayment({ key: 'plaidPublicTokens', value: this.state.token })
   }
 
   render() {

@@ -15,8 +15,8 @@ export const REGISTER_USER = gql`
 `
 
 export const GET_ACCESS_TOKEN = gql`
-  mutation getAccessToken($plaidPublicToken: [String!]) {
-    getAccessToken(plaidPublicToken: $plaidPublicToken) {
+  mutation getAccessToken($plaidPublicTokens: [String!]) {
+    getAccessToken(plaidPublicTokens: $plaidPublicTokens) {
       uuid
     }
   }

@@ -27,7 +27,11 @@ class HowItWorksScreen extends Component {
             Anyone can contribute into the Grant Circle Fund. The more we each
             give, the more funds there are for any of us to use.
           </CenterParagraph>
-          <img src={TempIcon} style={{ width: 150, height: 150 }} />
+          <img
+            src={TempIcon}
+            style={{ width: 150, height: 150 }}
+            alt="temp boost icon"
+          />
           <CenterParagraph style={{ textAlign: 'center' }}>
             Contributions from employees are matched by support from a
             charitable foundation.

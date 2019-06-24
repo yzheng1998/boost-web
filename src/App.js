@@ -69,8 +69,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 class App extends React.Component {
   render() {
-    const isLoggedIn = Boolean(localStore.get('user'))
-
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

@@ -13,7 +13,7 @@ import AlertTemplate from 'react-alert-template-basic'
 import localStore from 'store'
 import theme from './theme'
 import client from './client'
-import Home from './containers/HomeScreen'
+import HowItWorks from './containers/HowItWorksScreen'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './redux/store'
@@ -29,6 +29,7 @@ import HeaderBar from './components/HeaderBar'
 import EmailRecoveryScreen from './containers/EmailRecoveryScreen'
 import VerificationCodeScreen from './containers/VerificationCodeScreen'
 import NewPasswordScreen from './containers/NewPasswordScreen'
+import ExplanationScreen from './containers/ExplanationScreen'
 
 const MuiTheme = createMuiTheme({
   palette: {
@@ -83,10 +84,13 @@ class App extends React.Component {
                       <Switch>
                         <PrivateRoute
                           exact
-                          path="/"
-                          component={
-                            isLoggedIn ? RequestContributeScreen : Home
-                          }
+                          path="/howItWorks"
+                          component={HowItWorks}
+                        />
+                        <PrivateRoute
+                          exact
+                          path="/explanation"
+                          component={ExplanationScreen}
                         />
                         <Route path="/login" component={LoginScreen} />
                         <Route path="/register" component={WorkEmailScreen} />

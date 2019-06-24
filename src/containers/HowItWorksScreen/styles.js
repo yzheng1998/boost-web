@@ -24,10 +24,20 @@ export const CenterParagraph = styled(Flex)`
   font-family: ${({ theme }) => theme.fonts.medium};
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.black};
+  font-size: 16px;
   align-self: center;
   margin-top: 30px;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: justify;
+  width: 75%;
+  color: ${({ theme }) => theme.colors.tertiary};
+`
+
+export const Container = styled(Flex)`
+  width: 50%;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 `

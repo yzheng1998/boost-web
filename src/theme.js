@@ -29,12 +29,8 @@ const theme = {
   },
   fonts: {
     medium: {
-      family: 'Neue Helvetica',
+      family: 'Roboto',
       weight: 500
-    },
-    semiBold: {
-      family: 'Neue Helvetica',
-      weight: 600
     }
   }
 }

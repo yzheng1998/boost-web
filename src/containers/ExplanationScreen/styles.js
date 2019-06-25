@@ -13,7 +13,7 @@ export const BtnWrapper = styled(Flex)`
 `
 
 export const Label = styled(Flex)`
-  font-family: ${({ theme }) => theme.fonts.medium};
+  font-family: ${({ theme }) => theme.fonts.medium.family};
   font-size: 14px;
   margin-bottom: 12px;
   color: ${({ theme }) => theme.colors.black};
@@ -21,13 +21,23 @@ export const Label = styled(Flex)`
   text-align: center;
 `
 export const CenterParagraph = styled(Flex)`
-  font-family: ${({ theme }) => theme.fonts.medium};
+  font-family: ${({ theme }) => theme.fonts.medium.family};
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.black};
+  font-size: 16px;
   align-self: center;
   margin-top: 30px;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: justify;
+  width: 75%;
+  color: ${({ theme }) => theme.colors.tertiary};
+`
+
+export const Container = styled(Flex)`
+  width: 50%;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 `

@@ -10,6 +10,7 @@ import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import theme from '../../theme'
 
 const HeaderBar = classes => {
   const [left, setLeft] = useState(false)
@@ -40,7 +41,7 @@ const HeaderBar = classes => {
                 <MenuIcon />
               ) : (
                 <a href="login">
-                  <HomeIcon style={{ color: 'white' }} />
+                  <HomeIcon style={{ color: theme.colors.background }} />
                 </a>
               )}
             </IconButton>

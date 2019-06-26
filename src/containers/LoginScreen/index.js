@@ -19,7 +19,7 @@ const Login = ({ history }) => {
   localStore.remove('user')
 
   return (
-    <Background style={{ backgroundColor: theme.colors.primary }}>
+    <Background style={{ backgroundColor: theme.colors.background }}>
       <Wrapper>
         <Header text="Welcome Back" color={theme.colors.tertiary} />
         <TextInput

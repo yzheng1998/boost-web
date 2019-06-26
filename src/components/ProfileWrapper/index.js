@@ -8,10 +8,10 @@ const ProfileWrapper = styled(Flex)`
   height: 100%;
   width: 40%;
   /* align-self: center; */
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 25px;
   margin-left: 5px;
-  border-top: 10px solid #3f51b5;
+  border-top: 15px solid #1e575c;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {
     width: 70%;

@@ -11,6 +11,7 @@ import TextInput from '../../../../components/TextInput'
 import Row from '../../../../components/Row'
 import { Span } from '../RequestScreen/styles'
 import { GET_USER, PAYMENT } from './graphql'
+import LoadingIcon from '../../../../components/LoadingIcon'
 
 class ContributeScreen extends Component {
   constructor(props) {
@@ -86,7 +87,7 @@ class ContributeScreen extends Component {
           />
           <Query query={GET_USER}>
             {({ loading, data, error }) => {
-              if (loading) return 'Loading data...'
+              if (loading) return <LoadingIcon />
               if (error) return `Error! ${error.messsage}`
               const { user } = data.viewer
               if (user.requests)

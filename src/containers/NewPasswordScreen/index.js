@@ -11,6 +11,7 @@ import theme from '../../theme'
 import { Wrapper } from './styles'
 import constraints from './constraints'
 import { RESET_PASSWORD } from './graphql'
+import LoadingIcon from '../../components/LoadingIcon'
 
 class NewPassword extends Component {
   state = {
@@ -128,7 +129,7 @@ class NewPassword extends Component {
               }
               return (
                 <PrimaryButton
-                  text={loading ? 'Resetting...' : 'Reset Password'}
+                  text={loading ? <LoadingIcon /> : 'Reset Password'}
                   style={{
                     width: '100%',
                     backgroundColor: theme.colors.tertiary,

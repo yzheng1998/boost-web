@@ -9,6 +9,7 @@ import PrimaryButton from '../../components/PrimaryButton'
 import theme from '../../theme'
 import { Wrapper } from './styles'
 import { FORGOT_PASSWORD } from './graphql'
+import LoadingIcon from '../../components/LoadingIcon'
 
 const Recovery = ({ history }) => {
   const alert = useAlert()
@@ -52,7 +53,7 @@ const Recovery = ({ history }) => {
             }
             return (
               <PrimaryButton
-                text={loading ? 'Emailing code...' : 'Next'}
+                text={loading ? <LoadingIcon /> : 'Next'}
                 style={{
                   width: 300,
                   backgroundColor: theme.colors.tertiary,

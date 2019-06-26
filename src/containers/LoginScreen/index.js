@@ -6,6 +6,7 @@ import Background from '../../components/Background'
 import Header from '../../components/Header'
 import TextInput from '../../components/TextInput'
 import PrimaryButton from '../../components/PrimaryButton'
+import LoadingIcon from '../../components/LoadingIcon'
 import theme from '../../theme'
 import { InnerText, Wrapper, Line, LineWrapper, LineText } from './styles'
 import { LOGIN_USER } from './mutations'
@@ -49,9 +50,11 @@ const Login = ({ history }) => {
           {(loginUser, { loading }) => (
             <PrimaryButton
               text={
-                loading && personalEmail && password
-                  ? 'Logging in...'
-                  : 'Log In'
+                loading && personalEmail && password ? (
+                  <LoadingIcon />
+                ) : (
+                  'Log In'
+                )
               }
               diabled={loading}
               style={{

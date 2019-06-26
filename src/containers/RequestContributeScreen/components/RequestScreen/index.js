@@ -17,6 +17,7 @@ import { Span, WrappedRow } from './styles'
 import boostReasons from '../../constants/boostReasons'
 import { REQUEST_FUNDS, GET_USER } from './graphql'
 import constraints from './constraints'
+import LoadingIcon from '../../../../components/LoadingIcon'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -193,7 +194,7 @@ class RequestScreen extends Component {
               }}
             >
               {({ loading, data, error }) => {
-                if (loading) return 'Loading data...'
+                if (loading) return <LoadingIcon />
                 if (error) return `Error! ${error.messsage}`
                 const { user } = data.viewer
                 return (
@@ -362,7 +363,7 @@ class RequestScreen extends Component {
               }
               return (
                 <PrimaryButton
-                  text={loading ? 'Processing...' : 'Request funds with Paypal'}
+                  text={loading ? <LoadingIcon /> : 'Request funds with Paypal'}
                   style={{
                     width: 350,
                     backgroundColor: theme.colors.tertiary,

@@ -125,6 +125,7 @@ class App extends React.Component {
                           path="/request"
                           component={RequestContributeScreen}
                         />
+                        <Redirect from="/" to="/request" />
                       </Switch>
                     </div>
                   </AlertProvider>

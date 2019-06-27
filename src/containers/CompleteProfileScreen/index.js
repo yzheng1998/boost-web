@@ -20,6 +20,7 @@ import {
 import theme from '../../theme'
 import { addInfo, clearRedux } from '../../redux/actions'
 import constraints from './constraints'
+import LoadingIcon from '../../components/LoadingIcon'
 
 const mapStateToProps = state => ({
   registerInfo: state.registrationReducer,
@@ -295,7 +296,7 @@ class CompleteProfileScreen extends Component {
                   >
                     {(register, { loading }) => (
                       <PrimaryButton
-                        text={loading ? 'Registering...' : 'Register'}
+                        text={loading ? <LoadingIcon /> : 'Register'}
                         style={{
                           backgroundColor: theme.colors.tertiary,
                           color: theme.colors.primary

@@ -8,6 +8,7 @@ import TextInput from '../../components/TextInput'
 import PrimaryButton from '../../components/PrimaryButton'
 import theme from '../../theme'
 import constraints from './constraints'
+import LoadingIcon from '../../components/LoadingIcon'
 
 const mapStateToProps = state => ({
   registerInfo: state.registrationReducer
@@ -186,7 +187,7 @@ class UserDetailsScreen extends Component {
           errorMessage={this.state.displayErrors.zipCode}
         />
         <PrimaryButton
-          text={this.state.isLoading ? 'Loading...' : 'Continue'}
+          text={this.state.isLoading ? <LoadingIcon /> : 'Continue'}
           onClick={() => this.handleSubmit('/bank-info')}
           disabled={!enabled || this.state.isLoading}
           style={{

@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { addInfo } from '../../redux/actions'
 import constraints from './constraints'
 import { VERIFY_WORK } from './graphql'
+import LoadingIcon from '../../components/LoadingIcon'
 
 const mapStateToProps = state => ({
   registerInfo: state.registrationReducer
@@ -116,7 +117,7 @@ class WorkEmailScreen extends Component {
             }
             return (
               <PrimaryButton
-                text={loading ? 'Verifying...' : 'Verify'}
+                text={loading ? <LoadingIcon /> : 'Verify'}
                 onClick={() =>
                   this.handleSubmit('/register-cont', () =>
                     verifyWorkEmail({ variables })

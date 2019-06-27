@@ -11,6 +11,7 @@ import theme from '../../theme'
 import { addInfo } from '../../redux/actions'
 import constraints from './constraints'
 import { VERIFY_PERSONAL } from './graphql'
+import LoadingIcon from '../../components/LoadingIcon'
 
 const mapStateToProps = state => ({
   registerInfo: state.registrationReducer
@@ -160,7 +161,7 @@ class PasswordScreen extends Component {
             }
             return (
               <PrimaryButton
-                text={loading ? 'Loading...' : 'Continue'}
+                text={loading ? <LoadingIcon /> : 'Continue'}
                 onClick={() =>
                   this.handleSubmit('/details', () =>
                     verifyPersonalEmail({ variables })

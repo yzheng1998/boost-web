@@ -5,6 +5,7 @@ import Background from '../../components/Background'
 import EditProfileForm from './components/EditProfileForm'
 import theme from '../../theme'
 import { GET_USER } from './graphql'
+import LoadingIcon from '../../components/LoadingIcon'
 
 class EditProfileScreen extends Component {
   render() {
@@ -18,7 +19,7 @@ class EditProfileScreen extends Component {
       >
         <Query query={GET_USER}>
           {({ loading, data, error }) => {
-            if (loading) return 'Loading data...'
+            if (loading) return <LoadingIcon />
             if (error) return `Error! ${error.messsage}`
             const { user } = data.viewer
             return <EditProfileForm user={user} history={this.props.history} />

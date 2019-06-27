@@ -9,13 +9,13 @@ load({
 
 const theme = {
   colors: {
-    background: 'white',
+    background: '#F3F3F3',
     backgroundSecondary: '#0FACF3',
-    header: '#0FACF3',
+    header: '#73A040',
     headerSecondary: 'white',
     primary: 'white',
     secondary: '#A2AEBB',
-    tertiary: '#0FACF3',
+    tertiary: '#88C040',
     quaternary: '#C05746',
     black: '#071013',
     error: 'rgb(227, 81, 65)',

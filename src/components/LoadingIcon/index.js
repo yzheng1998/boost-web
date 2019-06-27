@@ -1,11 +1,7 @@
 import React from 'react'
 import { AnimatedIcon } from './styles'
+import LoadingCircle from '../../../src/LoadingIcon.png'
 
-const LoadingIcon = () => (
-  <AnimatedIcon
-    alt="loading"
-    src="https://community.thunkable.com/uploads/default/original/1X/a8c639f5bd67f6eecf3b7f2209c7e7fada621f9c.png"
-  />
-)
+const LoadingIcon = () => <AnimatedIcon alt="loading" src={LoadingCircle} />
 
 export default LoadingIcon

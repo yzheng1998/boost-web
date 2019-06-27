@@ -9,6 +9,12 @@ export const InnerText = styled(Flex)`
   cursor: pointer;
 `
 
+export const Image = styled.img`
+  width: 20em;
+  height: auto;
+  margin-bottom: 1em;
+`
+
 export const LineText = styled(Flex)`
   font-family: ${({ theme }) => theme.fonts.medium.family};
   font-size: 14px;
@@ -22,6 +28,7 @@ export const Wrapper = styled(Flex)`
   flex-direction: column;
   padding: 20px 30px 20px 30px;
   justify-content: center;
+  align-items: center;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.grey};
   border-width: 1px;

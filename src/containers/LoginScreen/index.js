@@ -8,7 +8,15 @@ import TextInput from '../../components/TextInput'
 import PrimaryButton from '../../components/PrimaryButton'
 import LoadingIcon from '../../components/LoadingIcon'
 import theme from '../../theme'
-import { InnerText, Wrapper, Line, LineWrapper, LineText } from './styles'
+import logo from './GreenPathLogo.png'
+import {
+  InnerText,
+  Wrapper,
+  Line,
+  LineWrapper,
+  LineText,
+  Image
+} from './styles'
 import { LOGIN_USER } from './mutations'
 
 const Login = ({ history }) => {
@@ -22,7 +30,11 @@ const Login = ({ history }) => {
   return (
     <Background style={{ backgroundColor: theme.colors.background }}>
       <Wrapper>
-        <Header text="Welcome Back" color={theme.colors.tertiary} />
+        <Image src={logo} />
+        <Header
+          text="Welcome to the GreenPath Grant Circle"
+          color={theme.colors.tertiary}
+        />
         <TextInput
           labelText="Enter personal email"
           style={{ width: 300 }}

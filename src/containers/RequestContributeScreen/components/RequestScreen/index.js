@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Mutation, Query } from 'react-apollo'
+import { Mutation } from 'react-apollo'
 import { withAlert } from 'react-alert'
 import _ from 'lodash'
 import validate from 'validate.js'
@@ -30,12 +30,13 @@ class RequestScreen extends Component {
       hardshipExplanation: '',
       hardshipDate: '',
       additionalInfo: '',
-      payPalEmail: '',
+      payPalEmail: this.props.data.payPalEmail,
       displayErrors: {},
       errors: {},
       touched: {},
-      contributions: 0,
-      requests: 0
+      contributions: this.props.data.contributions,
+      requests: this.props.data.requests,
+      balance: this.props.balance
     }
   }
 
@@ -183,31 +184,7 @@ class RequestScreen extends Component {
           />
           <Row justifyContent="flex-start">
             <BodyText text="Your Boost funds available: " />
-            <Query
-              query={GET_USER}
-              onCompleted={data => {
-                this.setState({
-                  contributions: data.viewer.user.contributions,
-                  requests: data.viewer.user.requests,
-                  payPalEmail: data.viewer.user.personalEmail
-                })
-              }}
-            >
-              {({ loading, data, error }) => {
-                if (loading) return <LoadingIcon />
-                if (error) return `Error! ${error.messsage}`
-                const { user } = data.viewer
-                return (
-                  <BodyText
-                    text={`$${(
-                      1000 -
-                      user.requests +
-                      user.contributions
-                    ).toFixed(2)}`}
-                  />
-                )
-              }}
-            </Query>
+            <BodyText text={`$${this.state.balance}`} />
           </Row>
           <Row justifyContent="flex-start">
             <Span>$</Span>

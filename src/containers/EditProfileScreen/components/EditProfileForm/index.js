@@ -315,7 +315,7 @@ class EditProfileForm extends Component {
                   maritalStatus,
                   financialLife,
                   secondaryIncome,
-                  householdIncome
+                  householdIncome: Number(householdIncome)
                 }
               }
               return (

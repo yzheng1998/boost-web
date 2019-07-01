@@ -22,6 +22,7 @@ import LoadingIcon from '../../../../components/LoadingIcon'
 class RequestScreen extends Component {
   constructor(props) {
     super(props)
+    const { payPalEmail, contributions, requests } = this.props.data
     this.state = {
       selectedBoostReasons: [],
       otherReason: '',
@@ -30,12 +31,12 @@ class RequestScreen extends Component {
       hardshipExplanation: '',
       hardshipDate: '',
       additionalInfo: '',
-      payPalEmail: this.props.data.payPalEmail,
+      payPalEmail,
       displayErrors: {},
       errors: {},
       touched: {},
-      contributions: this.props.data.contributions,
-      requests: this.props.data.requests,
+      contributions,
+      requests,
       balance: this.props.balance
     }
   }
@@ -317,6 +318,7 @@ class RequestScreen extends Component {
               if (data.request.success) {
                 this.clearState()
                 window.scrollTo(0, 0)
+                this.props.history.push('/request')
                 this.props.alert.success(
                   'You successfully requested a Boost fund'
                 )

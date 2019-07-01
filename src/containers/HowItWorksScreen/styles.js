@@ -38,6 +38,7 @@ export const Container = styled(Flex)`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 100px;
   align-self: center;
 `

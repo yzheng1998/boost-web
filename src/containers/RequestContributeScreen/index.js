@@ -28,6 +28,14 @@ class CenteredTabs extends React.Component {
     this.setState({ value })
   }
 
+  handleError = ({ message }) => {
+    console.error(message)
+    return 'An error occurred!'
+  }
+
+  computeBalance = ({ requests, contributions }) =>
+    (1000 - requests + contributions).toFixed(2)
+
   render() {
     const { classes } = this.props
     const { value } = this.state
@@ -63,23 +71,36 @@ class CenteredTabs extends React.Component {
         >
           {({ loading, data, error }) => {
             if (loading) return <LoadingIcon />
-            if (error) return `Error! ${error.messsage}`
+            if (error) {
+              this.handleError(error)
+            }
             const { user } = data.viewer
 
-            const balance = (1000 - user.requests + user.contributions).toFixed(
-              2
-            )
+            const balance = this.computeBalance(user)
 
             if (value === 0) {
-              return <RequestScreen data={this.state} balance={balance} />
+              return (
+                <RequestScreen
+                  data={this.state}
+                  balance={balance}
+                  history={this.props.history}
+                />
+              )
             } else if (value === 1) {
               return <ContributeScreen />
             }
 
             if (balance === '1000.00') {
-              return <RequestScreen data={this.state} balance={balance} />
+              this.setState({ value: 0 })
+              return (
+                <RequestScreen
+                  data={this.state}
+                  balance={balance}
+                  history={this.props.history}
+                />
+              )
             }
-
+            this.setState({ value: 1 })
             return <ContributeScreen />
           }}
         </Query>

@@ -33,12 +33,12 @@ const ExplanationScreen = ({ history, clear }) => (
         You can withdraw up to $1,000 every two years. When you contribute back
         into the fund, you can request withdrawals more frequently. You can also
         contribute more than what you’ve withdrawn in order to grow the fund so
-        that more of ytour co-workers can get access.
+        that more of your co-workers can get access.
       </CenterParagraph>
 
       <BtnWrapper>
         <AuthButton
-          text="Next"
+          text="Get started"
           onClick={() => {
             clear()
             history.push('/request')

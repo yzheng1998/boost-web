@@ -366,7 +366,10 @@ class RequestScreen extends Component {
                   text={loading ? <LoadingIcon /> : 'Request funds with Paypal'}
                   style={{
                     width: 350,
-                    backgroundColor: theme.colors.tertiary,
+                    backgroundColor:
+                      loading || !enabled
+                        ? theme.colors.secondary
+                        : theme.colors.tertiary,
                     color: 'white',
                     marginTop: 15,
                     marginBottom: 45

@@ -3,26 +3,27 @@ import { Mutation } from 'react-apollo'
 import { withAlert } from 'react-alert'
 import _ from 'lodash'
 import validate from 'validate.js'
-import Subheader from '../../../../components/Subheader'
-import Background from '../../../../components/Background'
-import BodyText from '../../../../components/BodyText'
-import Row from '../../../../components/Row'
-import PrimaryButton from '../../../../components/PrimaryButton'
-import MultiselectBtn from '../../../../components/MultiselectBtn'
-import TextInput from '../../../../components/TextInput'
-import FormWrapper from '../../../../components/FormWrapper'
-import OutlinedInput from '../../../../components/OutlinedInput'
-import theme from '../../../../theme'
+import Subheader from '../../../../../../components/Subheader'
+import Background from '../../../../../../components/Background'
+import BodyText from '../../../../../../components/BodyText'
+import Row from '../../../../../../components/Row'
+import PrimaryButton from '../../../../../../components/PrimaryButton'
+import MultiselectBtn from '../../../../../../components/MultiselectBtn'
+import TextInput from '../../../../../../components/TextInput'
+import FormWrapper from '../../../../../../components/FormWrapper'
+import OutlinedInput from '../../../../../../components/OutlinedInput'
+import theme from '../../../../../../theme'
 import { Span, WrappedRow } from './styles'
-import boostReasons from '../../constants/boostReasons'
+import boostReasons from '../../../../constants/boostReasons'
 import { REQUEST_FUNDS, GET_USER } from './graphql'
 import constraints from './constraints'
-import LoadingIcon from '../../../../components/LoadingIcon'
+import LoadingIcon from '../../../../../../components/LoadingIcon'
 
 class RequestScreen extends Component {
   constructor(props) {
     super(props)
     const { payPalEmail, contributions, requests } = this.props.data
+    const { balance } = this.props
     this.state = {
       selectedBoostReasons: [],
       otherReason: '',
@@ -37,7 +38,7 @@ class RequestScreen extends Component {
       touched: {},
       contributions,
       requests,
-      balance: this.props.balance
+      balance
     }
   }
 
@@ -318,7 +319,7 @@ class RequestScreen extends Component {
               if (data.request.success) {
                 this.clearState()
                 window.scrollTo(0, 0)
-                this.props.history.push('/request')
+                this.props.history.push('/')
                 this.props.alert.success(
                   'You successfully requested a Boost fund'
                 )

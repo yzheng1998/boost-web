@@ -1,27 +1,29 @@
 import React, { Component } from 'react'
-import { Mutation, Query } from 'react-apollo'
+import { Mutation } from 'react-apollo'
 import { withAlert } from 'react-alert'
 import _ from 'lodash'
 import validate from 'validate.js'
-import Subheader from '../../../../components/Subheader'
-import Background from '../../../../components/Background'
-import BodyText from '../../../../components/BodyText'
-import Row from '../../../../components/Row'
-import PrimaryButton from '../../../../components/PrimaryButton'
-import MultiselectBtn from '../../../../components/MultiselectBtn'
-import TextInput from '../../../../components/TextInput'
-import FormWrapper from '../../../../components/FormWrapper'
-import OutlinedInput from '../../../../components/OutlinedInput'
-import theme from '../../../../theme'
+import Subheader from '../../../../../../components/Subheader'
+import Background from '../../../../../../components/Background'
+import BodyText from '../../../../../../components/BodyText'
+import Row from '../../../../../../components/Row'
+import PrimaryButton from '../../../../../../components/PrimaryButton'
+import MultiselectBtn from '../../../../../../components/MultiselectBtn'
+import TextInput from '../../../../../../components/TextInput'
+import FormWrapper from '../../../../../../components/FormWrapper'
+import OutlinedInput from '../../../../../../components/OutlinedInput'
+import theme from '../../../../../../theme'
 import { Span, WrappedRow } from './styles'
-import boostReasons from '../../constants/boostReasons'
+import boostReasons from '../../../../constants/boostReasons'
 import { REQUEST_FUNDS, GET_USER } from './graphql'
 import constraints from './constraints'
-import LoadingIcon from '../../../../components/LoadingIcon'
+import LoadingIcon from '../../../../../../components/LoadingIcon'
 
 class RequestScreen extends Component {
   constructor(props) {
     super(props)
+    const { payPalEmail, contributions, requests } = this.props.data
+    const { balance } = this.props
     this.state = {
       selectedBoostReasons: [],
       otherReason: '',
@@ -30,12 +32,13 @@ class RequestScreen extends Component {
       hardshipExplanation: '',
       hardshipDate: '',
       additionalInfo: '',
-      payPalEmail: '',
+      payPalEmail,
       displayErrors: {},
       errors: {},
       touched: {},
-      contributions: 0,
-      requests: 0
+      contributions,
+      requests,
+      balance
     }
   }
 
@@ -183,31 +186,7 @@ class RequestScreen extends Component {
           />
           <Row justifyContent="flex-start">
             <BodyText text="Your Boost funds available: " />
-            <Query
-              query={GET_USER}
-              onCompleted={data => {
-                this.setState({
-                  contributions: data.viewer.user.contributions,
-                  requests: data.viewer.user.requests,
-                  payPalEmail: data.viewer.user.personalEmail
-                })
-              }}
-            >
-              {({ loading, data, error }) => {
-                if (loading) return <LoadingIcon />
-                if (error) return `Error! ${error.messsage}`
-                const { user } = data.viewer
-                return (
-                  <BodyText
-                    text={`$${(
-                      1000 -
-                      user.requests +
-                      user.contributions
-                    ).toFixed(2)}`}
-                  />
-                )
-              }}
-            </Query>
+            <BodyText text={`$${this.state.balance}`} />
           </Row>
           <Row justifyContent="flex-start">
             <Span>$</Span>
@@ -340,6 +319,7 @@ class RequestScreen extends Component {
               if (data.request.success) {
                 this.clearState()
                 window.scrollTo(0, 0)
+                this.props.history.push('/')
                 this.props.alert.success(
                   'You successfully requested a Boost fund'
                 )

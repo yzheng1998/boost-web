@@ -302,7 +302,7 @@ class CompleteProfileScreen extends Component {
                           color: theme.colors.primary
                         }}
                         onClick={() => {
-                          this.handleSubmit('/request', store, register)
+                          this.handleSubmit('/howItWorks', store, register)
                         }}
                         disabled={!enabled || loading}
                       />

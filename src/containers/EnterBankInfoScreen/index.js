@@ -59,19 +59,21 @@ class EnterBankInfo extends Component {
               `Connected to ${this.state.token.length} accounts`}
           </StyledPlaidLink>
         </PlaidLinkContainer>
-        <PlaidLinkContainer>
-          <StyledPlaidLink
-            active
-            clientName="Boost"
-            env="sandbox"
-            product={['auth', 'transactions']}
-            publicKey="fce3ab4dab4752ede9cb3363e3c575"
-            onExit={this.handleOnExit}
-            onSuccess={this.handleOnSuccess}
-          >
-            Connect to more accounts
-          </StyledPlaidLink>
-        </PlaidLinkContainer>
+        {this.state.token.length !== 0 && (
+          <PlaidLinkContainer>
+            <StyledPlaidLink
+              active
+              clientName="Boost"
+              env="sandbox"
+              product={['auth', 'transactions']}
+              publicKey="fce3ab4dab4752ede9cb3363e3c575"
+              onExit={this.handleOnExit}
+              onSuccess={this.handleOnSuccess}
+            >
+              Connect to more accounts
+            </StyledPlaidLink>
+          </PlaidLinkContainer>
+        )}
         {this.state.bank && (
           <PrimaryButton
             text="Continue"

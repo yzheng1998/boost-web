@@ -11,6 +11,13 @@ export const PlaidLinkContainer = styled(Flex)`
   margin-top: 20px;
 `
 
+export const StyledList = styled.ol`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-weight: 200;
+`
+
 export const StyledPlaidLink = styled(PlaidLink)`
   background-color: ${({ active }) =>
     active ? theme.colors.tertiary : theme.colors.secondary} !important;
@@ -24,9 +31,20 @@ export const StyledPlaidLink = styled(PlaidLink)`
 `
 
 export const StyledText = styled(Flex)`
-  font-family: 'Roboto';
-  align-self: center;
-  width: 30%;
+  flex-direction: column;
   flex-wrap: wrap;
   text-align: center;
+  justify-content: center;
+`
+
+export const TextContainer = styled(Flex)`
+  flex-direction: column;
+  font-family: 'Roboto';
+  font-size: 14px;
+  align-self: center;
+  width: 50vw;
+
+  @media only screen and (max-width: ${theme.breakpoints.mobile.ceiling}) {
+    width: 90vw;
+  }
 `

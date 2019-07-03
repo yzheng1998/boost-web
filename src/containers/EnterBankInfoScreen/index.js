@@ -4,7 +4,13 @@ import Background from '../../components/Background'
 import Header from '../../components/Header'
 import PrimaryButton from '../../components/PrimaryButton'
 import theme from '../../theme'
-import { StyledPlaidLink, PlaidLinkContainer, StyledText } from './styles'
+import {
+  StyledPlaidLink,
+  PlaidLinkContainer,
+  StyledText,
+  StyledList,
+  TextContainer
+} from './styles'
 import { addPayment } from '../../redux/actions'
 
 const mapStateToProps = state => ({
@@ -37,10 +43,39 @@ class EnterBankInfo extends Component {
           color={theme.colors.header}
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
-        <StyledText>
-          Ipsum Dolor asdhsaekjfb kjbfkwajebf jwkbajkasdfnds f asdfjnawekjf
-          sdkjfwjkEFAEJ
-        </StyledText>
+        <TextContainer>
+          <StyledText>
+            Grant Circles use Plaid to link to your bank account information,
+            including account balances and spending patterns. We do this in
+            order to:
+          </StyledText>
+          <StyledList>
+            <li>Provide you the most seamless and personalized service. </li>
+            <li>
+              Measure the positive impact we are having in the financial
+              wellness of Grant Circles users so that we can expand the service
+              to more workers just like like you.
+            </li>
+          </StyledList>
+          <StyledText>
+            Your trust and privacy are extremely important to us. We promise to:
+          </StyledText>
+          <StyledList>
+            <li>Never collect any account numbers or passwords.</li>
+            <li>
+              Keep all information collected completely secure and confidential.
+            </li>
+            <li>
+              Never share it with GreenPath or any third parties. Currently,
+              linking your primary bank is required in order to have access to
+              Grant Circles.
+            </li>
+          </StyledList>
+          <StyledText>
+            If you have questions or concerns, please email
+            <a href="mailto:info@grantcircles.org">info@grantcircles.org</a>.
+          </StyledText>
+        </TextContainer>
         <PlaidLinkContainer>
           <StyledPlaidLink
             active={this.state.buttonActive}

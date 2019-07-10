@@ -170,9 +170,9 @@ class CompleteProfileScreen extends Component {
     return (
       <Background
         style={{
-          backgroundColor: theme.colors.tertiary,
+          backgroundColor: theme.colors.background,
           justifyContent: 'flex-start',
-          paddingTop: 50
+          paddingTop: 30
         }}
       >
         <ProfileWrapper>

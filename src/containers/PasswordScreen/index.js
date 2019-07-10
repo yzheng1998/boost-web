@@ -12,6 +12,7 @@ import { addInfo } from '../../redux/actions'
 import constraints from './constraints'
 import { VERIFY_PERSONAL } from './graphql'
 import LoadingIcon from '../../components/LoadingIcon'
+import BodyText from '../../components/BodyText'
 
 const mapStateToProps = state => ({
   registerInfo: state.registrationReducer
@@ -96,6 +97,7 @@ class PasswordScreen extends Component {
           color={theme.colors.header}
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
+        <BodyText text="Make sure to choose an email you access often!" />
         <TextInput
           name="personalEmail"
           onChange={e =>
@@ -115,6 +117,13 @@ class PasswordScreen extends Component {
           value={this.state.registerInput.personalEmail}
           style={{ alignSelf: 'center' }}
           errorMessage={this.state.displayErrors.personalEmail}
+        />
+        <BodyText
+          text="Your password must contain letters, numbers, and at least one special character: !@#$%^&#38;*?"
+          style={{
+            marginTop: 25,
+            width: 300
+          }}
         />
         <TextInput
           name="password"

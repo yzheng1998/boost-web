@@ -1,10 +1,10 @@
-const pattern = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!@#$%^&*]+)$/
+const pattern = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*?])([a-zA-Z0-9?!@#$%^&*]+)$/
 const constraints = {
   password: {
     presence: { message: '^Cannot be blank' },
     format: {
       pattern,
-      message: '^\nPassword must have numbers and letters'
+      message: '^\nPlease provide a valid password'
     },
     length: {
       minimum: 8,

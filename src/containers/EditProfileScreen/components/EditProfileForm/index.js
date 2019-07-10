@@ -286,7 +286,8 @@ class EditProfileForm extends Component {
             text="Cancel"
             style={{
               backgroundColor: theme.colors.secondary,
-              color: theme.colors.primary
+              color: theme.colors.primary,
+              marginRight: 20
             }}
             onClick={() => {
               this.props.history.push('/request')

@@ -12,7 +12,7 @@ class EditProfileScreen extends Component {
     return (
       <Background
         style={{
-          backgroundColor: theme.colors.tertiary,
+          backgroundColor: theme.colors.background,
           paddingTop: 50,
           justifyContent: 'flex-start'
         }}

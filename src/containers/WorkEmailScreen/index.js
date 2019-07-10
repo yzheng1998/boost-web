@@ -89,7 +89,7 @@ class WorkEmailScreen extends Component {
     return (
       <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
-          text="Verify work email"
+          text="Step 1 of 4: Verify employer"
           color={theme.colors.header}
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />

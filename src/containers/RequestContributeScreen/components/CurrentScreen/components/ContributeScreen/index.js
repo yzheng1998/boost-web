@@ -4,7 +4,6 @@ import { withAlert } from 'react-alert'
 import apolloClient from '../../../../../../client'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 import Subheader from '../../../../../../components/Subheader'
-import BodyText from '../../../../../../components/BodyText'
 import Background from '../../../../../../components/Background'
 import FormWrapper from '../../../../../../components/FormWrapper'
 import TextInput from '../../../../../../components/TextInput'
@@ -82,11 +81,7 @@ class ContributeScreen extends Component {
           }}
         >
           <Subheader
-            text="How much would you like to contribute?"
-            style={{ marginBottom: 30 }}
-          />
-          <BodyText
-            text="Worker contributions to this fund have given your colleagues access to $50000 in financial support during times of hardship"
+            text="Worker contributions will help ensure the Grant Circle can support more workers like you."
             style={{ marginBottom: 30 }}
           />
           <Query query={GET_USER}>
@@ -97,9 +92,9 @@ class ContributeScreen extends Component {
               if (user.requests)
                 return (
                   <Subheader
-                    text={`Worker Contributions have also funded your total grant of $${user.requests.toFixed(
+                    text={`Worker Contributions also supported your requests of $${user.requests.toFixed(
                       2
-                    )} as of ${user.lastRequest}`}
+                    )}`}
                     style={{ marginBottom: 30 }}
                   />
                 )
@@ -107,7 +102,7 @@ class ContributeScreen extends Component {
             }}
           </Query>
 
-          <Subheader text="One time contribution: " style={{ marginTop: 50 }} />
+          <Subheader text="How much would you like to contribute back into the Grant Circle? " />
           <Row justifyContent="flex-start">
             <Span>$</Span>
             <TextInput

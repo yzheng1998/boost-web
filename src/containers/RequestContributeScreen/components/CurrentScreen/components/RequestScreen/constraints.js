@@ -1,6 +1,6 @@
 const presence = {
   allowEmpty: false,
-  message: '^Cannot be blank'
+  message: '^Cannot be blank '
 }
 
 const constraints = {

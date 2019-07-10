@@ -29,7 +29,7 @@ const HowItWorksScreen = ({ history, clear }) => (
         style={{ width: 150, height: 150 }}
         alt="temp boost icon"
       />
-      <CenterParagraph style={{ textAlign: 'center' }}>
+      <CenterParagraph>
         Contributions from employees are matched by support from a charitable
         foundation.
       </CenterParagraph>

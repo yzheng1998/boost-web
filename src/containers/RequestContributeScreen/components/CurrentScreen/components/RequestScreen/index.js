@@ -42,6 +42,10 @@ class RequestScreen extends Component {
     }
   }
 
+  componentDidMount = () => {
+    window.scrollTo(0, 0)
+  }
+
   onChange = e => {
     this.setState(
       {
@@ -185,14 +189,13 @@ class RequestScreen extends Component {
             style={{ marginBottom: 20 }}
           />
           <Row justifyContent="flex-start">
-            <BodyText text="Your Boost funds available: " />
+            <BodyText text="Your Boost funds available: &nbsp;" />
             <BodyText text={`$${this.state.balance}`} />
           </Row>
           <Row justifyContent="flex-start">
             <Span>$</Span>
             <TextInput
               type="number"
-              labelText="Enter Amount"
               rootStyle={{ alignSelf: 'center' }}
               name="amount"
               onChange={this.onChange}
@@ -200,6 +203,7 @@ class RequestScreen extends Component {
               onFocus={() => this.addTouched('amount')}
               onBlur={() => this.validateForm(false)}
               errorMessage={this.state.displayErrors.amount}
+              inputStyle={{ fontSize: 25, width: 100 }}
             />
           </Row>
           <Subheader text="What is your boost for?" />

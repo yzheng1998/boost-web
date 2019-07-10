@@ -21,6 +21,10 @@ class ContributeScreen extends Component {
     }
   }
 
+  componentDidMount = () => {
+    window.scrollTo(0, 0)
+  }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value

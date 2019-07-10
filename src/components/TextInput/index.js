@@ -12,6 +12,7 @@ const TextInput = ({
   errorMessage,
   rootStyle,
   style,
+  inputStyle,
   ...rest
 }) => (
   <FormControl
@@ -35,6 +36,7 @@ const TextInput = ({
         root: classes.input,
         underline: classes.cssUnderline
       }}
+      style={inputStyle}
       {...rest}
     />
     <FormHelperText

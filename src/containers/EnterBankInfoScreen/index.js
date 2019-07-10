@@ -40,7 +40,7 @@ class EnterBankInfo extends Component {
     return (
       <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
-          text="Enter Bank Info"
+          text="Step 3 of 4: Link my bank account"
           color={theme.colors.header}
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />

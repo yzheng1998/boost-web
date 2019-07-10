@@ -92,7 +92,7 @@ class PasswordScreen extends Component {
     return (
       <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
-          text="Set-up account details"
+          text="Step 2 of 4: Set-up my account"
           color={theme.colors.header}
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />

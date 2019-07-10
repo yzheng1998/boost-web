@@ -177,7 +177,7 @@ class CompleteProfileScreen extends Component {
       >
         <ProfileWrapper>
           <Header
-            text="Complete Profile"
+            text="Step 4 of 4: Complete my profile"
             color={theme.colors.header}
             style={{ alignSelf: 'center' }}
           />

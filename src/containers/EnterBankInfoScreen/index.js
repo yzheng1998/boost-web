@@ -9,7 +9,8 @@ import {
   PlaidLinkContainer,
   StyledText,
   StyledList,
-  TextContainer
+  TextContainer,
+  StyledHeaderText
 } from './styles'
 import { addPayment } from '../../redux/actions'
 
@@ -44,11 +45,11 @@ class EnterBankInfo extends Component {
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
         <TextContainer>
-          <StyledText>
+          <StyledHeaderText>
             Grant Circles use Plaid to link to your bank account information,
             including account balances and spending patterns. We do this in
             order to:
-          </StyledText>
+          </StyledHeaderText>
           <StyledList>
             <li>Provide you the most seamless and personalized service. </li>
             <li>
@@ -57,9 +58,9 @@ class EnterBankInfo extends Component {
               to more workers just like like you.
             </li>
           </StyledList>
-          <StyledText>
+          <StyledHeaderText>
             Your trust and privacy are extremely important to us. We promise to:
-          </StyledText>
+          </StyledHeaderText>
           <StyledList>
             <li>Never collect any account numbers or passwords.</li>
             <li>

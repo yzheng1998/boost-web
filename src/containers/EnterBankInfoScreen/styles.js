@@ -30,6 +30,13 @@ export const StyledPlaidLink = styled(PlaidLink)`
   pointer-events: ${({ active }) => (active ? 'auto' : 'none')};
 `
 
+export const StyledHeaderText = styled(Flex)`
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: flex-start;
+  justify-content: center;
+`
+
 export const StyledText = styled(Flex)`
   flex-direction: column;
   flex-wrap: wrap;
@@ -42,7 +49,7 @@ export const TextContainer = styled(Flex)`
   font-family: 'Roboto';
   font-size: 14px;
   align-self: center;
-  width: 50vw;
+  width: 44vw;
 
   @media only screen and (max-width: ${theme.breakpoints.mobile.ceiling}) {
     width: 90vw;

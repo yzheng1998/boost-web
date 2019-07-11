@@ -30,6 +30,7 @@ import EmailRecoveryScreen from './containers/EmailRecoveryScreen'
 import VerificationCodeScreen from './containers/VerificationCodeScreen'
 import NewPasswordScreen from './containers/NewPasswordScreen'
 import ExplanationScreen from './containers/ExplanationScreen'
+import PageFooter from './components/PageFooter'
 
 const MuiTheme = createMuiTheme({
   palette: {
@@ -127,6 +128,7 @@ class App extends React.Component {
                         />
                         <Redirect from="/" to="/request" />
                       </Switch>
+                      <PageFooter />
                     </div>
                   </AlertProvider>
                 </ApolloProvider>

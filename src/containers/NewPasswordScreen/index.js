@@ -12,6 +12,7 @@ import { Wrapper } from './styles'
 import constraints from './constraints'
 import { RESET_PASSWORD } from './graphql'
 import LoadingIcon from '../../components/LoadingIcon'
+import BodyText from '../../components/BodyText'
 
 class NewPassword extends Component {
   state = {
@@ -79,6 +80,10 @@ class NewPassword extends Component {
             text="New Password"
             color={theme.colors.tertiary}
             style={{ marginBottom: '8px' }}
+          />
+          <BodyText
+            text="Your password must contain letters, numbers, and at least one special character: !@#$%^&#38;*?"
+            style={{ width: 300, bottomMargin: 15 }}
           />
 
           <TextInput

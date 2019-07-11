@@ -42,3 +42,5 @@ export const Container = styled(Flex)`
   padding-top: 100px;
   align-self: center;
 `
+
+export const Slide = styled.img``

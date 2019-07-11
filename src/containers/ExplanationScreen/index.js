@@ -1,16 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Carousel from 'nuka-carousel'
 import { clearRedux } from '../../redux/actions'
 import AuthButton from '../../components/AuthButton'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import theme from '../../theme'
-import { BtnWrapper, CenterParagraph, Container } from './styles'
-import TempIcon from '../../../src/boostIcon.png'
+import { BtnWrapper, CenterParagraph, Container, Slide } from './styles'
+import How3 from '../../../src/assets/images/how3.png'
+import How4 from '../../../src/assets/images/how4.png'
+import How5 from '../../../src/assets/images/how5.png'
 
 const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(clearRedux())
 })
+
+const slideImages = [How3, How4, How5]
 
 const ExplanationScreen = ({ history, clear }) => (
   <Background style={{ backgroundColor: theme.colors.background }}>
@@ -25,11 +30,11 @@ const ExplanationScreen = ({ history, clear }) => (
         something else -- you can request a withdrawal. You can withdraw up to
         $1,000 every two years.
       </CenterParagraph>
-      <img
-        src={TempIcon}
-        style={{ width: 150, height: 150 }}
-        alt="temp boost icon"
-      />
+      <Carousel width="40%" autoplay wrapAround withoutControls>
+        {slideImages.map(image => (
+          <Slide alt="How" src={image} />
+        ))}
+      </Carousel>
       <CenterParagraph>
         When you contribute back into the fund, you can request withdrawals more
         frequently. You can also contribute more than what you’ve withdrawn in

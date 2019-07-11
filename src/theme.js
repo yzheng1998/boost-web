@@ -29,7 +29,7 @@ const theme = {
   },
   fonts: {
     medium: {
-      family: 'Roboto',
+      family: 'Helvetica Neue, Helvetica, Roboto, Arial, sans serif',
       weight: 500
     }
   }

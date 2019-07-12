@@ -15,7 +15,9 @@ const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(clearRedux())
 })
 
-const slideImages = [How3, How4, How5]
+const SlideImages = [How3, How4, How5].map(image => (
+  <Slide alt="How" src={image} />
+))
 
 const ExplanationScreen = ({ history, clear }) => (
   <Background style={{ backgroundColor: theme.colors.background }}>
@@ -31,9 +33,7 @@ const ExplanationScreen = ({ history, clear }) => (
         $1,000 every two years.
       </CenterParagraph>
       <Carousel width="40%" autoplay wrapAround withoutControls>
-        {slideImages.map(image => (
-          <Slide alt="How" src={image} />
-        ))}
+        {SlideImages}
       </Carousel>
       <CenterParagraph>
         When you contribute back into the fund, you can request withdrawals more

@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(clearRedux())
 })
 
-const slideImages = [How1, How2]
+const SlideImages = [How1, How2].map(image => <Slide alt="How" src={image} />)
 
 const HowItWorksScreen = ({ history, clear }) => (
   <Background style={{ backgroundColor: theme.colors.background }}>
@@ -29,9 +29,7 @@ const HowItWorksScreen = ({ history, clear }) => (
         the more funds there are for any of us to use.
       </CenterParagraph>
       <Carousel width="40%" autoplay wrapAround withoutControls>
-        {slideImages.map(image => (
-          <Slide alt="How" src={image} />
-        ))}
+        {SlideImages}
       </Carousel>
       <CenterParagraph>
         Contributions from employees are matched by support from a charitable

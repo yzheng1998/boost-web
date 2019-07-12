@@ -1,5 +1,8 @@
 export const styles = {
   root: {
-    height: 'auto'
+    height: 'auto',
+    position: 'sticky',
+    top: '60px',
+    zIndex: 999
   }
 }

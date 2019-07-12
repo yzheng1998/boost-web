@@ -1,16 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Carousel from 'nuka-carousel'
 import AuthButton from '../../components/AuthButton'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import theme from '../../theme'
-import { BtnWrapper, CenterParagraph, Container } from './styles'
+import { BtnWrapper, CenterParagraph, Container, Slide } from './styles'
 import { clearRedux } from '../../redux/actions'
-import TempIcon from '../../../src/boostIcon.png'
+import How1 from '../../../src/assets/images/how1.png'
+import How2 from '../../../src/assets/images/how2.png'
 
 const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(clearRedux())
 })
+
+const SlideImages = [How1, How2].map(image => <Slide alt="How" src={image} />)
 
 const HowItWorksScreen = ({ history, clear }) => (
   <Background style={{ backgroundColor: theme.colors.background }}>
@@ -24,11 +28,9 @@ const HowItWorksScreen = ({ history, clear }) => (
         Anyone can contribute into the Grant Circle Fund. The more we each give,
         the more funds there are for any of us to use.
       </CenterParagraph>
-      <img
-        src={TempIcon}
-        style={{ width: 150, height: 150 }}
-        alt="temp boost icon"
-      />
+      <Carousel width="40%" autoplay wrapAround withoutControls>
+        {SlideImages}
+      </Carousel>
       <CenterParagraph>
         Contributions from employees are matched by support from a charitable
         foundation.

@@ -46,7 +46,7 @@ export const StyledText = styled(Flex)`
 
 export const TextContainer = styled(Flex)`
   flex-direction: column;
-  font-family: 'Roboto';
+  font-family: ${theme.fonts.medium.family};
   font-size: 14px;
   align-self: center;
   width: 44vw;

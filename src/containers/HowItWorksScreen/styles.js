@@ -41,6 +41,10 @@ export const Container = styled(Flex)`
   justify-content: flex-start;
   padding-top: 100px;
   align-self: center;
+  @media screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.mobile.ceiling}) {
+    width: 100%;
+  }
 `
 
 export const Slide = styled.img``

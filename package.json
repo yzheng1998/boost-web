@@ -37,7 +37,6 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
-    "slick-carousel": "^1.8.1",
     "store": "^2.0.12",
     "styled-components": "^4.2.0",
     "validate.js": "^0.12.0",

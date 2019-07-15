@@ -12,7 +12,7 @@ jobs:
       if: branch = master AND commit_message =~ /\[DEPLOY\]/
       env:
         - REACT_APP_DEPLOY_ENV=staging
-        - REACT_APP_API_URL=https://boost-api-staging.herokuapp.com/graphql
+        - REACT_APP_API_URL=https://boost-api-staging.us-east-1.elasticbeanstalk.com/graphql
       before_deploy:
         - npm run build
       deploy:
@@ -22,7 +22,7 @@ jobs:
         on:
           branch: master
           condition: '$REACT_APP_DEPLOY_ENV = staging'
-        bucket: boost-web-staging
+        bucket: grantcircles-web-staging
         local_dir: build
         skip_cleanup: true
     - stage: Production deploy
@@ -30,7 +30,7 @@ jobs:
       if: branch = production
       env:
         - REACT_APP_DEPLOY_ENV=production
-        - REACT_APP_API_URL=https://boost-api-production.herokuapp.com/graphql
+        - REACT_APP_API_URL=https://boost-api-production.us-east-1.elasticbeanstalk.com/graphql
       before_deploy:
         - npm run build
       deploy:
@@ -40,10 +40,10 @@ jobs:
         on:
           branch: production
           condition: '$REACT_APP_DEPLOY_ENV = production'
-        bucket: boost-web-production
+        bucket: grantcircles-web-production
         local_dir: build
         skip_cleanup: true
 env:
   global:
-    - secure: jqLxRtF0ppNxflE8fqlOlJFOVHOWwAY7mJ4mmCCmiREIs1WfzXuoQtQzRarTZ3xtd1EEnDm2mpadXsWaLzmataARGxaG9mtCqgu2rbb0/KnNHQK45ljIoGR2d9BlYt3/uofPynjKE0w0QoTslMfxzyojYhtqesmhDaqy4rTvKPoW2LWvh1TTZcOzwgbvRod1TfmLmSJd9tCTeevZLCaEB46TwrJq+CyrPqjn8gU9u9ONcpGqRg0p2b6BId6ZJTYZdVystZjBnYjGnLBrr+C+8EX8t8pdd9OJj9JXW9gWgS+q1BZqOwpCaEnltavggRGlOyLBreM0cegKppx1DzmqfHaZPZDVmHsqUjq/wsu4QMOVtg/Z+jO5AykrdZvS/X2p+eNQg5jsNoIHVU5eg2kx1O8fr0ZoH3Be8c9dD7gXMbeglfLoPOxnGOJ2HeeoTwthJiZvT+ITE0lO1odNMqJ5sarb/aYfnvZCfHxWbKaUGfuEGcCcGDdPABPXG49ckMhylbfblGjYgBY028idPPILN0spvBHnzuvmN1oa4aQzMcOYOB8JGcRUj9kAvhjvSWuZq9SXn7R0Q9cS8tfV1tsaPI/1Cbwu6fvXy617846BtJYmJYNJ0l/7p/z9IUtoXGp8AWuwV1SYQIE6/Oz0c1mezzliSeQ9I/cxvdkIPuZJqK8=
-    - secure: WVGyKk2WCJv3PeINNYmomUZ+DaX0nWxYCN37ZdV/J20Nmw4lykPSec6D5zwK4ZSGiHBK9R5NJuqg+jCvI/UMaT1hAZZDVuMQcrvDjICQQvqCHNgoCBl+pUlv73ABrxjUG2IkjxXo23+HiWZAVZdjySNRGHbz5Pekex/bKaVI1NCh4iuySjWXvU/fIv7QTuDPd5Zl/HtLOnaCCjaJfu1DuLgMXLCbx+gV4dMyxCyVXSL2VVPnaxtFLuMYqQgT+odtBQwPybKhsOwbtnsGZspRw3YYU7NAOkxODoQFOI6HsaOXmhTmTq1FIghiOSdTam2cN36lO7fRYzH9gaDQI68GRuo8B/Qc6VKkqAw638LzTsi8V0rkmx/qct0aOKhAspwSdFoqxwD3HoWLDOr0CXWSSpJ5RcnBMD6Xjd1mpZJ0LigqU/HWJvi5bQLWW+FK2I9REOvK/G00XMQhdXEmNx0DdNjLnlRv6x5YkOOupFskxj7iE3+wHhmolZVWyhwkDVFPvGKHF3fWpWMe42s686vdc4OOrbZUDeJY6i1AthLyBDZyqzbeypG+5NoVk4+oHgPoZngpKfGcqtHRsBMHtCvS5Je6C60GMC87mWfIbbhtk7M5pAJbfEPQgN24p0ULoAMPyxX2BOjNBGOEmRT7fWypNWs7zxljlUrGeH7FPicYPLw=
+    - secure: tnEz9Hpy3At0Xv6Exwcpmhu3O1V5yFW4YsJZHumT35WoH185nkDp+W5O9O4bKia6VoMquYg3mKh0sdzpV0UpR0kyenAKl/GLa8zoFnFwK+Z1BAX3fD2TYAGlbetcxcUeFTlnfGU4NSJZuvpxft2638jQfDKj2fWHXo42I7A0GH2FaxbCl4u9rO1iurRcCinxzwDGFHepoWit3DqTGenfn5RzeU/sTJGUbYD26Yp8ldn5UBOaq9yw03mwXsycqTr65fowVNY9xY9oy5Wpyr69x52MWZXQ9PEOLstT7Qg6VwDm7439jUkEUP83HbWx3DRuSrYc5lY0D+pHjn4n6a6b1DcDgfhDVXEqeSUiaBIMCD92hmdHq07PH2tCF6rDXswAyplODAkcJ+5DGgPgPXPaj+JqwMtSnVADZ8gUGKhNJsxX/8sEruErX4imixbOGZ96auzHGNTu0pjUkGGI02/F9kAKffNjamlEeaTF3dNMBp9GrL4wQ8kJ/yVBx8+CbGqFK30fv4VrNSUNKsha6WIfAbxQhL1x8lKyLwwDW4HQqFxwIEc9wRzsREICmN2OhuyhSCj/rRW1yoC9/BbG+RxtNsZdtpl7fRu6sRnO6K+NZzl3XUk/cCJ61DUUREGB3t+io7QrwCYNZU+4ttnlvy0pcoL05691vHdbV5uc6r7BYOs=
+    - secure: b9hcbwf6q8zCybv9nVvqjLWWVNwV4/RK4ngL0BXXqnX8Jqpus3T8MSNz07Avxw3WD+aEzhGclXJNvutvEvprMByxUOKASGH1XZh/M0YviquzOaOCBcfjHM2omNzuqp0tbzMsO89Uh5aHGaq+FPvKGnCNbtXUxyRh9T0ahGk1duUOTE4RmNt+T1EpepqP5Jh1paZp+ShNO2m6WNXl/ZZ3favZfp6mHtq8nL44jEcpdPrlVhaQRLSl/XCilbVbMwgliptEGAFQt+XJWqtEly7pfPrLveMIbglKxx40dd66F+aWiSIehywcj8ma0PfcrdU4Pj9KXa5u8/xfafPVJ1vDrtawxfRDzAyHNh9jW7dEvYpbZtx7HztKkky28o5GvpFdwqawmcqptsJBdRoT8Be5rZ8vBMbxwhRtNdbU4rzhyyiom6QIn3/5Nh3oubl+8R7mj+xBbSc4ylTBxCbok2wbrm4/kwO5jHH68yBDllKF/WK3IjrBnpHPaVaYEcgf+/BwM/8u7qiSLB+J6QaS8RyXE3rHmvOFlo+ajoPKMR8qTzJC0V4YYN4Zur4uPfjJ3tpOuYBXdqSm5Nx4QQTHfuxWgy1ZK2a01icY+RvLkEATlplvZu2RvTaErTP5IMYGw3vEjOD2OqZFgj0lNxgiTgAioAYQy2lnl4zpioPX9SX8698=

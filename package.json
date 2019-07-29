@@ -18,7 +18,7 @@
     "graphql-tag": "^2.10.1",
     "grid-styled": "^5.0.2",
     "lodash": "^4.17.15",
-    "material-table": "^1.40.1",
+    "material-table": "^1.36.0",
     "moment": "^2.24.0",
     "npm": "^6.10.0",
     "nuka-carousel": "^4.5.9",

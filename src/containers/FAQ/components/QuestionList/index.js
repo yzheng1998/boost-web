@@ -15,7 +15,9 @@ const QuestionList = () => {
   return Questions.map(({ id, question, answer }) => (
     <ExpansionPanel expanded={expanded === id} onChange={handleChange(id)}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography>{question}</Typography>
+        <Typography style={{ fontStyle: 'normal', fontWeight: 'bold' }}>
+          {question}
+        </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Typography>{answer}</Typography>

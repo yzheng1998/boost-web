@@ -3,7 +3,7 @@ import { connect, ReactReduxContext } from 'react-redux'
 import { Mutation } from 'react-apollo'
 import localStore from 'store'
 import validate from 'validate.js'
-import { REGISTER_USER, GET_ACCESS_TOKEN } from './graphql'
+import { REGISTER_USER } from './graphql'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import Title from '../../components/Title'
@@ -279,37 +279,37 @@ class CompleteProfileScreen extends Component {
           />
           <ReactReduxContext.Consumer>
             {store => (
+              // <Mutation
+              //   mutation={GET_ACCESS_TOKEN}
+              //   variables={{
+              //     plaidPublicTokens: this.props.paymentInfo.plaidPublicTokens
+              //   }}
+              // >
+              //   {getAccessTokens => (
               <Mutation
-                mutation={GET_ACCESS_TOKEN}
-                variables={{
-                  plaidPublicTokens: this.props.paymentInfo.plaidPublicTokens
+                mutation={REGISTER_USER}
+                onCompleted={async data => {
+                  const { token } = data.register
+                  await localStore.set('user', { token })
+                  // getAccessTokens()
                 }}
               >
-                {getAccessTokens => (
-                  <Mutation
-                    mutation={REGISTER_USER}
-                    onCompleted={async data => {
-                      const { token } = data.register
-                      await localStore.set('user', { token })
-                      getAccessTokens()
+                {(register, { loading }) => (
+                  <PrimaryButton
+                    text={loading ? <LoadingIcon /> : 'Register'}
+                    style={{
+                      backgroundColor: theme.colors.tertiary,
+                      color: theme.colors.primary
                     }}
-                  >
-                    {(register, { loading }) => (
-                      <PrimaryButton
-                        text={loading ? <LoadingIcon /> : 'Register'}
-                        style={{
-                          backgroundColor: theme.colors.tertiary,
-                          color: theme.colors.primary
-                        }}
-                        onClick={() => {
-                          this.handleSubmit('/howItWorks', store, register)
-                        }}
-                        disabled={!enabled || loading}
-                      />
-                    )}
-                  </Mutation>
+                    onClick={() => {
+                      this.handleSubmit('/howItWorks', store, register)
+                    }}
+                    disabled={!enabled || loading}
+                  />
                 )}
               </Mutation>
+              //   )}
+              // </Mutation>
             )}
           </ReactReduxContext.Consumer>
         </ProfileWrapper>

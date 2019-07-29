@@ -15,12 +15,19 @@ class CenteredTabs extends React.Component {
     tab: LOADING
   }
 
+  componentDidMount = () => {
+    const history = this.props
+    if (history.location.state) {
+      this.setState({ tab: history.location.state.request })
+    }
+  }
+
   onChange = (event, tab) => {
     this.setState({ tab })
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, history } = this.props
     const { tab } = this.state
 
     return (
@@ -45,7 +52,7 @@ class CenteredTabs extends React.Component {
         <CurrentScreen
           setState={p => this.setState(p)}
           tab={this.state.tab}
-          history={this.props.history}
+          history={history}
         />
       </Background>
     )

@@ -32,6 +32,7 @@ import NewPasswordScreen from './containers/NewPasswordScreen'
 import ExplanationScreen from './containers/ExplanationScreen'
 import PageFooter from './components/PageFooter'
 import FAQ from './containers/FAQ'
+import Welcome from './containers/Welcome'
 
 const MuiTheme = createMuiTheme({
   palette: {
@@ -128,6 +129,7 @@ class App extends React.Component {
                           component={RequestContributeScreen}
                         />
                         <Route path="/faq" component={FAQ} />
+                        <PrivateRoute path="/welcome" component={Welcome} />
                         <Redirect from="/" to="/request" />
                       </Switch>
                       <PageFooter />

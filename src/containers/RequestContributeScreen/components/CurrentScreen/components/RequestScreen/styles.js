@@ -15,3 +15,5 @@ export const WrappedRow = styled(Flex)`
   max-width: 300px;
   justify-content: center;
 `
+
+export const DocumentInput = styled.input``

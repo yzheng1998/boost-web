@@ -13,11 +13,12 @@ import TextInput from '../../../../../../components/TextInput'
 import FormWrapper from '../../../../../../components/FormWrapper'
 import OutlinedInput from '../../../../../../components/OutlinedInput'
 import theme from '../../../../../../theme'
-import { Span, WrappedRow } from './styles'
+import { Span, WrappedRow, DocumentInput } from './styles'
 import boostReasons from '../../../../constants/boostReasons'
 import { REQUEST_FUNDS, GET_USER } from './graphql'
 import constraints from './constraints'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
+import DocumentList from './components/DocumentList'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class RequestScreen extends Component {
       hardshipExplanation: '',
       hardshipDate: '',
       additionalInfo: '',
+      documents: [],
       payPalEmail,
       displayErrors: {},
       errors: {},
@@ -55,6 +57,18 @@ class RequestScreen extends Component {
     )
   }
 
+  onDocChange = e => {
+    this.setState(
+      {
+        documents: [
+          ...this.state.documents,
+          e.target.value.replace(/^.*\\/, '')
+        ]
+      },
+      () => this.validateForm(true)
+    )
+  }
+
   validateForm = isOnChangeText => {
     const errors = validate(
       {
@@ -62,7 +76,8 @@ class RequestScreen extends Component {
         hardshipExplanation: this.state.hardshipExplanation,
         hardshipDate: this.state.hardshipDate,
         additionalInfo: this.state.additionalInfo,
-        payPalEmail: this.state.payPalEmail
+        payPalEmail: this.state.payPalEmail,
+        documents: this.state.documents
       },
       constraints
     )
@@ -148,6 +163,7 @@ class RequestScreen extends Component {
       experiencedHardship,
       amount,
       hardshipExplanation,
+      documents,
       payPalEmail,
       hardshipDate,
       additionalInfo,
@@ -317,6 +333,26 @@ class RequestScreen extends Component {
               errorMessage={this.state.displayErrors.payPalEmail}
             />
           </Row>
+
+          <Subheader
+            style={{ marginTop: 20 }}
+            text="Upload supporting documents (PDF only)"
+          />
+          <Row justifyContent="flex-start" style={{ flexDirection: 'column' }}>
+            <DocumentInput
+              type="file"
+              accept=".pdf"
+              rootStyle={{ alignSelf: 'center' }}
+              name="documents"
+              onChange={this.onDocChange}
+              onFocus={() => this.addTouched('documents')}
+              onBlur={() => this.validateForm(false)}
+              errorMessage={this.state.displayErrors.documents}
+              files
+              multiple
+            />
+            <DocumentList documents={documents} />
+          </Row>
           <Mutation
             mutation={REQUEST_FUNDS}
             onCompleted={data => {
@@ -342,6 +378,7 @@ class RequestScreen extends Component {
                   hardshipExplanation,
                   hardshipDate,
                   payPalEmail,
+                  documents,
                   additionalInfo
                 }
               }

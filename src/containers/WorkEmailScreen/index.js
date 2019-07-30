@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, forwardRef } from 'react'
 import { Mutation } from 'react-apollo'
 import { withAlert } from 'react-alert'
+import Dialog from '@material-ui/core/Dialog'
+import Slide from '@material-ui/core/Slide'
 import validate from 'validate.js'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
@@ -12,6 +14,7 @@ import { addInfo } from '../../redux/actions'
 import constraints from './constraints'
 import { VERIFY_WORK } from './graphql'
 import LoadingIcon from '../../components/LoadingIcon'
+import WorkEmailModal from './components/WorkEmailModal'
 
 const mapStateToProps = state => ({
   registerInfo: state.registrationReducer
@@ -21,6 +24,10 @@ const mapDispatchToProps = dispatch => ({
   addInfo: info => dispatch(addInfo(info))
 })
 
+const Transition = forwardRef((props, ref) => (
+  <Slide direction="up" ref={ref} {...props} />
+))
+
 class WorkEmailScreen extends Component {
   state = {
     registerInput: {
@@ -28,11 +35,16 @@ class WorkEmailScreen extends Component {
     },
     displayErrors: {},
     errors: {},
-    touched: {}
+    touched: {},
+    open: false
   }
 
   componentDidMount = () => {
     this.validateForm(false)
+  }
+
+  setOpen = open => {
+    this.setState({ open })
   }
 
   validateForm = isOnChangeText => {
@@ -74,11 +86,13 @@ class WorkEmailScreen extends Component {
 
   handleSubmit = async (path, verify) => {
     const verified = await verify()
-    if (verified.data.verifyWorkEmail) {
+    if (!verified.data.verifyWorkEmail.notValidDomain) {
       Object.keys(this.state.registerInput).forEach(key =>
         this.props.addInfo({ key, value: this.state.registerInput[key] })
       )
       this.props.history.push(path)
+    } else if (!verified.data.verifyWorkEmail.notListed) {
+      this.setOpen(true)
     } else {
       this.props.alert.show('Email already exists')
     }
@@ -132,6 +146,16 @@ class WorkEmailScreen extends Component {
             )
           }}
         </Mutation>
+        <Dialog
+          open={this.state.open}
+          onClose={() => this.setOpen(false)}
+          TransitionComponent={Transition}
+        >
+          <WorkEmailModal
+            setOpen={this.setOpen}
+            email={this.state.registerInput.workEmail}
+          />
+        </Dialog>
       </Background>
     )
   }

@@ -2,6 +2,9 @@ import gql from 'graphql-tag'
 
 export const VERIFY_WORK = gql`
   mutation verifyWorkEmail($workEmail: String!) {
-    verifyWorkEmail(workEmail: $workEmail)
+    verifyWorkEmail(workEmail: $workEmail) {
+      notListed
+      notValidDomain
+    }
   }
 `

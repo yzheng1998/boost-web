@@ -21,19 +21,14 @@ const AddToWaitListButton = ({ email, setOpen }) => {
         setOpen(false)
       }}
     >
-      {(addToWaitList, { loading }) => {
-        const variables = {
-          email
-        }
-        return (
-          <PrimaryButton
-            text={loading ? <LoadingIcon /> : 'Add to waitlist'}
-            disabled={loading}
-            onClick={() => addToWaitList({ variables })}
-            style={{ backgroundColor: theme.colors.tertiary }}
-          />
-        )
-      }}
+      {(addToWaitList, { loading }) => (
+        <PrimaryButton
+          text={loading ? <LoadingIcon /> : 'Add to waitlist'}
+          disabled={loading}
+          onClick={() => addToWaitList({ variables: { email } })}
+          style={{ backgroundColor: theme.colors.tertiary }}
+        />
+      )}
     </Mutation>
   )
 }

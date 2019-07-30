@@ -188,7 +188,7 @@ class UserDetailsScreen extends Component {
         />
         <PrimaryButton
           text={this.state.isLoading ? <LoadingIcon /> : 'Continue'}
-          onClick={() => this.handleSubmit('/bank-info')}
+          onClick={() => this.handleSubmit('/complete-profile')}
           disabled={!enabled || this.state.isLoading}
           style={{
             backgroundColor: theme.colors.tertiary,

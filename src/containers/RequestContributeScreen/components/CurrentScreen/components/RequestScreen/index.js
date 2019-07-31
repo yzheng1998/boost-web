@@ -15,12 +15,11 @@ import OutlinedInput from '../../../../../../components/OutlinedInput'
 import theme from '../../../../../../theme'
 import { Span, WrappedRow } from './styles'
 import boostReasons from '../../../../constants/boostReasons'
-import { REQUEST_FUNDS, GET_USER, ADD_DOCUMENT } from './graphql'
+import { REQUEST_FUNDS, GET_USER } from './graphql'
 import constraints from './constraints'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
 import DocumentList from './components/DocumentList'
 import DocumentInput from './components/DocumentInput'
-import client from '../../../../../../client'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -354,14 +353,6 @@ class RequestScreen extends Component {
             mutation={REQUEST_FUNDS}
             onCompleted={data => {
               if (data.request.success) {
-                documents.forEach(async doc =>
-                  client.mutate({
-                    mutation: ADD_DOCUMENT,
-                    variables: {
-                      input: { doc }
-                    }
-                  })
-                )
                 this.clearState()
                 window.scrollTo(0, 0)
                 this.props.history.push('/')

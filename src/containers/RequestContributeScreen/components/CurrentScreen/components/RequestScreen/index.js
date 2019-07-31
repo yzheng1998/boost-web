@@ -19,6 +19,7 @@ import { REQUEST_FUNDS, GET_USER } from './graphql'
 import constraints from './constraints'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
 import DocumentList from './components/DocumentList'
+import DocInput from './components/DocumentInput'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -352,6 +353,7 @@ class RequestScreen extends Component {
               multiple
             />
             <DocumentList documents={documents} />
+            <DocInput />
           </Row>
           <Mutation
             mutation={REQUEST_FUNDS}

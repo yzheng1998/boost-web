@@ -13,13 +13,14 @@ import TextInput from '../../../../../../components/TextInput'
 import FormWrapper from '../../../../../../components/FormWrapper'
 import OutlinedInput from '../../../../../../components/OutlinedInput'
 import theme from '../../../../../../theme'
-import { Span, WrappedRow, DocumentInput } from './styles'
+import { Span, WrappedRow } from './styles'
 import boostReasons from '../../../../constants/boostReasons'
-import { REQUEST_FUNDS, GET_USER } from './graphql'
+import { REQUEST_FUNDS, GET_USER, ADD_DOCUMENT } from './graphql'
 import constraints from './constraints'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
 import DocumentList from './components/DocumentList'
-import DocInput from './components/DocumentInput'
+import DocumentInput from './components/DocumentInput'
+import client from '../../../../../../client'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class RequestScreen extends Component {
       hardshipDate: '',
       additionalInfo: '',
       documents: [],
+      documentsNames: [],
       payPalEmail,
       displayErrors: {},
       errors: {},
@@ -58,13 +60,11 @@ class RequestScreen extends Component {
     )
   }
 
-  onDocChange = e => {
+  onDocChange = ({ url, name }) => {
     this.setState(
       {
-        documents: [
-          ...this.state.documents,
-          e.target.value.replace(/^.*\\/, '')
-        ]
+        documents: [...this.state.documents, url],
+        documentsNames: [...this.state.documentsNames, name]
       },
       () => this.validateForm(true)
     )
@@ -341,10 +341,6 @@ class RequestScreen extends Component {
           />
           <Row justifyContent="flex-start" style={{ flexDirection: 'column' }}>
             <DocumentInput
-              type="file"
-              accept=".pdf"
-              rootStyle={{ alignSelf: 'center' }}
-              name="documents"
               onChange={this.onDocChange}
               onFocus={() => this.addTouched('documents')}
               onBlur={() => this.validateForm(false)}
@@ -352,13 +348,20 @@ class RequestScreen extends Component {
               files
               multiple
             />
-            <DocumentList documents={documents} />
-            <DocInput />
+            <DocumentList documents={this.state.documentsNames} />
           </Row>
           <Mutation
             mutation={REQUEST_FUNDS}
             onCompleted={data => {
               if (data.request.success) {
+                documents.forEach(async doc =>
+                  client.mutate({
+                    mutation: ADD_DOCUMENT,
+                    variables: {
+                      input: { doc }
+                    }
+                  })
+                )
                 this.clearState()
                 window.scrollTo(0, 0)
                 this.props.history.push('/')

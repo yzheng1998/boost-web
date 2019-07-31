@@ -1,47 +1,49 @@
 import React from 'react'
-import { useAlert } from 'react-alert'
-import { Mutation } from 'react-apollo'
+import axios from 'axios'
+import Dropzone from 'react-dropzone'
 import SIGN_S3_URL from './graphql'
-import { DocInput } from './styles'
-import { FilePicker } from 'react-file-picker'
+import client from '../../../../../../../../client'
 import PrimaryButton from '../../../../../../../../components/PrimaryButton'
 
-const DocumentInput = () => {
-  const alert = useAlert()
-
-  const handleError = err => {
-    alert.error(err)
+const DocumentInput = ({ onChange, ...rest }) => {
+  const uploadPhoto = file => {
+    const options = {
+      headers: {
+        'Content-Type': file.type
+      }
+    }
+    client
+      .mutate({
+        mutation: SIGN_S3_URL,
+        variables: {
+          signS3UrlInput: { fileName: file.name, contentType: file.type }
+        }
+      })
+      .then(async ({ data }) => {
+        const {
+          signS3Url: { url }
+        } = data
+        await axios
+          .put(url, file, options)
+          .then(() => onChange({ url, name: file.name }))
+      })
   }
   return (
-    <Mutation
-      mutation={SIGN_S3_URL}
-      // onCompleted={async data => {
-      //   // const {
-      //   //   signS3Url: { url }
-      //   // } = data
-      //   console.log(data)
-      // }}
-      onError={handleError}
-    >
-      {signS3Url => (
-        <FilePicker
-          extensions={['pdf']}
-          onChange={FileObject => {
-            const variables = {
-              signS3UrlInput: {
-                fileName: FileObject.name.split(' ').join(''),
-                contentType: FileObject.type
-              }
-            }
-            console.log(FileObject.uri)
-            signS3Url({ variables })
-          }}
-          onError={errMsg => console.log(errMsg)}
-        >
-          <PrimaryButton>Click to upload markdown</PrimaryButton>
-        </FilePicker>
+    <Dropzone onDrop={file => uploadPhoto(file[0])}>
+      {({ getRootProps, getInputProps }) => (
+        <div {...getRootProps()}>
+          <input
+            {...getInputProps()}
+            type="file"
+            accept=".pdf"
+            rootstyle={{ alignSelf: 'center' }}
+            name="documents"
+            {...rest}
+          />
+          <PrimaryButton text="Choose files" />
+        </div>
       )}
-    </Mutation>
+    </Dropzone>
   )
 }
 

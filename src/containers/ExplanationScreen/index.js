@@ -46,7 +46,7 @@ const ExplanationScreen = ({ history, clear }) => (
           text="Get started"
           onClick={() => {
             clear()
-            history.push('/request')
+            history.push('/register')
           }}
           style={{
             backgroundColor: theme.colors.tertiary,

@@ -95,14 +95,14 @@ const Login = ({ history }) => {
           <Line />
         </LineWrapper>
         <PrimaryButton
-          text="Sign Up"
+          text="Get Started"
           style={{
             width: 300,
             backgroundColor: theme.colors.grey,
             color: 'black',
             marginTop: 15
           }}
-          onClick={() => history.push('/register')}
+          onClick={() => history.push('/howItWorks')}
         />
       </Wrapper>
     </Background>

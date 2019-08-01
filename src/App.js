@@ -83,13 +83,8 @@ class App extends React.Component {
                     <div className="App">
                       <HeaderBar />
                       <Switch>
-                        <PrivateRoute
-                          exact
-                          path="/howItWorks"
-                          component={HowItWorks}
-                        />
-                        <PrivateRoute
-                          exact
+                        <Route path="/howItWorks" component={HowItWorks} />
+                        <Route
                           path="/explanation"
                           component={ExplanationScreen}
                         />

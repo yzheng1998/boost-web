@@ -15,6 +15,7 @@ import Remove from '@material-ui/icons/Remove'
 import SaveAlt from '@material-ui/icons/SaveAlt'
 import Search from '@material-ui/icons/Search'
 import ViewColumn from '@material-ui/icons/ViewColumn'
+import DocumentList from '../RequestContributeScreen/components/CurrentScreen/components/RequestScreen/components/DocumentList'
 
 export const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -40,17 +41,28 @@ export const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 }
 
-export const columns = [
+export const columns = removeDocumentFromRequest => [
   { title: 'Date', field: 'date' },
   { title: 'Amount', field: 'amount' },
   { title: 'Status', field: 'status' },
-  { title: 'Documents', field: 'documents' }
+  {
+    title: 'Documents',
+    field: 'documents',
+    render: ({ documents }) => (
+      <DocumentList
+        documents={documents}
+        removeDoc={removeDocumentFromRequest}
+        ledger
+      />
+    )
+  }
 ]
 
-export const actions = [
+export const actions = handleAddClick => [
   {
     icon: tableIcons.Add,
     tooltip: 'Add Documents',
-    iconProps: { fontSize: 'small', color: 'primary' }
+    iconProps: { fontSize: 'small', color: 'primary' },
+    onClick: (event, { requestId }) => handleAddClick(requestId)
   }
 ]

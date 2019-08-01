@@ -119,7 +119,7 @@ class PasswordScreen extends Component {
           errorMessage={this.state.displayErrors.personalEmail}
         />
         <BodyText
-          text="Your password must contain letters, numbers, and at least one special character: !@#$%^&#38;*?"
+          text="Your password must have at least one 8 characters."
           style={{
             marginTop: 25,
             width: 300

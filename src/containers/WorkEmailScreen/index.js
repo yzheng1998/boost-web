@@ -86,15 +86,15 @@ class WorkEmailScreen extends Component {
 
   handleSubmit = async (path, verify) => {
     const verified = await verify()
-    if (!verified.data.verifyWorkEmail.notValidDomain) {
+    if (verified.data.verifyWorkEmail.notListed) {
+      this.setOpen(true)
+    } else if (verified.data.verifyWorkEmail.error) {
+      this.props.alert.show(verified.data.verifyWorkEmail.error.message)
+    } else {
       Object.keys(this.state.registerInput).forEach(key =>
         this.props.addInfo({ key, value: this.state.registerInput[key] })
       )
       this.props.history.push(path)
-    } else if (!verified.data.verifyWorkEmail.notListed) {
-      this.setOpen(true)
-    } else {
-      this.props.alert.show('Email already exists')
     }
   }
 

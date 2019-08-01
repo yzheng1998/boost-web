@@ -27,3 +27,11 @@ export const GET_USER = gql`
     }
   }
 `
+
+export const ADD_DOCUMENT = gql`
+  mutation addDocumentToRequest($input: AddDocumentToRequestInput!) {
+    addDocumentToRequest(input: $input) {
+      success
+    }
+  }
+`

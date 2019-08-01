@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, forwardRef } from 'react'
 import { Mutation } from 'react-apollo'
 import { withAlert } from 'react-alert'
 import _ from 'lodash'
 import validate from 'validate.js'
+import { Dialog } from '@material-ui/core'
+import Slide from '@material-ui/core/Slide'
 import Subheader from '../../../../../../components/Subheader'
 import Background from '../../../../../../components/Background'
 import BodyText from '../../../../../../components/BodyText'
@@ -20,6 +22,11 @@ import constraints from './constraints'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
 import DocumentList from './components/DocumentList'
 import DocumentInput from './components/DocumentInput'
+import RequestDocumentsModal from './components/RequestDocumentsModal'
+
+const Transition = forwardRef((props, ref) => (
+  <Slide direction="up" ref={ref} {...props} />
+))
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -27,6 +34,8 @@ class RequestScreen extends Component {
     const { payPalEmail, contributions, requests } = this.props.data
     const { balance } = this.props
     this.state = {
+      open: false,
+      opened: false,
       selectedBoostReasons: [],
       otherReason: '',
       amount: '',
@@ -69,6 +78,10 @@ class RequestScreen extends Component {
     )
   }
 
+  setOpen = open => {
+    this.setState({ open })
+  }
+
   validateForm = isOnChangeText => {
     const errors = validate(
       {
@@ -76,8 +89,7 @@ class RequestScreen extends Component {
         hardshipExplanation: this.state.hardshipExplanation,
         hardshipDate: this.state.hardshipDate,
         additionalInfo: this.state.additionalInfo,
-        payPalEmail: this.state.payPalEmail,
-        documents: this.state.documents
+        payPalEmail: this.state.payPalEmail
       },
       constraints
     )
@@ -140,6 +152,16 @@ class RequestScreen extends Component {
     )
   }
 
+  handleSubmit = request => {
+    const { requests, contributions, amount, opened } = this.state
+    const fundsWithdrawn = requests + Number(amount) - contributions
+    if (fundsWithdrawn >= 400 && !opened) {
+      this.setState({ open: true, opened: true })
+      return null
+    }
+    return request()
+  }
+
   clearState = () => {
     this.setState(
       {
@@ -150,7 +172,11 @@ class RequestScreen extends Component {
         hardshipExplanation: '',
         hardshipDate: '',
         additionalInfo: '',
-        payPalEmail: ''
+        payPalEmail: '',
+        documents: [],
+        documentsNames: [],
+        open: false,
+        opened: false
       },
       () => this.validateForm(true)
     )
@@ -167,7 +193,8 @@ class RequestScreen extends Component {
       payPalEmail,
       hardshipDate,
       additionalInfo,
-      errors
+      errors,
+      open
     } = this.state
     const enabled =
       !errors &&
@@ -379,23 +406,37 @@ class RequestScreen extends Component {
                 }
               }
               return (
-                <PrimaryButton
-                  text={loading ? <LoadingIcon /> : 'Request funds with Paypal'}
-                  style={{
-                    width: 350,
-                    backgroundColor:
-                      loading || !enabled
-                        ? theme.colors.secondary
-                        : theme.colors.tertiary,
-                    color: 'white',
-                    marginTop: 15,
-                    marginBottom: 45
-                  }}
-                  onClick={() => {
-                    request({ variables })
-                  }}
-                  disabled={!enabled || loading}
-                />
+                <>
+                  <PrimaryButton
+                    text={
+                      loading ? <LoadingIcon /> : 'Request funds with Paypal'
+                    }
+                    style={{
+                      width: 350,
+                      backgroundColor:
+                        loading || !enabled
+                          ? theme.colors.secondary
+                          : theme.colors.tertiary,
+                      color: 'white',
+                      marginTop: 15,
+                      marginBottom: 45
+                    }}
+                    onClick={() => {
+                      this.handleSubmit(() => request({ variables }))
+                    }}
+                    disabled={!enabled || loading}
+                  />
+                  <Dialog
+                    open={open}
+                    onClose={() => this.setOpen(false)}
+                    TransitionComponent={Transition}
+                  >
+                    <RequestDocumentsModal
+                      setOpen={this.setOpen}
+                      request={() => request({ variables })}
+                    />
+                  </Dialog>
+                </>
               )
             }}
           </Mutation>

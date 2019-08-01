@@ -25,9 +25,6 @@ const constraints = {
     email: {
       message: '^Please provide a valid email'
     }
-  },
-  documents: {
-    presence
   }
 }
 

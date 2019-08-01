@@ -63,7 +63,7 @@ class RequestScreen extends Component {
     this.setState(
       {
         documents: [...this.state.documents, url],
-        documentsNames: [...this.state.documentsNames, name]
+        documentsNames: [...this.state.documentsNames, { name }]
       },
       () => this.validateForm(true)
     )
@@ -344,10 +344,19 @@ class RequestScreen extends Component {
               onFocus={() => this.addTouched('documents')}
               onBlur={() => this.validateForm(false)}
               errorMessage={this.state.displayErrors.documents}
-              files
+              files="true"
               multiple
             />
-            <DocumentList documents={this.state.documentsNames} />
+            <DocumentList
+              documents={this.state.documentsNames}
+              removeDoc={docName =>
+                this.setState({
+                  documentsNames: this.state.documentsNames.filter(
+                    ({ name }) => name !== docName
+                  )
+                })
+              }
+            />
           </Row>
           <Mutation
             mutation={REQUEST_FUNDS}

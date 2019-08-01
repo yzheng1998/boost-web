@@ -33,6 +33,7 @@ import ExplanationScreen from './containers/ExplanationScreen'
 import PageFooter from './components/PageFooter'
 import FAQ from './containers/FAQ'
 import Welcome from './containers/Welcome'
+import RequestLedger from './containers/RequestLedger'
 
 const MuiTheme = createMuiTheme({
   palette: {
@@ -127,6 +128,10 @@ class App extends React.Component {
                         <PrivateRoute
                           path="/request"
                           component={RequestContributeScreen}
+                        />
+                        <PrivateRoute
+                          path="/activity"
+                          component={RequestLedger}
                         />
                         <Route path="/faq" component={FAQ} />
                         <PrivateRoute path="/welcome" component={Welcome} />

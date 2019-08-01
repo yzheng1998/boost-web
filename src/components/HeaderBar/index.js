@@ -19,6 +19,7 @@ const HeaderBar = classes => {
 
   const headerItems = [
     { text: 'Request/Contribute Funds', url: '/request' },
+    { text: 'My Activity', url: '/activity' },
     { text: 'View/Edit Profile', url: '/profile' },
     { text: 'How it works', url: '/howItWorks' },
     { text: 'FAQ', url: '/faq' },

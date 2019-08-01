@@ -155,11 +155,9 @@ class RequestScreen extends Component {
   handleSubmit = request => {
     const { requests, contributions, amount, opened } = this.state
     const fundsWithdrawn = requests + Number(amount) - contributions
-    if (fundsWithdrawn >= 400) {
-      if (!opened) {
-        this.setState({ open: true, opened: true })
-        return null
-      }
+    if (fundsWithdrawn >= 400 && !opened) {
+      this.setState({ open: true, opened: true })
+      return null
     }
     return request()
   }

@@ -19,6 +19,20 @@ const RequestLedger = () => {
 
   const alert = useAlert()
 
+  const formatData = data =>
+    data.map(({ createdAt, amount, documents, uuid, status }) => ({
+      date: moment(Date(createdAt)).format('LLL'),
+      amount: `$${amount}`,
+      documents: documents
+        ? documents.map(({ id }, index) => ({
+            name: `Document ${index + 1}`,
+            id
+          }))
+        : '',
+      requestId: uuid,
+      status
+    }))
+
   const handleAddClick = requestId => {
     setOpen(true)
     setSelectedRequestId(requestId)
@@ -32,20 +46,7 @@ const RequestLedger = () => {
         }
 
         if (data.requests) {
-          const formattedRequests = data.requests.map(
-            ({ createdAt, amount, documents, uuid, status }) => ({
-              date: moment(Date(createdAt)).format('LLL'),
-              amount: `$${amount}`,
-              documents: documents
-                ? documents.map(({ id }, index) => ({
-                    name: `Document ${index + 1}`,
-                    id
-                  }))
-                : '',
-              requestId: uuid,
-              status
-            })
-          )
+          const formattedRequests = formatData(data.requests)
           return (
             <Mutation
               mutation={ADD_DOCUMENT}

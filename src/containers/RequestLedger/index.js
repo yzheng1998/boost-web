@@ -23,12 +23,7 @@ const RequestLedger = () => {
     data.map(({ createdAt, amount, documents, uuid, status }) => ({
       date: moment(Date(createdAt)).format('LLL'),
       amount: `$${amount}`,
-      documents: documents
-        ? documents.map(({ id }, index) => ({
-            name: `Document ${index + 1}`,
-            id
-          }))
-        : '',
+      documents: documents || '',
       requestId: uuid,
       status
     }))

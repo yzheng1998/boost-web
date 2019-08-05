@@ -23,6 +23,7 @@ import LoadingIcon from '../../../../../../components/LoadingIcon'
 import DocumentList from './components/DocumentList'
 import DocumentInput from './components/DocumentInput'
 import RequestDocumentsModal from './components/RequestDocumentsModal'
+import RequestSubmittedModal from './components/RequestSubmittedModal'
 
 const Transition = forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
@@ -34,7 +35,8 @@ class RequestScreen extends Component {
     const { payPalEmail, contributions, requests } = this.props.data
     const { balance } = this.props
     this.state = {
-      open: false,
+      openPDF: false,
+      openSuccess: false,
       opened: false,
       selectedBoostReasons: [],
       otherReason: '',
@@ -78,8 +80,8 @@ class RequestScreen extends Component {
     )
   }
 
-  setOpen = open => {
-    this.setState({ open })
+  setOpen = openPDF => {
+    this.setState({ openPDF })
   }
 
   validateForm = isOnChangeText => {
@@ -162,6 +164,12 @@ class RequestScreen extends Component {
     return request()
   }
 
+  handleSuccess = () => {
+    this.clearState()
+    window.scrollTo(0, 0)
+    this.props.history.push('/')
+  }
+
   clearState = () => {
     this.setState(
       {
@@ -175,7 +183,8 @@ class RequestScreen extends Component {
         payPalEmail: '',
         documents: [],
         documentsNames: [],
-        open: false,
+        openPDF: false,
+        openSuccess: false,
         opened: false
       },
       () => this.validateForm(true)
@@ -194,7 +203,8 @@ class RequestScreen extends Component {
       hardshipDate,
       additionalInfo,
       errors,
-      open
+      openPDF,
+      openSuccess
     } = this.state
     const enabled =
       !errors &&
@@ -389,12 +399,7 @@ class RequestScreen extends Component {
             mutation={REQUEST_FUNDS}
             onCompleted={data => {
               if (data.request.success) {
-                this.clearState()
-                window.scrollTo(0, 0)
-                this.props.history.push('/')
-                this.props.alert.success(
-                  'You successfully requested a Boost fund'
-                )
+                this.setState({ openSuccess: true })
               } else this.props.alert.error(data.request.error.message)
             }}
             refetchQueries={[{ query: GET_USER }]}
@@ -436,7 +441,7 @@ class RequestScreen extends Component {
                     disabled={!enabled || loading}
                   />
                   <Dialog
-                    open={open}
+                    open={openPDF}
                     onClose={() => this.setOpen(false)}
                     TransitionComponent={Transition}
                   >
@@ -444,6 +449,13 @@ class RequestScreen extends Component {
                       setOpen={this.setOpen}
                       request={() => request({ variables })}
                     />
+                  </Dialog>
+                  <Dialog
+                    open={openSuccess}
+                    onClose={() => this.setState({ openSuccess: false })}
+                    TransitionComponent={Transition}
+                  >
+                    <RequestSubmittedModal handleSuccess={this.handleSuccess} />
                   </Dialog>
                 </>
               )

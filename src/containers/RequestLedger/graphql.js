@@ -9,6 +9,7 @@ export const REQUESTS = gql`
         id
         url
         createdAt
+        name
       }
       status
       createdAt

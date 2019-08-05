@@ -9,12 +9,10 @@ import DocumentInput from '../../../RequestContributeScreen/components/CurrentSc
 import DocumentList from '../../../RequestContributeScreen/components/CurrentScreen/components/RequestScreen/components/DocumentList'
 
 const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
-  const [documentsNames, updateDocumentsNames] = useState([])
   const [documents, updateDocuments] = useState([])
 
   const onDocChange = ({ url, name }) => {
-    updateDocuments([...documents, url])
-    updateDocumentsNames([...documentsNames, { name }])
+    updateDocuments([...documents, { url, name }])
   }
 
   return (
@@ -25,11 +23,9 @@ const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
         <Row>
           <DocumentInput onChange={onDocChange} files="true" multiple />
           <DocumentList
-            documents={documentsNames}
+            documents={documents}
             removeDoc={docName =>
-              updateDocumentsNames(
-                documentsNames.filter(({ name }) => name !== docName)
-              )
+              updateDocuments(documents.filter(({ name }) => name !== docName))
             }
           />
         </Row>
@@ -37,8 +33,8 @@ const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
           <Button onClick={() => setOpen(false)}>Cancel</Button>
           <Button
             onClick={() => {
-              documents.map(url =>
-                addDocs({ variables: { input: { url, requestId } } })
+              documents.map(({ url, name }) =>
+                addDocs({ variables: { input: { url, requestId, name } } })
               )
               setOpen(false)
             }}

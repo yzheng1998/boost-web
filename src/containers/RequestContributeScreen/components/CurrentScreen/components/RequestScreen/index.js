@@ -46,7 +46,6 @@ class RequestScreen extends Component {
       hardshipDate: '',
       additionalInfo: '',
       documents: [],
-      documentsNames: [],
       payPalEmail,
       displayErrors: {},
       errors: {},
@@ -73,8 +72,7 @@ class RequestScreen extends Component {
   onDocChange = ({ url, name }) => {
     this.setState(
       {
-        documents: [...this.state.documents, url],
-        documentsNames: [...this.state.documentsNames, { name }]
+        documents: [...this.state.documents, { url, name }]
       },
       () => this.validateForm(true)
     )
@@ -182,9 +180,9 @@ class RequestScreen extends Component {
         additionalInfo: '',
         payPalEmail: '',
         documents: [],
-        documentsNames: [],
         openPDF: false,
         openSuccess: false,
+        open: false,
         opened: false
       },
       () => this.validateForm(true)
@@ -385,11 +383,11 @@ class RequestScreen extends Component {
               multiple
             />
             <DocumentList
-              documents={this.state.documentsNames}
-              removeDoc={docName =>
+              documents={this.state.documents}
+              removeDoc={docUrl =>
                 this.setState({
-                  documentsNames: this.state.documentsNames.filter(
-                    ({ name }) => name !== docName
+                  documents: this.state.documents.filter(
+                    ({ url }) => url !== docUrl
                   )
                 })
               }

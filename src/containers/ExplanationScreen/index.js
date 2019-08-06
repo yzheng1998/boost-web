@@ -41,12 +41,18 @@ const ExplanationScreen = ({ history, clear }) => (
         frequently. You can also contribute more than what you’ve withdrawn in
         order to grow the fund so that more of your co-workers can get access.
       </CenterParagraph>
-      <CenterParagraph style={{ marginTop: 0 }}>
+      <CenterParagraph
+        style={{
+          marginTop: 0,
+          display: 'inline-block'
+        }}
+      >
         For our full Funds Usage Policy, please read our Frequently Asked
-        Questions
+        Questions{' '}
         <Link to="/faq" target="_blank" rel="noopener noreferrer">
           here
         </Link>
+        .
       </CenterParagraph>
 
       <BtnWrapper>

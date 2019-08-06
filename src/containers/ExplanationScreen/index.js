@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Carousel from 'nuka-carousel'
 import { clearRedux } from '../../redux/actions'
 import AuthButton from '../../components/AuthButton'
@@ -39,6 +40,13 @@ const ExplanationScreen = ({ history, clear }) => (
         When you contribute back into the fund, you can request withdrawals more
         frequently. You can also contribute more than what you’ve withdrawn in
         order to grow the fund so that more of your co-workers can get access.
+      </CenterParagraph>
+      <CenterParagraph style={{ marginTop: 0 }}>
+        For our full Funds Usage Policy, please read our Frequently Asked
+        Questions
+        <Link to="/faq" target="_blank" rel="noopener noreferrer">
+          here
+        </Link>
       </CenterParagraph>
 
       <BtnWrapper>

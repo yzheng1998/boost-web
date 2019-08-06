@@ -1,18 +1,27 @@
 import gql from 'graphql-tag'
 
-export const REQUESTS = gql`
-  query requests {
-    requests {
-      uuid
-      amount
-      documents {
-        id
-        url
-        createdAt
-        name
+export const VIEWER = gql`
+  query viewer {
+    viewer {
+      user {
+        uuid
+        requestHistory {
+          uuid
+          amount
+          documents {
+            id
+            name
+            createdAt
+            url
+          }
+          status
+          createdAt
+        }
       }
-      status
-      createdAt
+      error {
+        message
+      }
+      success
     }
   }
 `

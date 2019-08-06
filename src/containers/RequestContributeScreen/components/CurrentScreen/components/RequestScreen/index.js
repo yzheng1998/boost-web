@@ -24,6 +24,7 @@ import DocumentList from './components/DocumentList'
 import DocumentInput from './components/DocumentInput'
 import RequestDocumentsModal from './components/RequestDocumentsModal'
 import RequestSubmittedModal from './components/RequestSubmittedModal'
+import { VIEWER } from '../../../../../RequestLedger/graphql'
 
 const Transition = forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
@@ -400,7 +401,7 @@ class RequestScreen extends Component {
                 this.setState({ openSuccess: true })
               } else this.props.alert.error(data.request.error.message)
             }}
-            refetchQueries={[{ query: GET_USER }]}
+            refetchQueries={[{ query: GET_USER }, { query: VIEWER }]}
           >
             {(request, { loading }) => {
               const variables = {

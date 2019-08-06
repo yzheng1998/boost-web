@@ -6,7 +6,7 @@ import { Dialog } from '@material-ui/core'
 import Slide from '@material-ui/core/Slide'
 import moment from 'moment'
 import { tableIcons, columns, actions } from './constants'
-import { ADD_DOCUMENT, REMOVE_DOCUMENT, REQUESTS } from './graphql'
+import { ADD_DOCUMENT, REMOVE_DOCUMENT, VIEWER } from './graphql'
 import AddDocumentsModal from './components/AddDocumentsModal'
 
 const Transition = forwardRef((props, ref) => (
@@ -34,27 +34,27 @@ const RequestLedger = () => {
   }
 
   return (
-    <Query query={REQUESTS}>
+    <Query query={VIEWER}>
       {({ data, error }) => {
         if (error) {
-          console.log('error')
+          console.log(error.message)
         }
 
-        if (data.requests) {
-          const formattedRequests = formatData(data.requests)
+        if (data.viewer) {
+          const formattedRequests = formatData(data.viewer.user.requestHistory)
           return (
             <Mutation
               mutation={ADD_DOCUMENT}
               onCompleted={() => alert.success('Documents added!')}
               onError={() => alert.error('Failed to add documents.')}
-              refetchQueries={[{ query: REQUESTS }]}
+              refetchQueries={[{ query: VIEWER }]}
             >
               {addDocumentToRequest => (
                 <Mutation
                   mutation={REMOVE_DOCUMENT}
                   onCompleted={() => alert.success('Document removed!')}
                   onError={() => alert.error('Failed to remove document.')}
-                  refetchQueries={[{ query: REQUESTS }]}
+                  refetchQueries={[{ query: VIEWER }]}
                 >
                   {removeDocumentFromRequest => (
                     <>

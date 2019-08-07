@@ -5,6 +5,16 @@ import MultiselectBtn from '../../../../../../../../components/MultiselectBtn'
 import Description from '../Description'
 import theme from '../../../../../../../../theme'
 
+const createStyle = experiencedHardship => {
+  const selectedStyle = {
+    backgroundColor: theme.colors.tertiary,
+    color: 'white',
+    width: 150
+  }
+  const unselectedStyle = { width: 150 }
+  return experiencedHardship === false ? selectedStyle : unselectedStyle
+}
+
 const HardshipBlock = ({
   experiencedHardship,
   hardshipExplanation,
@@ -21,30 +31,14 @@ const HardshipBlock = ({
       <MultiselectBtn
         text="Yes"
         variant={experiencedHardship ? 'contained' : 'outlined'}
-        style={
-          experiencedHardship
-            ? {
-                backgroundColor: theme.colors.tertiary,
-                color: 'white',
-                width: 150
-              }
-            : { width: 150 }
-        }
+        style={createStyle(experiencedHardship)}
         onClick={() => handleClick(true)}
         value={experiencedHardship}
       />
       <MultiselectBtn
         text="No"
         variant={experiencedHardship === false ? 'contained' : 'outlined'}
-        style={
-          experiencedHardship === false
-            ? {
-                backgroundColor: theme.colors.tertiary,
-                color: 'white',
-                width: 150
-              }
-            : { width: 150 }
-        }
+        style={createStyle(experiencedHardship)}
         onClick={() => handleClick(false)}
         value={experiencedHardship === false}
       />

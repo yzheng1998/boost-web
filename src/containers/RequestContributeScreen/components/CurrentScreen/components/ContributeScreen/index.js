@@ -16,7 +16,7 @@ class ContributeScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      amount: 0
+      amount: null
     }
   }
 
@@ -40,6 +40,7 @@ class ContributeScreen extends Component {
     const onSuccess = async payment => {
       console.log('The payment has succeeded!', payment)
       this.props.alert.success('The payment has succeeded!')
+      this.setState({ amount: '' })
 
       try {
         await apolloClient.mutate({
@@ -111,6 +112,7 @@ class ContributeScreen extends Component {
               rootStyle={{ alignSelf: 'center' }}
               name="amount"
               onChange={this.onChange}
+              value={this.state.amount}
             />
           </Row>
           <PaypalExpressBtn

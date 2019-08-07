@@ -13,7 +13,7 @@ const Transition = forwardRef((props, ref) => (
 ))
 
 const Welcome = ({ history }) => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(history.location.state)
 
   return (
     <WelcomeScreen>

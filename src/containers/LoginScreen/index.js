@@ -54,7 +54,10 @@ const Login = ({ history }) => {
             if (!data.loginUser.error) {
               const { token } = data.loginUser
               await localStore.set('user', { token })
-              history.push('./welcome')
+              history.push({
+                pathname: './welcome',
+                state: { loggingIn: true }
+              })
               alert.success('Successfully logged in!')
             } else alert.error(data.loginUser.error.message)
           }}

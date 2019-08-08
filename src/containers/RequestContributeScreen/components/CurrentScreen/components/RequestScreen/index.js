@@ -1,60 +1,24 @@
-import React, { Component, forwardRef } from 'react'
-import { Mutation } from 'react-apollo'
+/* eslint-disable react/jsx-no-bind */
+import React, { Component } from 'react'
 import { withAlert } from 'react-alert'
 import _ from 'lodash'
-import validate from 'validate.js'
-import { Dialog } from '@material-ui/core'
-import Slide from '@material-ui/core/Slide'
-import Subheader from '../../../../../../components/Subheader'
 import Background from '../../../../../../components/Background'
-import BodyText from '../../../../../../components/BodyText'
-import Row from '../../../../../../components/Row'
-import PrimaryButton from '../../../../../../components/PrimaryButton'
-import MultiselectBtn from '../../../../../../components/MultiselectBtn'
-import TextInput from '../../../../../../components/TextInput'
 import FormWrapper from '../../../../../../components/FormWrapper'
-import OutlinedInput from '../../../../../../components/OutlinedInput'
-import theme from '../../../../../../theme'
-import { Span, WrappedRow } from './styles'
-import boostReasons from '../../../../constants/boostReasons'
-import { REQUEST_FUNDS, GET_USER } from './graphql'
-import constraints from './constraints'
-import LoadingIcon from '../../../../../../components/LoadingIcon'
-import DocumentList from './components/DocumentList'
-import DocumentInput from './components/DocumentInput'
-import RequestDocumentsModal from './components/RequestDocumentsModal'
-import RequestSubmittedModal from './components/RequestSubmittedModal'
-import { VIEWER } from '../../../../../RequestLedger/graphql'
-
-const Transition = forwardRef((props, ref) => (
-  <Slide direction="up" ref={ref} {...props} />
-))
+import { defaultState, validateForm, MakeButtons } from './helpers'
+import AmountBlock from './components/AmountBlock'
+import ReasonsBlock from './components/ReasonsBlock'
+import HardshipBlock from './components/HardshipBlock'
+import Description from './components/Description'
+import PayPalBlock from './components/PayPalBlock'
+import DocumentBlock from './components/DocumentBlock'
+import RequestButton from './components/RequestButton'
 
 class RequestScreen extends Component {
   constructor(props) {
     super(props)
     const { payPalEmail, contributions, requests } = this.props.data
     const { balance } = this.props
-    this.state = {
-      openPDF: false,
-      openSuccess: false,
-      opened: false,
-      selectedBoostReasons: [],
-      otherReason: '',
-      amount: '',
-      experiencedHardship: undefined,
-      hardshipExplanation: '',
-      hardshipDate: '',
-      additionalInfo: '',
-      documents: [],
-      payPalEmail,
-      displayErrors: {},
-      errors: {},
-      touched: {},
-      contributions,
-      requests,
-      balance
-    }
+    this.state = defaultState(payPalEmail, contributions, requests, balance)
   }
 
   componentDidMount = () => {
@@ -66,7 +30,7 @@ class RequestScreen extends Component {
       {
         [e.target.name]: e.target.value
       },
-      () => this.validateForm(true)
+      () => validateForm(true, this.state, this.setState.bind(this))
     )
   }
 
@@ -75,44 +39,8 @@ class RequestScreen extends Component {
       {
         documents: [...this.state.documents, { url, name }]
       },
-      () => this.validateForm(true)
+      () => validateForm(true, this.state, this.setState.bind(this))
     )
-  }
-
-  setOpen = openPDF => {
-    this.setState({ openPDF })
-  }
-
-  validateForm = isOnChangeText => {
-    const errors = validate(
-      {
-        amount: this.state.amount,
-        hardshipExplanation: this.state.hardshipExplanation,
-        hardshipDate: this.state.hardshipDate,
-        additionalInfo: this.state.additionalInfo,
-        payPalEmail: this.state.payPalEmail
-      },
-      constraints
-    )
-
-    const constructDisplayErrors = () => {
-      const displayErrors = {}
-      Object.keys(errors || {}).forEach(key => {
-        if (this.state.touched[key]) {
-          displayErrors[key] = errors[key]
-        }
-      })
-      return displayErrors
-    }
-
-    const errorsReduced =
-      Object.keys(errors || {}).length <
-      Object.keys(this.state.errors || {}).length
-
-    if (!isOnChangeText || (isOnChangeText && errorsReduced)) {
-      this.setState({ displayErrors: constructDisplayErrors() })
-    }
-    this.setState({ errors })
   }
 
   addTouched = key => {
@@ -130,7 +58,7 @@ class RequestScreen extends Component {
         {
           selectedBoostReasons: [...selectedBoostReasons, boostReason]
         },
-        () => this.validateForm(true)
+        () => validateForm(true, this.state, this.setState.bind(this))
       )
     } else {
       this.setState(
@@ -139,7 +67,7 @@ class RequestScreen extends Component {
             item => item !== boostReason
           )
         },
-        () => this.validateForm(true)
+        () => validateForm(true, this.state, this.setState.bind(this))
       )
     }
   }
@@ -149,7 +77,7 @@ class RequestScreen extends Component {
       {
         experiencedHardship: value
       },
-      () => this.validateForm(true)
+      () => validateForm(true, this.state, this.setState.bind(this))
     )
   }
 
@@ -157,7 +85,7 @@ class RequestScreen extends Component {
     const { requests, contributions, amount, opened } = this.state
     const fundsWithdrawn = requests + Number(amount) - contributions
     if (fundsWithdrawn >= 400 && !opened) {
-      this.setState({ open: true, opened: true })
+      this.setState({ openPDF: true, opened: true })
       return null
     }
     return request()
@@ -181,12 +109,10 @@ class RequestScreen extends Component {
         additionalInfo: '',
         payPalEmail: '',
         documents: [],
-        openPDF: false,
-        openSuccess: false,
         open: false,
         opened: false
       },
-      () => this.validateForm(true)
+      () => validateForm(true, this.state, this.setState.bind(this))
     )
   }
 
@@ -202,264 +128,93 @@ class RequestScreen extends Component {
       hardshipDate,
       additionalInfo,
       errors,
-      openPDF,
-      openSuccess
+      balance,
+      displayErrors
     } = this.state
     const enabled =
       !errors &&
       (selectedBoostReasons.length || otherReason.length) &&
       experiencedHardship !== undefined
-    const Buttons = boostReasons.map(boostReason =>
-      selectedBoostReasons.includes(boostReason) ? (
-        <MultiselectBtn
-          key={boostReason}
-          text={boostReason}
-          variant="contained"
-          style={{
-            backgroundColor: theme.colors.tertiary,
-            color: 'white'
-          }}
-          onClick={() => this.handleSelect(boostReason)}
-        />
-      ) : (
-        <MultiselectBtn
-          key={boostReason}
-          text={boostReason}
-          variant="outlined"
-          onClick={() => this.handleSelect(boostReason)}
-        />
-      )
-    )
+
+    const Buttons = MakeButtons(selectedBoostReasons, this.handleSelect)
 
     return (
       <Background style={{ justifyContent: 'flex-start' }}>
         <FormWrapper
           style={{ marginTop: 20, paddingRight: 20, paddingLeft: 20 }}
         >
-          <Subheader
-            text="How much would you like to request?"
-            style={{ marginBottom: 20 }}
-          />
-          <Row justifyContent="flex-start">
-            <BodyText text="Your Boost funds available: &nbsp;" />
-            <BodyText text={`$${this.state.balance}`} />
-          </Row>
-          <Row justifyContent="flex-start">
-            <Span>$</Span>
-            <TextInput
-              type="number"
-              rootStyle={{ alignSelf: 'center' }}
-              name="amount"
-              onChange={this.onChange}
-              value={amount}
-              onFocus={() => this.addTouched('amount')}
-              onBlur={() => this.validateForm(false)}
-              errorMessage={this.state.displayErrors.amount}
-              inputStyle={{ fontSize: 25, width: 100 }}
-            />
-          </Row>
-          <Subheader text="What is your boost for?" />
-          <WrappedRow>{Buttons}</WrappedRow>
-          {_.includes(selectedBoostReasons, 'Other') && (
-            <TextInput
-              type="text"
-              labelText="Please Specify "
-              rootStyle={{ alignSelf: 'flex-start' }}
-              multiline
-              name="otherReason"
-              onChange={this.onChange}
-              value={otherReason}
-              onFocus={() => this.addTouched('otherReason')}
-              onBlur={() => this.validateForm(false)}
-              errorMessage={this.state.displayErrors.otherReason}
-            />
-          )}
-          <Subheader text="Have you experienced any financial hardship?" />
-          <Row justifyContent="space-between">
-            <MultiselectBtn
-              text="Yes"
-              variant={experiencedHardship ? 'contained' : 'outlined'}
-              style={
-                experiencedHardship
-                  ? {
-                      backgroundColor: theme.colors.tertiary,
-                      color: 'white',
-                      width: 150
-                    }
-                  : { width: 150 }
-              }
-              onClick={() => this.handleClick(true)}
-              value={experiencedHardship}
-            />
-            <MultiselectBtn
-              text="No"
-              variant={experiencedHardship === false ? 'contained' : 'outlined'}
-              style={
-                experiencedHardship === false
-                  ? {
-                      backgroundColor: theme.colors.tertiary,
-                      color: 'white',
-                      width: 150
-                    }
-                  : { width: 150 }
-              }
-              onClick={() => this.handleClick(false)}
-              value={experiencedHardship === false}
-            />
-          </Row>
-          <Subheader text="Please describe what happened:" />
-          <OutlinedInput
-            type="text"
-            label="Enter Description"
-            rootStyle={{ alignSelf: 'flex-start' }}
-            inputStyle={{ width: 350 }}
-            rows="4"
-            multiline
-            name="hardshipExplanation"
+          <AmountBlock
+            amount={amount}
+            balance={balance}
+            displayErrors={displayErrors}
             onChange={this.onChange}
-            value={hardshipExplanation}
-            onFocus={() => this.addTouched('hardshipExplanation')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.hardshipExplanation}
+            addTouched={this.addTouched}
+            validateForm={val =>
+              validateForm(val, this.state, this.setState.bind(this))
+            }
           />
-          <Subheader text="When did this happen?" />
-          <OutlinedInput
-            type="text"
-            label="Describe the time it happened here"
-            inputStyle={{ width: 350 }}
-            rows="4"
-            rootStyle={{ alignSelf: 'flex-start' }}
-            multiline
-            name="hardshipDate"
+          <ReasonsBlock
+            Buttons={Buttons}
+            selectedBoostReasons={selectedBoostReasons}
+            otherReason={otherReason}
+            displayErrors={displayErrors}
             onChange={this.onChange}
-            value={hardshipDate}
-            onFocus={() => this.addTouched('hardshipDate')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.hardshipDate}
+            addTouched={this.addTouched}
+            validateForm={val =>
+              validateForm(val, this.state, this.setState.bind(this))
+            }
           />
-          <Subheader text="Anything else you'd like to tell us?" />
-          <OutlinedInput
-            type="text"
-            label="Enter text"
-            rows="4"
-            rootStyle={{ alignSelf: 'flex-start' }}
-            inputStyle={{ width: 350 }}
-            multiline
+          <HardshipBlock
+            experiencedHardship={experiencedHardship}
+            hardshipExplanation={hardshipExplanation}
+            hardshipDate={hardshipDate}
+            displayErrors={displayErrors}
+            handleClick={this.handleClick}
+            onChange={this.onChange}
+            addTouched={this.addTouched}
+            validateForm={val =>
+              validateForm(val, this.state, this.setState.bind(this))
+            }
+          />
+          <Description
+            headerText="Anything else you'd like to tell us?"
+            labelText="Enter text"
             name="additionalInfo"
             onChange={this.onChange}
             value={additionalInfo}
-            onFocus={() => this.addTouched('additionalInfo')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.additionalInfo}
+            addTouched={() => this.addTouched('additionalInfo')}
+            validateForm={() =>
+              validateForm(false, this.state, this.setState.bind(this))
+            }
+            displayErrors={displayErrors}
           />
-          <Subheader
-            style={{ marginTop: 20 }}
-            text="Please enter your email associated with your PayPal account"
+          <PayPalBlock
+            onChange={this.onChange}
+            payPalEmail={payPalEmail}
+            addTouched={this.addTouched}
+            validateForm={() =>
+              validateForm(false, this.state, this.setState.bind(this))
+            }
+            displayErrors={displayErrors}
           />
-          <Row justifyContent="flex-start">
-            <TextInput
-              type="text"
-              labelText="PayPal account email"
-              rootStyle={{ alignSelf: 'center' }}
-              name="payPalEmail"
-              onChange={this.onChange}
-              value={payPalEmail}
-              onFocus={() => this.addTouched('payPalEmail')}
-              onBlur={() => this.validateForm(false)}
-              errorMessage={this.state.displayErrors.payPalEmail}
-            />
-          </Row>
-
-          <Subheader
-            style={{ marginTop: 20 }}
-            text="Upload supporting documents (PDF only)"
+          <DocumentBlock
+            onDocChange={this.onDocChange}
+            addTouched={this.addTouched}
+            validateForm={() =>
+              validateForm(false, this.state, this.setState.bind(this))
+            }
+            displayErrors={displayErrors}
+            documents={documents}
+            setState={this.setState.bind(this)}
           />
-          <Row justifyContent="flex-start" style={{ flexDirection: 'column' }}>
-            <DocumentInput
-              onChange={this.onDocChange}
-              onFocus={() => this.addTouched('documents')}
-              onBlur={() => this.validateForm(false)}
-              errorMessage={this.state.displayErrors.documents}
-              files="true"
-              multiple
-            />
-            <DocumentList
-              documents={this.state.documents}
-              removeDoc={docUrl =>
-                this.setState({
-                  documents: this.state.documents.filter(
-                    ({ url }) => url !== docUrl
-                  )
-                })
-              }
-            />
-          </Row>
-          <Mutation
-            mutation={REQUEST_FUNDS}
-            onCompleted={data => {
-              if (data.request.success) {
-                this.setState({ openSuccess: true })
-              } else this.props.alert.error(data.request.error.message)
-            }}
-            refetchQueries={[{ query: GET_USER }, { query: VIEWER }]}
-          >
-            {(request, { loading }) => {
-              const variables = {
-                input: {
-                  contributions: this.state.contributions,
-                  requests: this.state.requests,
-                  amount: Number(amount),
-                  reason: selectedBoostReasons.concat([otherReason]).join(', '),
-                  financialHardship: Boolean(experiencedHardship),
-                  hardshipExplanation,
-                  hardshipDate,
-                  payPalEmail,
-                  documents,
-                  additionalInfo
-                }
-              }
-              return (
-                <>
-                  <PrimaryButton
-                    text={
-                      loading ? <LoadingIcon /> : 'Request funds with Paypal'
-                    }
-                    style={{
-                      width: 350,
-                      backgroundColor:
-                        loading || !enabled
-                          ? theme.colors.secondary
-                          : theme.colors.tertiary,
-                      color: 'white',
-                      marginTop: 15,
-                      marginBottom: 45
-                    }}
-                    onClick={() => {
-                      this.handleSubmit(() => request({ variables }))
-                    }}
-                    disabled={!enabled || loading}
-                  />
-                  <Dialog
-                    open={openPDF}
-                    onClose={() => this.setOpen(false)}
-                    TransitionComponent={Transition}
-                  >
-                    <RequestDocumentsModal
-                      setOpen={this.setOpen}
-                      request={() => request({ variables })}
-                    />
-                  </Dialog>
-                  <Dialog
-                    open={openSuccess}
-                    onClose={() => this.setState({ openSuccess: false })}
-                    TransitionComponent={Transition}
-                  >
-                    <RequestSubmittedModal handleSuccess={this.handleSuccess} />
-                  </Dialog>
-                </>
-              )
-            }}
-          </Mutation>
+          <RequestButton
+            state={this.state}
+            setState={this.setState.bind(this)}
+            alert={this.props.alert}
+            handleSubmit={this.handleSubmit}
+            handleSuccess={this.handleSuccess}
+            disabled={!enabled}
+          />
         </FormWrapper>
       </Background>
     )

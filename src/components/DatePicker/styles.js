@@ -9,7 +9,7 @@ export const styles = theme => ({
   },
   textField: {
     marginRight: theme.spacing.unit,
-    width: 200
+    width: '100%'
   },
   cssError: {
     color: themes.colors.error

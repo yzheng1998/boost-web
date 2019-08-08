@@ -155,6 +155,7 @@ class EditProfileForm extends Component {
           labelText="First name"
           value={firstName}
           style={{ marginBottom: 12 }}
+          inputStyle={{ width: '100%' }}
         />
         <TextInput
           name="lastName"
@@ -165,6 +166,7 @@ class EditProfileForm extends Component {
           labelText="Last name"
           value={lastName}
           style={{ marginBottom: 12 }}
+          inputStyle={{ width: '100%' }}
         />
         <TextInput
           name="phone"
@@ -175,6 +177,7 @@ class EditProfileForm extends Component {
           labelText="Cellphone #"
           value={phone}
           style={{ marginBottom: 12 }}
+          inputStyle={{ width: '100%' }}
         />
         <TextInput
           name="zipCode"
@@ -185,6 +188,7 @@ class EditProfileForm extends Component {
           labelText="Work ZIP code"
           value={zipCode}
           style={{ marginBottom: 12 }}
+          inputStyle={{ width: '100%' }}
         />
         <DatePicker
           id="date"
@@ -199,6 +203,7 @@ class EditProfileForm extends Component {
           onBlur={() => this.validateForm(false)}
           errorMessage={this.state.displayErrors.birthday}
           value={birthday}
+          inputStyle={{ width: '100%' }}
         />
         <Title
           color={theme.colors.black}
@@ -215,6 +220,7 @@ class EditProfileForm extends Component {
           errorMessage={this.state.displayErrors.children}
           value={children}
           style={{ marginTop: 0, marginBottom: 12 }}
+          inputStyle={{ width: '100%' }}
         />
         <TextInput
           labelText="Adults"
@@ -226,6 +232,7 @@ class EditProfileForm extends Component {
           errorMessage={this.state.displayErrors.adults}
           value={adults}
           style={{ marginTop: 0 }}
+          inputStyle={{ width: '100%' }}
         />
         <DropdownMenu
           title="Marital status"
@@ -259,7 +266,7 @@ class EditProfileForm extends Component {
           style={{ marginTop: 45 }}
         />
         <TextInput
-          labelText="Annual Household Income"
+          labelText="Income"
           type="number"
           name="householdIncome"
           onChange={this.handleChange}
@@ -267,6 +274,7 @@ class EditProfileForm extends Component {
           onBlur={() => this.validateForm(false)}
           errorMessage={this.state.displayErrors.householdIncome}
           value={householdIncome}
+          inputStyle={{ width: '100%' }}
         />
         <DropdownMenu
           title="Which of these best describes your financial life?"

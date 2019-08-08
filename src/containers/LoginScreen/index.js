@@ -105,7 +105,9 @@ const Login = ({ history }) => {
             color: 'black',
             marginTop: 15
           }}
-          onClick={() => history.push('/howItWorks')}
+          onClick={() =>
+            history.push({ pathname: '/howItWorks', state: { register: true } })
+          }
         />
       </Wrapper>
     </Background>

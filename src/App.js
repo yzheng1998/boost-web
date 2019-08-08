@@ -34,6 +34,7 @@ import PageFooter from './components/PageFooter'
 import FAQ from './containers/FAQ'
 import Welcome from './containers/Welcome'
 import RequestLedger from './containers/RequestLedger'
+import ScrollToTop from './components/ScrollToTop'
 
 const MuiTheme = createMuiTheme({
   palette: {
@@ -81,59 +82,64 @@ class App extends React.Component {
               <MuiThemeProvider theme={MuiTheme}>
                 <ApolloProvider client={client}>
                   <AlertProvider template={AlertTemplate} {...options}>
-                    <div className="App">
-                      <HeaderBar />
-                      <Switch>
-                        <Route path="/howItWorks" component={HowItWorks} />
-                        <Route
-                          path="/explanation"
-                          component={ExplanationScreen}
-                        />
-                        <Route path="/login" component={LoginScreen} />
-                        <Route path="/register" component={WorkEmailScreen} />
-                        <Route
-                          path="/register-cont"
-                          component={PasswordScreen}
-                        />
-                        <Route path="/details" component={UserDetailsScreen} />
-                        <Route
-                          path="/bank-info"
-                          component={EnterBankInfoScreen}
-                        />
-                        <Route
-                          path="/complete-profile"
-                          component={CompleteProfileScreen}
-                        />
-                        <Route
-                          path="/recovery"
-                          component={EmailRecoveryScreen}
-                        />
-                        <Route
-                          path="/verification"
-                          component={VerificationCodeScreen}
-                        />
-                        <Route
-                          path="/new-password"
-                          component={NewPasswordScreen}
-                        />
-                        <PrivateRoute
-                          path="/profile"
-                          component={EditProfileScreen}
-                        />
-                        <PrivateRoute
-                          path="/request"
-                          component={RequestContributeScreen}
-                        />
-                        <PrivateRoute
-                          path="/activity"
-                          component={RequestLedger}
-                        />
-                        <Route path="/faq" component={FAQ} />
-                        <PrivateRoute path="/welcome" component={Welcome} />
-                        <Redirect from="/" to="/request" />
-                      </Switch>
-                      <PageFooter />
-                    </div>
+                    <ScrollToTop>
+                      <div className="App">
+                        <HeaderBar />
+                        <Switch>
+                          <Route path="/howItWorks" component={HowItWorks} />
+                          <Route
+                            path="/explanation"
+                            component={ExplanationScreen}
+                          />
+                          <Route path="/login" component={LoginScreen} />
+                          <Route path="/register" component={WorkEmailScreen} />
+                          <Route
+                            path="/register-cont"
+                            component={PasswordScreen}
+                          />
+                          <Route
+                            path="/details"
+                            component={UserDetailsScreen}
+                          />
+                          <Route
+                            path="/bank-info"
+                            component={EnterBankInfoScreen}
+                          />
+                          <Route
+                            path="/complete-profile"
+                            component={CompleteProfileScreen}
+                          />
+                          <Route
+                            path="/recovery"
+                            component={EmailRecoveryScreen}
+                          />
+                          <Route
+                            path="/verification"
+                            component={VerificationCodeScreen}
+                          />
+                          <Route
+                            path="/new-password"
+                            component={NewPasswordScreen}
+                          />
+                          <PrivateRoute
+                            path="/profile"
+                            component={EditProfileScreen}
+                          />
+                          <PrivateRoute
+                            path="/request"
+                            component={RequestContributeScreen}
+                          />
+                          <PrivateRoute
+                            path="/activity"
+                            component={RequestLedger}
+                          />
+                          <Route path="/faq" component={FAQ} />
+                          <PrivateRoute path="/welcome" component={Welcome} />
+                          <Redirect from="/" to="/request" />
+                        </Switch>
+                        <PageFooter />
+                      </div>
+                    </ScrollToTop>
                   </AlertProvider>
                 </ApolloProvider>
               </MuiThemeProvider>

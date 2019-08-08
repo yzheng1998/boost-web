@@ -18,6 +18,7 @@ const HeaderBar = classes => {
   const isLoggedIn = localStore.get('user')
 
   const headerItems = [
+    { text: 'Welcome', url: '/welcome' },
     { text: 'Request/Contribute Funds', url: '/request' },
     { text: 'My Activity', url: '/activity' },
     { text: 'View/Edit Profile', url: '/profile' },

@@ -6,7 +6,7 @@ import { ADD_TO_WAIT_LIST } from './graphql'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
 import theme from '../../../../../../theme'
 
-const AddToWaitListButton = ({ email, setOpen }) => {
+const AddToWaitListButton = ({ email, setOpen, history }) => {
   const alert = useAlert()
 
   return (
@@ -15,6 +15,7 @@ const AddToWaitListButton = ({ email, setOpen }) => {
       onCompleted={() => {
         setOpen(false)
         alert.success('Email successfully added to wait list')
+        history.push('/login')
       }}
       onError={() => {
         alert.error('Failed to add email to waitlist')

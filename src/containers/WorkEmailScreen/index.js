@@ -154,6 +154,7 @@ class WorkEmailScreen extends Component {
           <WorkEmailModal
             setOpen={this.setOpen}
             email={this.state.registerInput.workEmail}
+            history={this.props.history}
           />
         </Dialog>
       </Background>

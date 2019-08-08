@@ -6,7 +6,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import AddToWaitListButton from './components/AddToWaitListButton'
 import ModalContainer from './styles'
 
-const WorkEmailModal = ({ setOpen, email }) => (
+const WorkEmailModal = ({ setOpen, email, history }) => (
   <ModalContainer>
     <DialogTitle>Email has not been verified by administration</DialogTitle>
     <DialogContent>
@@ -19,7 +19,11 @@ const WorkEmailModal = ({ setOpen, email }) => (
         to be approved, please add your email to the waitlist.
       </DialogContentText>
       <DialogActions>
-        <AddToWaitListButton setOpen={setOpen} email={email} />
+        <AddToWaitListButton
+          setOpen={setOpen}
+          email={email}
+          history={history}
+        />
       </DialogActions>
     </DialogContent>
   </ModalContainer>

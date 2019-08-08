@@ -15,12 +15,22 @@ const Transition = forwardRef((props, ref) => (
 const Welcome = ({ history }) => {
   const [open, setOpen] = useState(history.location.state)
 
+  const createStyle = width => {
+    const webStyle = { justifyContent: 'center' }
+    const mobileStyle = {
+      justifyContent: 'center',
+      fontSize: 25,
+      textAlign: 'center'
+    }
+    return width < 400 ? mobileStyle : webStyle
+  }
+
   return (
     <WelcomeScreen>
       <Header
         text="Welcome to the GreenPath Grant Circle"
         color={theme.colors.header}
-        style={{ justifyContent: 'center' }}
+        style={createStyle(window.innerWidth)}
       />
       <InfoText>
         Learn more about&nbsp;<Link to="/faq">Grant Circles Pilot.</Link>

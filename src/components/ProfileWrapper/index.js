@@ -11,6 +11,7 @@ const ProfileWrapper = styled(Flex)`
   background-color: ${({ theme }) => theme.colors.primary};
   padding: 25px;
   margin-left: 5px;
+  overflow: hidden;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {
     width: 70%;

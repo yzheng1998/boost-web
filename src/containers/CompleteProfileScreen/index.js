@@ -211,6 +211,7 @@ class CompleteProfileScreen extends Component {
             errorMessage={this.state.displayErrors.children}
             value={children}
             style={{ marginTop: 0 }}
+            inputStyle={{ width: '100%' }}
           />
           <TextInput
             labelText="Adults"
@@ -222,6 +223,7 @@ class CompleteProfileScreen extends Component {
             errorMessage={this.state.displayErrors.adults}
             value={adults}
             style={{ marginTop: 0 }}
+            inputStyle={{ width: '100%' }}
           />
           <DropdownMenu
             title="Marital status"
@@ -255,7 +257,7 @@ class CompleteProfileScreen extends Component {
             style={{ marginTop: 45 }}
           />
           <TextInput
-            labelText="Annual Household Income"
+            labelText="Income"
             type="number"
             name="householdIncome"
             onChange={this.onChange}
@@ -263,6 +265,7 @@ class CompleteProfileScreen extends Component {
             onBlur={() => this.validateForm(false)}
             errorMessage={this.state.displayErrors.householdIncome}
             value={householdIncome}
+            inputStyle={{ width: '100%' }}
           />
           <DropdownMenu
             title="Which of these best describes your financial life?"

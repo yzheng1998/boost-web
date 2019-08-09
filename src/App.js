@@ -135,7 +135,7 @@ class App extends React.Component {
                           />
                           <Route path="/faq" component={FAQ} />
                           <PrivateRoute path="/welcome" component={Welcome} />
-                          <Redirect from="/" to="/request" />
+                          <Redirect from="/" to="/welcome" />
                         </Switch>
                         <PageFooter />
                       </div>

@@ -40,7 +40,7 @@ const DocumentInput = ({ onChange, ...rest }) => {
             name="documents"
             {...rest}
           />
-          <PrimaryButton text="Choose files" />
+          <PrimaryButton style={{ width: '100%' }} text="Choose files" />
         </div>
       )}
     </Dropzone>

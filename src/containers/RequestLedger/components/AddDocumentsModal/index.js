@@ -29,7 +29,7 @@ const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
             }
           />
         </Row>
-        <DialogActions>
+        <DialogActions style={{ padding: 0 }}>
           <Button onClick={() => setOpen(false)}>Cancel</Button>
           <Button
             onClick={() => {

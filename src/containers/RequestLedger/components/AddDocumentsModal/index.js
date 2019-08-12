@@ -14,7 +14,6 @@ const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
   const onDocChange = ({ url, name }) => {
     updateDocuments([...documents, { url, name }])
   }
-
   return (
     <ModalContainer>
       <DialogTitle>Add Additional Documents</DialogTitle>
@@ -25,11 +24,11 @@ const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
           <DocumentList
             documents={documents}
             removeDoc={docName =>
-              updateDocuments(documents.filter(({ name }) => name !== docName))
+              updateDocuments(documents.filter(({ url }) => url !== docName))
             }
           />
         </Row>
-        <DialogActions>
+        <DialogActions style={{ padding: 0 }}>
           <Button onClick={() => setOpen(false)}>Cancel</Button>
           <Button
             onClick={() => {

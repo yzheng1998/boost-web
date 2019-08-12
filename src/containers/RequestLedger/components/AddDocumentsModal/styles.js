@@ -3,7 +3,7 @@ import { Flex } from '@rebass/grid'
 
 export const ModalContainer = styled(Flex)`
   flex-direction: column;
-  width: 500px;
+  width: 100%;
 `
 
 export const Row = styled(Flex)`

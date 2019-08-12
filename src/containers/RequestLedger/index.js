@@ -43,7 +43,13 @@ const RequestLedger = () => {
           return (
             <Mutation
               mutation={ADD_DOCUMENT}
-              onCompleted={() => alert.success('Documents added!')}
+              onCompleted={({ addDocumentToRequest: { success } }) => {
+                if (!success) {
+                  alert.error('Document name too long.')
+                } else {
+                  alert.success('Document added!')
+                }
+              }}
               onError={() => alert.error('Failed to add documents.')}
               refetchQueries={[{ query: VIEWER }]}
             >

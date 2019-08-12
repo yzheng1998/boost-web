@@ -12,4 +12,11 @@ export const ItemContainer = styled(Flex)`
   margin-bottom: 8px;
 `
 
-export const DocumentName = styled(Flex)``
+export const DocumentName = styled(Flex)`
+  display: block;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+`

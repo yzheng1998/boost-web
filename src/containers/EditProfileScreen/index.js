@@ -22,6 +22,7 @@ class EditProfileScreen extends Component {
             if (loading) return <LoadingIcon />
             if (error) return `Error! ${error.messsage}`
             const { user } = data.viewer
+            if (!user) return null
             return <EditProfileForm user={user} history={this.props.history} />
           }}
         </Query>

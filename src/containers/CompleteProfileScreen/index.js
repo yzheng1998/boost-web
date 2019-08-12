@@ -301,8 +301,8 @@ class CompleteProfileScreen extends Component {
                   <PrimaryButton
                     text={loading ? <LoadingIcon /> : 'Register'}
                     style={{
-                      backgroundColor: theme.colors.tertiary,
-                      color: theme.colors.primary
+                      backgroundColor: enabled ? theme.colors.tertiary : null,
+                      color: enabled ? theme.colors.primary : '#D3D3D3'
                     }}
                     onClick={() => {
                       this.handleSubmit('/welcome', store, register)

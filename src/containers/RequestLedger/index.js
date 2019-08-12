@@ -35,13 +35,11 @@ const RequestLedger = () => {
 
   return (
     <Query query={VIEWER}>
-      {({ data, error }) => {
-        if (error) {
-          console.log(error.message)
-        }
-
+      {({ data }) => {
         if (data.viewer) {
-          const formattedRequests = formatData(data.viewer.user.requestHistory)
+          const formattedRequests = data.viewer.user
+            ? formatData(data.viewer.user.requestHistory)
+            : []
           return (
             <Mutation
               mutation={ADD_DOCUMENT}

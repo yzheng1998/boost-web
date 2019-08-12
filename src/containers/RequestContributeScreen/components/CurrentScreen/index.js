@@ -15,11 +15,6 @@ const CurrentScreen = ({ tab, setState, history }) => {
 
   const state = { contributions, requests, payPalEmail }
 
-  const handleError = ({ message }) => {
-    console.error(message)
-    return 'An error occurred!'
-  }
-
   const computeBalance = user =>
     (1000 - user.requests + user.contributions).toFixed(2)
 
@@ -27,17 +22,19 @@ const CurrentScreen = ({ tab, setState, history }) => {
     <Query
       query={GET_USER}
       onCompleted={data => {
-        updateContributions(data.viewer.user.contributions)
-        updateRequests(data.viewer.user.requests)
-        updatePayPalEmail(data.viewer.user.personalEmail)
+        if (data.viewer.user) {
+          updateContributions(data.viewer.user.contributions)
+          updateRequests(data.viewer.user.requests)
+          updatePayPalEmail(data.viewer.user.personalEmail)
+        }
       }}
     >
-      {({ loading, data, error }) => {
+      {({ loading, data }) => {
         if (loading) return <LoadingIcon />
-        if (error) {
-          handleError(error)
-        }
+
         const { user } = data.viewer
+
+        if (!user) return null
 
         const balance = computeBalance(user)
 

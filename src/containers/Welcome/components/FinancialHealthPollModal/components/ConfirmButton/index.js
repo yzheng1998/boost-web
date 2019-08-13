@@ -8,7 +8,9 @@ const ConfirmButton = ({ setOpen, financialHealthRating }) => (
     {logFinancialHealth => (
       <Button
         onClick={() => {
-          logFinancialHealth({ variables: { financialHealthRating } })
+          logFinancialHealth({
+            variables: { financialHealthRating: Number(financialHealthRating) }
+          })
           setOpen(false)
         }}
       >

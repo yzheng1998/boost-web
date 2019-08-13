@@ -16,7 +16,7 @@ export const ButtonsContainer = styled(Flex)`
   flex-direction: row;
   align-self: center;
   justify-content: space-around;
-  width: 425px;
+  width: 100%;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {
     flex-direction: column;

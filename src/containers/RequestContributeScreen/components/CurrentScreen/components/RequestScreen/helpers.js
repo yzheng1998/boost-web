@@ -5,12 +5,7 @@ import MultiselectBtn from '../../../../../../components/MultiselectBtn'
 import theme from '../../../../../../theme'
 import boostReasons from '../../../../constants/boostReasons'
 
-export const defaultState = (
-  payPalEmail,
-  contributions,
-  requests,
-  balance
-) => ({
+export const defaultState = (contributions, requests, balance) => ({
   openPDF: false,
   opened: false,
   selectedBoostReasons: [],
@@ -21,7 +16,7 @@ export const defaultState = (
   hardshipDate: '',
   additionalInfo: '',
   documents: [],
-  payPalEmail,
+  payPalEmail: '',
   displayErrors: {},
   errors: {},
   touched: {},

@@ -16,9 +16,9 @@ import RequestButton from './components/RequestButton'
 class RequestScreen extends Component {
   constructor(props) {
     super(props)
-    const { payPalEmail, contributions, requests } = this.props.data
+    const { contributions, requests } = this.props.data
     const { balance } = this.props
-    this.state = defaultState(payPalEmail, contributions, requests, balance)
+    this.state = defaultState(contributions, requests, balance)
   }
 
   componentDidMount = () => {

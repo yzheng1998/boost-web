@@ -1,11 +1,12 @@
 import React from 'react'
 import axios from 'axios'
+import { withAlert } from 'react-alert'
 import Dropzone from 'react-dropzone'
 import SIGN_S3_URL from './graphql'
 import client from '../../../../../../../../client'
 import PrimaryButton from '../../../../../../../../components/PrimaryButton'
 
-const DocumentInput = ({ onChange, ...rest }) => {
+const DocumentInput = ({ onChange, alert, ...rest }) => {
   const uploadPhoto = file => {
     const options = {
       headers: {
@@ -26,6 +27,7 @@ const DocumentInput = ({ onChange, ...rest }) => {
         await axios
           .put(url, file, options)
           .then(() => onChange({ url, name: file.name }))
+          .catch(() => alert.error('Could not upload file'))
       })
   }
   return (
@@ -47,4 +49,4 @@ const DocumentInput = ({ onChange, ...rest }) => {
   )
 }
 
-export default DocumentInput
+export default withAlert()(DocumentInput)

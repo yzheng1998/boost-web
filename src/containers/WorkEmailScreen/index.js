@@ -103,7 +103,7 @@ class WorkEmailScreen extends Component {
     return (
       <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
-          text="Step 1 of 4: Verify employer"
+          text="Step 1 of 3: Verify your email"
           color={theme.colors.header}
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
@@ -119,7 +119,7 @@ class WorkEmailScreen extends Component {
           }
           onFocus={() => this.addTouched('workEmail')}
           onBlur={() => this.validateForm(false)}
-          labelText="Enter work email"
+          labelText="Please enter your work email"
           value={this.state.registerInput.workEmail}
           style={{ alignSelf: 'center' }}
           errorMessage={this.state.displayErrors.workEmail}
@@ -131,7 +131,7 @@ class WorkEmailScreen extends Component {
             }
             return (
               <PrimaryButton
-                text={loading ? <LoadingIcon /> : 'Verify'}
+                text={loading ? <LoadingIcon /> : 'Verify my email'}
                 onClick={() =>
                   this.handleSubmit('/register-cont', () =>
                     verifyWorkEmail({ variables })

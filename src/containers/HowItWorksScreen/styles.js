@@ -6,10 +6,13 @@ export const BtnRow = styled(Flex)`
   flex-direction: row;
 `
 
-export const BtnWrapper = styled(Flex)`
-  justify-content: center;
-  flex-direction: column;
-  padding: 10px;
+export const BtnContainer = styled(Flex)`
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 75%;
 `
 
 export const Label = styled(Flex)`
@@ -32,14 +35,12 @@ export const CenterParagraph = styled(Flex)`
   width: 75%;
   color: ${({ theme }) => theme.colors.tertiary};
 `
-
 export const Container = styled(Flex)`
   width: 50%;
-  flex: 1;
+  /* padding-top: 50px; */
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 100px;
   align-self: center;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {

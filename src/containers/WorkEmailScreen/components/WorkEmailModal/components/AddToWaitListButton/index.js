@@ -3,19 +3,28 @@ import { Mutation } from 'react-apollo'
 import { useAlert } from 'react-alert'
 import PrimaryButton from '../../../../../../components/PrimaryButton'
 import { ADD_TO_WAIT_LIST } from './graphql'
-import LoadingIcon from '../../../../../../components/LoadingIcon'
 import theme from '../../../../../../theme'
 
-const AddToWaitListButton = ({ email, setOpen, history }) => {
+const AddToWaitListButton = ({
+  email,
+  setOpen,
+  history,
+  updateAdded,
+  added
+}) => {
   const alert = useAlert()
+
+  const handleClose = () => {
+    setOpen(false)
+    alert.success('Email successfully added to wait list')
+    history.push('/login')
+  }
 
   return (
     <Mutation
       mutation={ADD_TO_WAIT_LIST}
       onCompleted={() => {
-        setOpen(false)
-        alert.success('Email successfully added to wait list')
-        history.push('/login')
+        updateAdded(true)
       }}
       onError={() => {
         alert.error('Failed to add email to waitlist')
@@ -24,9 +33,11 @@ const AddToWaitListButton = ({ email, setOpen, history }) => {
     >
       {(addToWaitList, { loading }) => (
         <PrimaryButton
-          text={loading ? <LoadingIcon /> : 'Add to waitlist'}
+          text={added ? 'Close modal' : 'Add to waitlist'}
           disabled={loading}
-          onClick={() => addToWaitList({ variables: { email } })}
+          onClick={() =>
+            added ? handleClose() : addToWaitList({ variables: { email } })
+          }
           style={{ backgroundColor: theme.colors.tertiary }}
         />
       )}

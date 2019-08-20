@@ -19,7 +19,8 @@ const theme = {
     quaternary: '#C05746',
     black: '#071013',
     error: 'rgb(227, 81, 65)',
-    grey: '#DFE0E2'
+    grey: '#DFE0E2',
+    darkGrey: '#8D8D8D'
   },
   breakpoints: {
     mobile: {

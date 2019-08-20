@@ -18,7 +18,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './redux/store'
 import UserDetailsScreen from './containers/UserDetailsScreen'
-import PasswordScreen from './containers/PasswordScreen'
+import PersonalDetailsScreen from './containers/PersonalDetailsScreen'
 import WorkEmailScreen from './containers/WorkEmailScreen'
 import LoginScreen from './containers/LoginScreen'
 import EnterBankInfoScreen from './containers/EnterBankInfoScreen'
@@ -95,7 +95,7 @@ class App extends React.Component {
                           <Route path="/register" component={WorkEmailScreen} />
                           <Route
                             path="/register-cont"
-                            component={PasswordScreen}
+                            component={PersonalDetailsScreen}
                           />
                           <Route
                             path="/details"

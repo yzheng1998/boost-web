@@ -16,10 +16,10 @@ import { VERIFY_PERSONAL } from './graphql'
 import LoadingIcon from '../../components/LoadingIcon'
 import BodyText from '../../components/BodyText'
 import {
-  StyledText,
+  EmailSuggestionText,
   CheckContainer,
   CheckboxText,
-  StyledLink,
+  FAQLink,
   TextContainer
 } from './styles'
 
@@ -119,6 +119,10 @@ class PersonalDetailsScreen extends Component {
 
   render() {
     const enabled = !this.state.errors
+    const buttonColor =
+      enabled && this.state.termsAgreement
+        ? theme.colors.tertiary
+        : theme.colors.secondary
     return (
       <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
@@ -186,7 +190,7 @@ class PersonalDetailsScreen extends Component {
           style={{ alignSelf: 'center' }}
           errorMessage={this.state.displayErrors.personalEmail}
         />
-        <StyledText text="This email address is requested so that you can be reached when not at work. We recommend using the email address that is linked to your PayPal account, since PayPal is currently the only payment method available in this pilot." />
+        <EmailSuggestionText text="This email address is requested so that you can be reached when not at work. We recommend using the email address that is linked to your PayPal account, since PayPal is currently the only payment method available in this pilot." />
         <TextInput
           name="password"
           onChange={e =>
@@ -240,7 +244,7 @@ class PersonalDetailsScreen extends Component {
           />
           <TextContainer>
             <CheckboxText>I agree to the Grant Circle </CheckboxText>
-            <StyledLink href="/faq">Terms and Conditions</StyledLink>
+            <FAQLink href="/faq">Terms and Conditions</FAQLink>
             <CheckboxText> and Data Sharing Policy.</CheckboxText>
           </TextContainer>
         </CheckContainer>
@@ -258,10 +262,7 @@ class PersonalDetailsScreen extends Component {
                   )
                 }}
                 style={{
-                  backgroundColor:
-                    enabled && this.state.termsAgreement
-                      ? theme.colors.tertiary
-                      : theme.colors.secondary,
+                  backgroundColor: buttonColor,
                   color: theme.colors.primary
                 }}
                 disabled={!enabled || loading}

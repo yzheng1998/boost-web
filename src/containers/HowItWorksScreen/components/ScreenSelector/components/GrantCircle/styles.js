@@ -1,18 +1,10 @@
 import styled from 'styled-components'
 import { Flex } from 'grid-styled'
+import How6 from '../../../../../../../src/assets/images/how6.png'
 
 export const BtnRow = styled(Flex)`
   justify-content: center;
   flex-direction: row;
-`
-
-export const ButtonContainer = styled(Flex)`
-  justify-content: space-between;
-  flex-direction: row;
-  margin-top: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 75%;
 `
 
 export const Label = styled(Flex)`
@@ -23,21 +15,18 @@ export const Label = styled(Flex)`
   align-self: center;
   text-align: center;
 `
-export const CenterParagraph = styled(Flex)`
-  font-family: ${({ theme }) => theme.fonts.medium.family};
-  padding-left: 20px;
-  padding-right: 20px;
-  font-size: 16px;
-  align-self: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-align: justify;
-  width: 75%;
-  color: ${({ theme }) => theme.colors.tertiary};
+
+export const MoneyGraphic = styled.img.attrs(() => ({
+  src: How6,
+  alt: 'Graphic'
+}))`
+  margin-top: 10px;
+  width: 260px;
+  height: 220px;
 `
+
 export const Container = styled(Flex)`
-  width: 50%;
-  /* padding-top: 50px; */
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -47,5 +36,3 @@ export const Container = styled(Flex)`
     width: 100%;
   }
 `
-
-export const Slide = styled.img``

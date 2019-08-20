@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Flex } from 'grid-styled'
 import CenterParagraph from '../CenterParagraph'
+import How3 from '../../../../../../../src/assets/images/how3.png'
 
 export const Paragraph = styled(CenterParagraph)`
   @media screen and (max-width: ${({ theme }) =>
@@ -23,7 +24,10 @@ export const Label = styled(Flex)`
   text-align: center;
 `
 
-export const ImgContainer = styled.img`
+export const LightningGraphic = styled.img.attrs(() => ({
+  src: How3,
+  alt: 'Graphic'
+}))`
   width: 130px;
   height: 130px;
   margin: 16px;

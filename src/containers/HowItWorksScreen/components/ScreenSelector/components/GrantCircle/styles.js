@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Flex } from 'grid-styled'
+import How6 from '../../../../../../../src/assets/images/how6.png'
 
 export const BtnRow = styled(Flex)`
   justify-content: center;
@@ -15,7 +16,10 @@ export const Label = styled(Flex)`
   text-align: center;
 `
 
-export const ImgContainer = styled.img`
+export const MoneyGraphic = styled.img.attrs(() => ({
+  src: How6,
+  alt: 'Graphic'
+}))`
   margin-top: 10px;
   width: 260px;
   height: 220px;

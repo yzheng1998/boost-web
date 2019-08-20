@@ -1,9 +1,8 @@
 import React from 'react'
 import Header from '../../../../../../components/Header'
 import theme from '../../../../../../theme'
-import { Container, ImgContainer, NumbersContainer, Paragraph } from './styles'
-import How3 from '../../../../../../../src/assets/images/how3.png'
-import NavNumber from '../../../../../../components/NavNumber'
+import { Container, Paragraph, LightningGraphic } from './styles'
+import NavNumbers from '../NavNumbers'
 
 // eslint-disable-next-line arrow-body-style
 const HowItWorks1 = () => {
@@ -18,13 +17,8 @@ const HowItWorks1 = () => {
         If you experience a financial hardship, you can request funds from the
         Grant Circle by submitting a request online.
       </Paragraph>
-      <NumbersContainer>
-        <NavNumber text="1" active />
-        <NavNumber text="2" />
-        <NavNumber text="3" />
-        <NavNumber text="4" />
-      </NumbersContainer>
-      <ImgContainer src={How3} alt="Graphic" />
+      <NavNumbers activeScreen={1} />
+      <LightningGraphic />
     </Container>
   )
 }

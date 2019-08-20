@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import HowItWorksButton from '../../components/HowItWorksButton'
 import Background from '../../components/Background'
 import theme from '../../theme'
-import { BtnContainer, Container } from './styles'
+import { ButtonContainer, Container } from './styles'
 import { clearRedux } from '../../redux/actions'
 import ScreenSelector from './components/ScreenSelector'
 
@@ -44,7 +44,7 @@ const HowItWorksScreen = ({ history, clear }) => {
     >
       <Container>
         <ScreenSelector screen={screen} />
-        <BtnContainer>
+        <ButtonContainer>
           <HowItWorksButton
             text="Back"
             onClick={() => {
@@ -67,7 +67,7 @@ const HowItWorksScreen = ({ history, clear }) => {
               color: theme.colors.primary
             }}
           />
-        </BtnContainer>
+        </ButtonContainer>
       </Container>
     </Background>
   )

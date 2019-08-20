@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Flex } from 'grid-styled'
 import CenterParagraph from '../CenterParagraph'
+import How1 from '../../../../../../../src/assets/images/how1.png'
 
 export const Paragraph = styled(CenterParagraph)`
   @media screen and (max-width: ${({ theme }) =>
@@ -23,7 +24,10 @@ export const Label = styled(Flex)`
   text-align: center;
 `
 
-export const ImgContainer = styled.img`
+export const ContributeGraphic = styled.img.attrs(() => ({
+  src: How1,
+  alt: 'Graphic'
+}))`
   width: 100px;
   height: 100px;
   margin: 30px;

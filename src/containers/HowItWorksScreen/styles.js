@@ -6,7 +6,7 @@ export const BtnRow = styled(Flex)`
   flex-direction: row;
 `
 
-export const BtnContainer = styled(Flex)`
+export const ButtonContainer = styled(Flex)`
   justify-content: space-between;
   flex-direction: row;
   margin-top: 15px;

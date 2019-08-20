@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Flex } from 'grid-styled'
+import How5 from '../../../../../../../src/assets/images/how5.png'
 
 export const BtnRow = styled(Flex)`
   justify-content: center;
@@ -28,7 +29,10 @@ export const CenterParagraph = styled(Flex)`
   height: 70px;
 `
 
-export const ImgContainer = styled.img`
+export const FundsGraphic = styled.img.attrs(() => ({
+  src: How5,
+  alt: 'Graphic'
+}))`
   margin-top: 10px;
   width: 220px;
   height: 220px;

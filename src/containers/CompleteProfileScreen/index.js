@@ -101,7 +101,6 @@ class CompleteProfileScreen extends Component {
         ...reduxStore,
         financialStress: Number(reduxStore.financialStress)
       }
-      console.log('VARS->', input)
       await register({
         variables: { input }
       })

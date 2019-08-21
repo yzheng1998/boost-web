@@ -88,7 +88,7 @@ class CompleteProfileScreen extends Component {
     return true
   }
 
-  handleSubmit = async (path, store, register) => {
+  handleSubmit = async (store, register) => {
     this.setState({
       submitPressed: true
     })
@@ -101,11 +101,9 @@ class CompleteProfileScreen extends Component {
         ...reduxStore,
         financialStress: Number(reduxStore.financialStress)
       }
-      await register({
+      register({
         variables: { input }
       })
-      this.props.clearRedux()
-      this.props.history.push(path)
     }
   }
 
@@ -263,6 +261,8 @@ class CompleteProfileScreen extends Component {
                 onCompleted={async data => {
                   const { token } = data.register
                   await localStore.set('user', { token })
+                  this.props.clearRedux()
+                  this.props.history.push('/welcome')
                   // getAccessTokens()
                 }}
               >
@@ -274,7 +274,7 @@ class CompleteProfileScreen extends Component {
                       color: enabled ? theme.colors.primary : '#D3D3D3'
                     }}
                     onClick={() => {
-                      this.handleSubmit('/welcome', store, register)
+                      this.handleSubmit(store, register)
                     }}
                     disabled={!enabled || loading}
                   />

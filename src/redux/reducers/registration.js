@@ -6,15 +6,15 @@ const registrationState = {
   firstName: '',
   lastName: '',
   password: '',
-  phone: '',
-  zipCode: '',
-  birthday: '',
-  children: null,
-  adults: null,
-  maritalStatus: '',
-  financialLife: '',
-  secondaryIncome: null,
-  householdIncome: null
+  spendingVsIncome: '',
+  billsPaidOnTime: '',
+  canCoverExpenses: '',
+  confidenceInLongTermGoals: '',
+  levelOfDebt: '',
+  selfReportedCreditScore: '',
+  confidenceInInsurance: '',
+  plansAhead: '',
+  financialStress: ''
 }
 
 const registerReducer = (state = registrationState, action) => {

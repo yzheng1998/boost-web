@@ -2,24 +2,26 @@ import React, { Component } from 'react'
 import { connect, ReactReduxContext } from 'react-redux'
 import { Mutation } from 'react-apollo'
 import localStore from 'store'
-import validate from 'validate.js'
 import { REGISTER_USER } from './graphql'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
-import Title from '../../components/Title'
-import TextInput from '../../components/TextInput'
-import DatePicker from '../../components/DatePicker'
 import DropdownMenu from '../../components/DropdownMenu'
 import PrimaryButton from '../../components/PrimaryButton'
 import ProfileWrapper from '../../components/ProfileWrapper'
 import {
-  secondaryIncomeItems,
-  maritalStatusItems,
-  financialLifeItems
+  financialStressItems,
+  billsPaidOnTimeItems,
+  spendingVsIncomeItems,
+  canCoverExpensesItems,
+  confidenceInLongTermGoalsItems,
+  levelOfDebtItems,
+  selfReportedCreditScoreItems,
+  confidenceInInsuranceItems,
+  plansAheadItems
 } from './menuItems'
 import theme from '../../theme'
 import { addInfo, clearRedux } from '../../redux/actions'
-import constraints from './constraints'
+import { SubHeader } from './styles'
 import LoadingIcon from '../../components/LoadingIcon'
 
 const mapStateToProps = state => ({
@@ -35,137 +37,94 @@ const mapDispatchToProps = dispatch => ({
 class CompleteProfileScreen extends Component {
   state = {
     registerInput: {
-      birthday: this.props.registerInfo.birthday || '',
-      children: this.props.registerInfo.children || '',
-      adults: this.props.registerInfo.adults || '',
-      maritalStatus: this.props.registerInfo.maritalStatus || '',
-      secondaryIncome: this.props.registerInfo.secondaryIncome,
-      financialLife: this.props.registerInfo.financialLife || '',
-      householdIncome: this.props.registerInfo.householdIncome || ''
+      financialStress: this.props.registerInfo.financialStress || '',
+      spendingVsIncome: this.props.registerInfo.spendingVsIncome || '',
+      billsPaidOnTime: this.props.registerInfo.billsPaidOnTime || '',
+      canCoverExpenses: this.props.registerInfo.canCoverExpenses || '',
+      confidenceInLongTermGoals:
+        this.props.registerInfo.confidenceInLongTermGoals || '',
+      levelOfDebt: this.props.registerInfo.levelOfDebt || '',
+      selfReportedCreditScore:
+        this.props.registerInfo.selfReportedCreditScore || '',
+      confidenceInInsurance:
+        this.props.registerInfo.confidenceInInsurance || '',
+      plansAhead: this.props.registerInfo.plansAhead || ''
     },
-    secondaryIncomeOpen: false,
-    maritalStatusOpen: false,
-    financialLifeOpen: false,
-    displayErrors: {},
-    errors: {},
-    touched: {}
-  }
-
-  componentDidMount = () => {
-    this.validateForm(false)
-  }
-
-  onChange = e => {
-    this.setState(
-      {
-        registerInput: {
-          ...this.state.registerInput,
-          [e.target.name]: e.target.value
-        }
-      },
-      () => this.validateForm(true)
-    )
+    financialStressOpen: false,
+    spendingVsIncomeOpen: false,
+    billsPaidOnTimeOpen: false,
+    canCoverExpensesOpen: false,
+    confidenceInLongTermGoalsOpen: false,
+    levelOfDebtOpen: false,
+    selfReportedCreditScoreOpen: false,
+    confidenceInInsuranceOpen: false,
+    plansAheadOpen: false,
+    submitPressed: false
   }
 
   onChangeDropdown = (event, child) => {
-    this.setState(
-      {
-        registerInput: {
-          ...this.state.registerInput,
-          [event.target.name]: child.key
-        }
-      },
-      () => this.validateForm(true)
-    )
+    this.setState({
+      registerInput: {
+        ...this.state.registerInput,
+        [event.target.name]: child.key
+      }
+    })
   }
 
-  onChangeBoolean = (event, child) => {
-    this.setState(
-      {
-        registerInput: {
-          ...this.state.registerInput,
-          [event.target.name]: child.key === 'true'
-        }
-      },
-      () => this.validateForm(true)
-    )
-  }
-
-  validateForm = isOnChangeText => {
-    const errors = validate(
-      {
-        birthday: this.state.registerInput.birthday,
-        children: this.state.registerInput.children,
-        adults: this.state.registerInput.adults,
-        maritalStatus: this.state.registerInput.maritalStatus,
-        secondaryIncome: this.state.registerInput.secondaryIncome,
-        financialLife: this.state.registerInput.financialLife,
-        householdIncome: this.state.registerInput.householdIncome
-      },
-      constraints
-    )
-
-    const constructDisplayErrors = () => {
-      const displayErrors = {}
-      Object.keys(errors || {}).forEach(key => {
-        if (this.state.touched[key]) {
-          displayErrors[key] = errors[key]
-        }
-      })
-      return displayErrors
+  displayError = key => {
+    if (!this.state.registerInput[key].length && this.state.submitPressed) {
+      return '^Cannot be blank'
     }
-
-    const errorsReduced =
-      Object.keys(errors || {}).length <
-      Object.keys(this.state.errors || {}).length
-
-    if (!isOnChangeText || (isOnChangeText && errorsReduced)) {
-      this.setState({ displayErrors: constructDisplayErrors() })
-    }
-    this.setState({ errors })
+    return null
   }
 
-  addTouched = key => {
-    const touched = {
-      ...this.state.touched,
-      [key]: true
-    }
-    this.setState({ touched })
-  }
-
-  handleSubmit = async (path, store, register) => {
+  valid = () => {
+    // eslint-disable-next-line consistent-return
     Object.keys(this.state.registerInput).forEach(key => {
-      this.props.addInfo({ key, value: this.state.registerInput[key] })
+      if (!this.state.registerInput[key].length) {
+        return false
+      }
     })
-    const reduxStore = store.store.getState().registrationReducer
-    const input = {
-      ...reduxStore,
-      birthday: Number(reduxStore.birthday),
-      children: Number(reduxStore.children),
-      adults: Number(reduxStore.adults),
-      householdIncome: Number(reduxStore.householdIncome)
+    return true
+  }
+
+  handleSubmit = async (store, register) => {
+    this.setState({
+      submitPressed: true
+    })
+    if (this.valid) {
+      Object.keys(this.state.registerInput).forEach(key => {
+        this.props.addInfo({ key, value: this.state.registerInput[key] })
+      })
+      const reduxStore = store.store.getState().registrationReducer
+      const input = {
+        ...reduxStore,
+        financialStress: Number(reduxStore.financialStress)
+      }
+      register({
+        variables: { input }
+      })
     }
-    await register({
-      variables: { input }
-    })
-    this.props.clearRedux()
-    this.props.history.push(path)
   }
 
   toggleOpen = toggleOpenName => {
-    this.setState({ [toggleOpenName]: !this.state[toggleOpenName] })
+    this.setState({
+      [toggleOpenName]: !this.state[toggleOpenName]
+    })
   }
 
   render() {
-    const enabled = !this.state.errors
+    const enabled = this.valid
     const {
-      birthday,
-      children,
-      adults,
-      maritalStatus,
-      secondaryIncome,
-      financialLife,
-      householdIncome
+      financialStress,
+      spendingVsIncome,
+      billsPaidOnTime,
+      canCoverExpenses,
+      confidenceInLongTermGoals,
+      levelOfDebt,
+      selfReportedCreditScore,
+      confidenceInInsurance,
+      plansAhead
     } = this.state.registerInput
     return (
       <Background
@@ -177,108 +136,116 @@ class CompleteProfileScreen extends Component {
       >
         <ProfileWrapper>
           <Header
-            text="Step 4 of 4: Complete my profile"
+            text="Step 3 of 3: Your financial wellness"
             color={theme.colors.header}
             style={{ alignSelf: 'center' }}
           />
-
-          <DatePicker
-            id="date"
-            label="Birth year"
-            type="number"
-            InputLabelProps={{
-              shrink: true
-            }}
-            name="birthday"
-            onChange={this.onChange}
-            onFocus={() => this.addTouched('birthday')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.birthday}
-            value={birthday}
-          />
-          <Title
-            color={theme.colors.black}
-            text="How many people live with you?"
-            style={{ marginTop: 45 }}
-          />
-          <TextInput
-            labelText="Children"
-            type="number"
-            name="children"
-            onChange={this.onChange}
-            onFocus={() => this.addTouched('children')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.children}
-            value={children}
-            style={{ marginTop: 0 }}
-            inputStyle={{ width: '100%' }}
-          />
-          <TextInput
-            labelText="Adults"
-            type="number"
-            name="adults"
-            onChange={this.onChange}
-            onFocus={() => this.addTouched('adults')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.adults}
-            value={adults}
-            style={{ marginTop: 0 }}
-            inputStyle={{ width: '100%' }}
-          />
           <DropdownMenu
-            title="Marital status"
-            value={maritalStatusItems[maritalStatus] || ''}
-            open={this.state.maritalStatusOpen}
+            title="How much stress are your finances causing you today?"
+            value={financialStressItems[financialStress] || ''}
+            open={this.state.financialStressOpen}
             inputTitle="Choose one"
-            inputName="maritalStatus"
+            inputName="financialStress"
             onChange={this.onChangeDropdown}
-            onFocus={() => this.addTouched('maritalStatus')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.maritalStatus}
-            toggleOpen={() => this.toggleOpen('maritalStatusOpen')}
-            menuItems={maritalStatusItems}
+            errorMessage={this.displayError('financialStress')}
+            toggleOpen={() => this.toggleOpen('financialStressOpen')}
+            menuItems={financialStressItems}
           />
+          <SubHeader>
+            In the following questions, “household” includes you and others
+            living with you who contribute financially to your home. If you live
+            alone, or do not consider anyone else to be a member of your
+            household, please answer these questions as an individual.
+          </SubHeader>
           <DropdownMenu
-            title="Do you or anyone else make money other than from this job?"
-            value={secondaryIncomeItems[secondaryIncome] || ''}
-            open={this.state.secondaryIncomeOpen}
+            title="Which of the following statements best describes how your household’s total spending compared to total income, over the last 12 months?"
+            value={spendingVsIncomeItems[spendingVsIncome] || ''}
+            open={this.state.spendingVsIncomeOpen}
             inputTitle="Choose one"
-            inputName="secondaryIncome"
-            onChange={this.onChangeBoolean}
-            onFocus={() => this.addTouched('secondaryIncome')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.secondaryIncome}
-            toggleOpen={() => this.toggleOpen('secondaryIncomeOpen')}
-            menuItems={secondaryIncomeItems}
-          />
-          <Title
-            color={theme.colors.black}
-            text="What is your annual household income?"
-            style={{ marginTop: 45 }}
-          />
-          <TextInput
-            labelText="Income"
-            type="number"
-            name="householdIncome"
-            onChange={this.onChange}
-            onFocus={() => this.addTouched('householdIncome')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.householdIncome}
-            value={householdIncome}
-            inputStyle={{ width: '100%' }}
-          />
-          <DropdownMenu
-            title="Which of these best describes your financial life?"
-            value={financialLifeItems[financialLife] || ''}
-            open={this.state.financialLifeOpen}
-            inputTitle="Choose one"
-            inputName="financialLife"
+            inputName="spendingVsIncome"
             onChange={this.onChangeDropdown}
-            onFocus={() => this.addTouched('financialLife')}
-            onBlur={() => this.validateForm(false)}
-            errorMessage={this.state.displayErrors.financialLife}
-            toggleOpen={() => this.toggleOpen('financialLifeOpen')}
-            menuItems={financialLifeItems}
+            errorMessage={this.displayError('spendingVsIncome')}
+            toggleOpen={() => this.toggleOpen('spendingVsIncomeOpen')}
+            menuItems={spendingVsIncomeItems}
+          />
+          <DropdownMenu
+            title="Which of the following statements best describes how your household has paid its bills over the last 12 months? My household has been financially able to:"
+            value={billsPaidOnTimeItems[billsPaidOnTime] || ''}
+            open={this.state.billsPaidOnTimeOpen}
+            inputTitle="Choose one"
+            inputName="billsPaidOnTime"
+            onChange={this.onChangeDropdown}
+            errorMessage={this.displayError('billsPaidOnTime')}
+            toggleOpen={() => this.toggleOpen('billsPaidOnTimeOpen')}
+            menuItems={billsPaidOnTimeItems}
+          />
+          <DropdownMenu
+            title="At your current level of spending, how long could you and your household afford to cover expenses, if you had to live only off the money you have readily available, without withdrawing money from retirement accounts or borrowing?"
+            value={canCoverExpensesItems[canCoverExpenses] || ''}
+            open={this.state.canCoverExpensesOpen}
+            inputTitle="Choose one"
+            inputName="canCoverExpenses"
+            onChange={this.onChangeDropdown}
+            errorMessage={this.displayError('canCoverExpenses')}
+            toggleOpen={() => this.toggleOpen('canCoverExpensesOpen')}
+            menuItems={canCoverExpensesItems}
+          />
+          <DropdownMenu
+            title="Thinking about your household’s longer term financial goals such as saving for a vacation, starting a business, buying or paying off a home, saving up for education, putting money away for retirement, or making retirement funds last… How confident are you that your household is currently doing what is needed to meet your longer term goals?"
+            value={
+              confidenceInLongTermGoalsItems[confidenceInLongTermGoals] || ''
+            }
+            open={this.state.confidenceInLongTermGoalsOpen}
+            inputTitle="Choose one"
+            inputName="confidenceInLongTermGoals"
+            onChange={this.onChangeDropdown}
+            errorMessage={this.displayError('confidenceInLongTermGoals')}
+            toggleOpen={() => this.toggleOpen('confidenceInLongTermGoalsOpen')}
+            menuItems={confidenceInLongTermGoalsItems}
+          />
+          <DropdownMenu
+            title="Thinking about all of your household’s current debts, including mortgages, bank loans, student loans, money owed to people, medical debt, past-due bills, and credit card balances that are carried over from prior months... As of today, which of the following statements describes how manageable your household debt is?"
+            value={levelOfDebtItems[levelOfDebt] || ''}
+            open={this.state.levelOfDebtOpen}
+            inputTitle="Choose one"
+            inputName="levelOfDebt"
+            onChange={this.onChangeDropdown}
+            errorMessage={this.displayError('levelOfDebt')}
+            toggleOpen={() => this.toggleOpen('levelOfDebtOpen')}
+            menuItems={levelOfDebtItems}
+          />
+          <DropdownMenu
+            title="How would you rate your credit score? Your credit score is a number that tells lenders how risky or safe you are as a borrower."
+            value={selfReportedCreditScoreItems[selfReportedCreditScore] || ''}
+            open={this.state.selfReportedCreditScoreOpen}
+            inputTitle="Choose one"
+            inputName="selfReportedCreditScore"
+            onChange={this.onChangeDropdown}
+            errorMessage={this.displayError('selfReportedCreditScore')}
+            toggleOpen={() => this.toggleOpen('selfReportedCreditScoreOpen')}
+            menuItems={selfReportedCreditScoreItems}
+          />
+          <DropdownMenu
+            title="Thinking about all of the types of personal and household insurance you and others in your household have, how confident are you that those insurance policies will provide enough support in case of an emergency?"
+            value={confidenceInInsuranceItems[confidenceInInsurance] || ''}
+            open={this.state.confidenceInInsuranceOpen}
+            inputTitle="Choose one"
+            inputName="confidenceInInsurance"
+            onChange={this.onChangeDropdown}
+            errorMessage={this.displayError('confidenceInInsurance')}
+            toggleOpen={() => this.toggleOpen('confidenceInInsuranceOpen')}
+            menuItems={confidenceInInsuranceItems}
+          />
+          <DropdownMenu
+            title="To what extent do you agree or disagree with the following statement: “My household plans ahead financially.”"
+            value={plansAheadItems[plansAhead] || ''}
+            open={this.state.plansAheadOpen}
+            inputTitle="Choose one"
+            inputName="plansAhead"
+            onChange={this.onChangeDropdown}
+            errorMessage={this.displayError('plansAhead')}
+            toggleOpen={() => this.toggleOpen('plansAheadOpen')}
+            menuItems={plansAheadItems}
           />
           <ReactReduxContext.Consumer>
             {store => (
@@ -294,6 +261,8 @@ class CompleteProfileScreen extends Component {
                 onCompleted={async data => {
                   const { token } = data.register
                   await localStore.set('user', { token })
+                  this.props.clearRedux()
+                  this.props.history.push('/welcome')
                   // getAccessTokens()
                 }}
               >
@@ -305,7 +274,7 @@ class CompleteProfileScreen extends Component {
                       color: enabled ? theme.colors.primary : '#D3D3D3'
                     }}
                     onClick={() => {
-                      this.handleSubmit('/welcome', store, register)
+                      this.handleSubmit(store, register)
                     }}
                     disabled={!enabled || loading}
                   />

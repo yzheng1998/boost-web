@@ -17,7 +17,6 @@ import HowItWorks from './containers/HowItWorksScreen'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './redux/store'
-import UserDetailsScreen from './containers/UserDetailsScreen'
 import PersonalDetailsScreen from './containers/PersonalDetailsScreen'
 import WorkEmailScreen from './containers/WorkEmailScreen'
 import LoginScreen from './containers/LoginScreen'
@@ -96,10 +95,6 @@ class App extends React.Component {
                           <Route
                             path="/register-cont"
                             component={PersonalDetailsScreen}
-                          />
-                          <Route
-                            path="/details"
-                            component={UserDetailsScreen}
                           />
                           <Route
                             path="/bank-info"

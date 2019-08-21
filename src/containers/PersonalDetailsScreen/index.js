@@ -126,7 +126,7 @@ class PersonalDetailsScreen extends Component {
     return (
       <Background style={{ backgroundColor: theme.colors.background }}>
         <Header
-          text="Step 2 of 4: Set-up my account"
+          text="Step 2 of 3: Set up my account"
           color={theme.colors.header}
           style={{ alignSelf: 'center', paddingBottom: 20 }}
         />
@@ -257,7 +257,7 @@ class PersonalDetailsScreen extends Component {
               <PrimaryButton
                 text={loading ? <LoadingIcon /> : 'Continue'}
                 onClick={() => {
-                  this.handleSubmit('/details', () =>
+                  this.handleSubmit('/complete-profile', () =>
                     verifyPersonalEmail({ variables })
                   )
                 }}

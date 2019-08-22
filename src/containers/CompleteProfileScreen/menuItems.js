@@ -1,8 +1,8 @@
 export const financialStressItems = {
-  0: 'High stress',
-  33: 'Moderate stress',
-  66: 'Little stress',
-  100: 'No stress'
+  100: 'High stress',
+  66: 'Moderate stress',
+  33: 'Little stress',
+  0: 'No stress'
 }
 
 export const spendingVsIncomeItems = {

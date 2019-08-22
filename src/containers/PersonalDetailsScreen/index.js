@@ -156,7 +156,7 @@ class PersonalDetailsScreen extends Component {
             this.setState(
               {
                 registerInput: {
-                  ...this.state.lastName,
+                  ...this.state.registerInput,
                   lastName: e.target.value
                 }
               },

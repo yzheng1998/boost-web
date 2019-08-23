@@ -18,6 +18,7 @@ import {
   Image
 } from './styles'
 import { LOGIN_USER } from './mutations'
+import { Typography } from '@material-ui/core'
 
 const Login = ({ history }) => {
   const alert = useAlert()
@@ -32,9 +33,13 @@ const Login = ({ history }) => {
       <Wrapper>
         <Image src={logo} />
         <Header
-          text="Welcome to the GreenPath Grant Circle"
+          text="Welcome to the Grant Circle"
           color={theme.colors.tertiary}
         />
+        <Typography style={{ textAlign: 'center', marginTop: 6 }}>
+          The Grant Circle gives us a way to be there for each other when times
+          get tough.
+        </Typography>
         <TextInput
           labelText="Enter personal email"
           style={{ width: 300 }}

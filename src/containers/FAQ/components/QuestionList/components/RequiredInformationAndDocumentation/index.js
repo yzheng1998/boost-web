@@ -3,6 +3,14 @@ import { Typography } from '@material-ui/core'
 import { AcceptedDocuments } from './constants'
 import { InfoAndDocContainer } from './styles'
 
+const RenderedList = () => (
+  <ul>
+    {AcceptedDocuments.map(type => (
+      <li>{type}</li>
+    ))}
+  </ul>
+)
+
 const RequiredInformationAndDocumentation = () => (
   <InfoAndDocContainer>
     <Typography>
@@ -13,11 +21,7 @@ const RequiredInformationAndDocumentation = () => (
       that funds are put to the best possible use. Accepted documents include,
       but are not limited to:
     </Typography>
-    <ul>
-      {AcceptedDocuments.map(type => (
-        <li>{type}</li>
-      ))}
-    </ul>
+    <RenderedList />
     <Typography style={{ marginBottom: 15 }}>
       Accepted file types include PDF, PNG, or JPEG. Photos or screenshots are
       accepted as long as the information is legible.

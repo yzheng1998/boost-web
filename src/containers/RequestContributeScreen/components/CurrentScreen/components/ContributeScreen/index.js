@@ -125,7 +125,7 @@ class ContributeScreen extends Component {
               value={this.state.amount}
             />
           </Row>
-          {this.state.amount ? (
+          {this.state.amount && (
             <PaypalExpressBtn
               env={env}
               client={client}
@@ -135,7 +135,7 @@ class ContributeScreen extends Component {
               onSuccess={onSuccess}
               onCancel={onCancel}
             />
-          ) : null}
+          )}
         </FormWrapper>
       </Background>
     )

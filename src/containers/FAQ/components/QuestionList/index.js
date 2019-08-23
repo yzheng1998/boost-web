@@ -12,7 +12,7 @@ const QuestionList = () => {
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
-  return Questions.map(({ id, question, answer }) => (
+  return Questions.map(({ id, question, answer, component }) => (
     <ExpansionPanel expanded={expanded === id} onChange={handleChange(id)}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography style={{ fontStyle: 'normal', fontWeight: 'bold' }}>
@@ -20,7 +20,7 @@ const QuestionList = () => {
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>{answer}</Typography>
+        {component || <Typography>{answer}</Typography>}
       </ExpansionPanelDetails>
     </ExpansionPanel>
   ))

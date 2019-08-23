@@ -11,6 +11,7 @@ export const WelcomeScreen = styled(Flex)`
 export const InfoText = styled(Flex)`
   justify-content: center;
   align-self: center;
+  color: ${({ theme, green }) => (green ? theme.colors.tertiary : '')};
 `
 
 export const ButtonsContainer = styled(Flex)`

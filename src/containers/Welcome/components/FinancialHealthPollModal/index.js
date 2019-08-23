@@ -7,7 +7,7 @@ import ConfirmButton from './components/ConfirmButton'
 import HealthOptions from './components/HealthOptions'
 
 const FinancialHealthPollModal = ({ setOpen }) => {
-  const [financialHealthRating, setFinancialHealthRating] = useState('50')
+  const [financialHealthRating, setFinancialHealthRating] = useState('0')
   return (
     <ModalContainer>
       <DialogTitle>How is your financial health?</DialogTitle>

@@ -33,7 +33,7 @@ const Welcome = ({ history }) => {
         color={theme.colors.header}
         style={createStyle(window.innerWidth)}
       />
-      <InfoText style={{ color: theme.colors.tertiary }}>
+      <InfoText green>
         The purpose of the Grant Circle is to help workers like you in times of
         financial hardship.
       </InfoText>

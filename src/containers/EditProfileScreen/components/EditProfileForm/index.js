@@ -55,7 +55,6 @@ class EditProfileForm extends Component {
     )
 
   handleSubmit = async (path, edit) => {
-    console.log('SHIT')
     await edit()
     this.props.history.push(path)
   }

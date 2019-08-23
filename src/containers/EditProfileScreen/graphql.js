@@ -10,15 +10,14 @@ export const GET_USER = gql`
         firstName
         lastName
         emailIsConfirmed
-        phone
-        zipCode
-        birthday
-        children
-        adults
-        maritalStatus
-        financialLife
-        secondaryIncome
-        householdIncome
+        spendingVsIncome
+        billsPaidOnTime
+        canCoverExpenses
+        confidenceInLongTermGoals
+        levelOfDebt
+        selfReportedCreditScore
+        confidenceInInsurance
+        plansAhead
       }
       error {
         message

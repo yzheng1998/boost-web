@@ -4,9 +4,10 @@ import { Dialog } from '@material-ui/core'
 import Slide from '@material-ui/core/Slide'
 import Header from '../../components/Header'
 import theme from '../../theme'
-import PrimaryButton from '../../components/PrimaryButton'
 import { WelcomeScreen, InfoText, ButtonsContainer } from './styles'
 import FinancialHealthPollModal from './components/FinancialHealthPollModal'
+import MakeRequestButton from './components/MakeRequestButton'
+import MakeContributionButton from './components/MakeContributionButton'
 
 const Transition = forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
@@ -28,38 +29,29 @@ const Welcome = ({ history }) => {
   return (
     <WelcomeScreen>
       <Header
-        text="Welcome to the GreenPath Grant Circle"
+        text="Welcome to the Grant Circle"
         color={theme.colors.header}
         style={createStyle(window.innerWidth)}
       />
-      <InfoText>
-        Learn more about&nbsp;<Link to="/faq">Grant Circles Pilot.</Link>
+      <InfoText style={{ color: theme.colors.tertiary }}>
+        The purpose of the Grant Circle is to help workers like you in times of
+        financial hardship.
       </InfoText>
       <ButtonsContainer>
-        <PrimaryButton
-          text="Make a Request"
-          style={{
-            color: theme.colors.tertiary,
-            backgroundColor: theme.colors.background
-          }}
-          onClick={() =>
-            history.push({ pathname: './request', state: { request: 0 } })
-          }
-        />
-        <PrimaryButton
-          text="Make a Contribution"
-          style={{
-            color: theme.colors.background,
-            backgroundColor: theme.colors.tertiary
-          }}
-          onClick={() =>
-            history.push({ pathname: './request', state: { request: 1 } })
-          }
-        />
+        <MakeRequestButton history={history} />
+        <MakeContributionButton history={history} />
       </ButtonsContainer>
       <Dialog open={open} TransitionComponent={Transition}>
         <FinancialHealthPollModal setOpen={setOpen} />
       </Dialog>
+      <InfoText>
+        Need to view or edit an open request for funds? Go to&nbsp;
+        <Link to="/activity">My Activity.</Link>
+      </InfoText>
+      <InfoText>
+        Have questions? Check out the&nbsp;
+        <Link to="/faq">Frequently Asked Questions.</Link>
+      </InfoText>
     </WelcomeScreen>
   )
 }

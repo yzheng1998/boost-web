@@ -10,13 +10,16 @@ export const WelcomeScreen = styled(Flex)`
 
 export const InfoText = styled(Flex)`
   justify-content: center;
+  align-self: center;
+  color: ${({ theme, green }) => (green ? theme.colors.tertiary : '')};
 `
 
 export const ButtonsContainer = styled(Flex)`
+  margin-top: 30px;
   flex-direction: row;
   align-self: center;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-evenly;
+  width: 80%;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {
     flex-direction: column;

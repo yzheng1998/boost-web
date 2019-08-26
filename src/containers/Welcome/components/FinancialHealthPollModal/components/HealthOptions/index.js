@@ -34,11 +34,22 @@ const HealthOptions = ({ onChange, currentValue }) => {
           value={currentValue}
           onChange={handleChange}
         >
-          <FormControlLabel value="100" control={<Radio />} label="Excellent" />
-          <FormControlLabel value="75" control={<Radio />} label="Good" />
-          <FormControlLabel value="50" control={<Radio />} label="Fair" />
-          <FormControlLabel value="25" control={<Radio />} label="Poor" />
-          <FormControlLabel value="0" control={<Radio />} label="Very Poor" />
+          <FormControlLabel
+            value="100"
+            control={<Radio />}
+            label="High Stress"
+          />
+          <FormControlLabel
+            value="66"
+            control={<Radio />}
+            label="Moderate stress"
+          />
+          <FormControlLabel
+            value="33"
+            control={<Radio />}
+            label="A little stress"
+          />
+          <FormControlLabel value="0" control={<Radio />} label="No stress" />
         </RadioGroup>
       </FormControl>
     </div>

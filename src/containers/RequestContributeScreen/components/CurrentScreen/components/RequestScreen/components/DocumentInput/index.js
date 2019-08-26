@@ -37,7 +37,7 @@ const DocumentInput = ({ onChange, alert, ...rest }) => {
           <input
             {...getInputProps()}
             type="file"
-            accept=".pdf"
+            accept=".pdf, image/png, image/jpeg"
             rootstyle={{ alignSelf: 'center' }}
             name="documents"
             {...rest}

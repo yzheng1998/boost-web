@@ -3,8 +3,10 @@ import Subheader from '../../../../../../../../components/Subheader'
 import Row from '../../../../../../../../components/Row'
 import DocumentInput from '../DocumentInput'
 import DocumentList from '../DocumentList'
+import InformationText from './components/InformationText'
 
 const DocumentBlock = ({
+  fundsWithdrawn,
   onDocChange,
   addTouched,
   validateForm,
@@ -15,8 +17,13 @@ const DocumentBlock = ({
   <>
     <Subheader
       style={{ marginTop: 20 }}
-      text="Upload supporting documents (PDF only)"
+      text={
+        fundsWithdrawn >= 400
+          ? 'Documentation of the financial hardship is required for this request. For more detail on eligible fund uses and documentation requirements, please refer to the FAQ.'
+          : 'Documentation of the financial hardship is optional for this request'
+      }
     />
+    <InformationText />
     <Row justifyContent="flex-start" style={{ flexDirection: 'column' }}>
       <DocumentInput
         onChange={onDocChange}

@@ -11,9 +11,11 @@ const RequestDocumentsModal = ({ setOpen, request }) => (
     <DialogTitle>Add Supporting Documents</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        While not necessary, it is highly recommended supporting documents are
-        included in the request form. These documents play a major role in
-        deciding whether requests are approved or rejected.
+        You have not included any documentation. If your documentation is
+        available, please add it now. If you need more time to assemble
+        documents, you can submit your request and add documentation later in
+        the My Activity page. However, please note that review and processing of
+        your request may be delayed.
       </DialogContentText>
       <DialogActions>
         <Button onClick={() => setOpen(false)}>Cancel</Button>

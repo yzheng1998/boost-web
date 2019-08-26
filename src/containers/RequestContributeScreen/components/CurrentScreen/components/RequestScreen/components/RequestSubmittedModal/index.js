@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
@@ -12,11 +11,11 @@ const RequestSubmittedModal = ({ handleSuccess }) => (
     <DialogTitle>Your request has been submitted!</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        Congratulations, your request has been successfully submitted! Our
-        admins are working to approve your request as soon as possible. Please
-        allow up to 3-5 business days to hear a response and thank you again for
-        choosing GreenPath Grant Circle. For more information, please see{' '}
-        <Link to="/faq">FAQ</Link>
+        Thank you for submitting your request. You will hear from us within 1-2
+        days. If you need to view or add documents to your request, you can do
+        so by visiting the My Activity page. If you have any questions about the
+        request review process, you can email us at{' '}
+        <a href="mailto:info@grantcircles.org">info@grantcircles.org</a>
       </DialogContentText>
       <DialogActions>
         <Button onClick={() => handleSuccess()}>Ok</Button>

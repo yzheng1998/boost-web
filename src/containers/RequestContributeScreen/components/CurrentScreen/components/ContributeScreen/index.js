@@ -7,7 +7,9 @@ import Subheader from '../../../../../../components/Subheader'
 import Background from '../../../../../../components/Background'
 import FormWrapper from '../../../../../../components/FormWrapper'
 import TextInput from '../../../../../../components/TextInput'
+import Header from '../../../../../../components/Header'
 import Row from '../../../../../../components/Row'
+import theme from '../../../../../../theme'
 import { Span } from '../RequestScreen/styles'
 import { GET_USER, PAYMENT } from './graphql'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
@@ -81,8 +83,16 @@ class ContributeScreen extends Component {
             marginTop: 30
           }}
         >
+          <Header
+            text="Contribute to the Grant Circle"
+            color={theme.colors.header}
+          />
           <Subheader
-            text="Worker contributions will help ensure the Grant Circle can support more workers like you."
+            text="The Grant Circle launched with funding from a charitable donation. Contributions from workers like you can help it grow and reach more members of your workplace community."
+            style={{ marginBottom: 30 }}
+          />
+          <Subheader
+            text="In addition to helping support the Grant Circle generally, your contributions enable you to request additional funds without documentation. When you contribute to the fund, up to $400 of your contributions will become available for you to request again without submitting documentation (like the first $400 requested)."
             style={{ marginBottom: 30 }}
           />
           <Query query={GET_USER}>
@@ -103,7 +113,7 @@ class ContributeScreen extends Component {
             }}
           </Query>
 
-          <Subheader text="How much would you like to contribute back into the Grant Circle? " />
+          <Subheader text="How much would like to contribute today?" />
           <Row justifyContent="flex-start">
             <Span>$</Span>
             <TextInput
@@ -115,15 +125,17 @@ class ContributeScreen extends Component {
               value={this.state.amount}
             />
           </Row>
-          <PaypalExpressBtn
-            env={env}
-            client={client}
-            currency={currency}
-            total={Number(this.state.amount)}
-            onError={onError}
-            onSuccess={onSuccess}
-            onCancel={onCancel}
-          />
+          {this.state.amount && (
+            <PaypalExpressBtn
+              env={env}
+              client={client}
+              currency={currency}
+              total={Number(this.state.amount)}
+              onError={onError}
+              onSuccess={onSuccess}
+              onCancel={onCancel}
+            />
+          )}
         </FormWrapper>
       </Background>
     )

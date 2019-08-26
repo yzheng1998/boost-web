@@ -7,11 +7,13 @@ import FormWrapper from '../../../../../../components/FormWrapper'
 import { defaultState, validateForm, MakeButtons } from './helpers'
 import AmountBlock from './components/AmountBlock'
 import ReasonsBlock from './components/ReasonsBlock'
-import HardshipBlock from './components/HardshipBlock'
 import Description from './components/Description'
 import PayPalBlock from './components/PayPalBlock'
 import DocumentBlock from './components/DocumentBlock'
 import RequestButton from './components/RequestButton'
+import EventsBlock from './components/EventsBlock'
+import { events, boostReasons } from './constants'
+import EventExplanationBlock from './components/EventExplanationBlock'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -72,6 +74,34 @@ class RequestScreen extends Component {
     }
   }
 
+  handleEventSelect = event => {
+    const { selectedEvents } = this.state
+    if (!_.includes(selectedEvents, event) && event !== 'None') {
+      const newArray = selectedEvents.filter(item => item !== 'None')
+      newArray.push(event)
+      this.setState(
+        {
+          selectedEvents: newArray
+        },
+        () => validateForm(true, this.state, this.setState.bind(this))
+      )
+    } else if (!_.includes(selectedEvents, event) && event === 'None') {
+      this.setState(
+        {
+          selectedEvents: [event]
+        },
+        () => validateForm(true, this.state, this.setState.bind(this))
+      )
+    } else {
+      this.setState(
+        {
+          selectedEvents: selectedEvents.filter(item => item !== event)
+        },
+        () => validateForm(true, this.state, this.setState.bind(this))
+      )
+    }
+  }
+
   handleClick = value => {
     this.setState(
       {
@@ -82,10 +112,10 @@ class RequestScreen extends Component {
   }
 
   handleSubmit = request => {
-    const { requests, contributions, amount, opened } = this.state
+    const { requests, contributions, amount, documents } = this.state
     const fundsWithdrawn = requests + Number(amount) - contributions
-    if (fundsWithdrawn >= 400 && !opened) {
-      this.setState({ openPDF: true, opened: true })
+    if (fundsWithdrawn >= 400 && documents.length === 0) {
+      this.setState({ openPDF: true })
       return null
     }
     return request()
@@ -100,6 +130,8 @@ class RequestScreen extends Component {
   clearState = () => {
     this.setState(
       {
+        selectedEvents: [],
+        otherEvent: '',
         selectedBoostReasons: [],
         otherReason: '',
         amount: '',
@@ -118,9 +150,10 @@ class RequestScreen extends Component {
 
   render() {
     const {
+      selectedEvents,
+      otherEvent,
       selectedBoostReasons,
       otherReason,
-      experiencedHardship,
       amount,
       hardshipExplanation,
       documents,
@@ -129,20 +162,37 @@ class RequestScreen extends Component {
       additionalInfo,
       errors,
       balance,
-      displayErrors
+      displayErrors,
+      acceptTerms,
+      requests,
+      contributions
     } = this.state
     const enabled =
       !errors &&
       (selectedBoostReasons.length || otherReason.length) &&
-      experiencedHardship !== undefined
+      acceptTerms
 
-    const Buttons = MakeButtons(selectedBoostReasons, this.handleSelect)
+    const Buttons = MakeButtons(
+      selectedBoostReasons,
+      this.handleSelect,
+      boostReasons
+    )
+    const Events = MakeButtons(selectedEvents, this.handleEventSelect, events)
 
     return (
       <Background style={{ justifyContent: 'flex-start' }}>
         <FormWrapper
           style={{ marginTop: 20, paddingRight: 20, paddingLeft: 20 }}
         >
+          <div>
+            <input
+              type="checkbox"
+              onChange={() => this.setState({ acceptTerms: !acceptTerms })}
+            />
+            I hereby certify that all of the information submitted below is true
+            and correct to the best of my knowledge, and that I am requesting
+            funds to overcome a financial hardship.
+          </div>
           <AmountBlock
             amount={amount}
             balance={balance}
@@ -152,6 +202,15 @@ class RequestScreen extends Component {
             validateForm={val =>
               validateForm(val, this.state, this.setState.bind(this))
             }
+          />
+          <PayPalBlock
+            onChange={this.onChange}
+            payPalEmail={payPalEmail}
+            addTouched={this.addTouched}
+            validateForm={() =>
+              validateForm(false, this.state, this.setState.bind(this))
+            }
+            displayErrors={displayErrors}
           />
           <ReasonsBlock
             Buttons={Buttons}
@@ -164,18 +223,29 @@ class RequestScreen extends Component {
               validateForm(val, this.state, this.setState.bind(this))
             }
           />
-          <HardshipBlock
-            experiencedHardship={experiencedHardship}
-            hardshipExplanation={hardshipExplanation}
-            hardshipDate={hardshipDate}
+          <EventsBlock
+            Events={Events}
+            selectedEvents={selectedEvents}
+            otherEvent={otherEvent}
             displayErrors={displayErrors}
-            handleClick={this.handleClick}
             onChange={this.onChange}
             addTouched={this.addTouched}
             validateForm={val =>
               validateForm(val, this.state, this.setState.bind(this))
             }
           />
+          {!selectedEvents.includes('None') && (
+            <EventExplanationBlock
+              hardshipExplanation={hardshipExplanation}
+              hardshipDate={hardshipDate}
+              displayErrors={displayErrors}
+              onChange={this.onChange}
+              addTouched={this.addTouched}
+              validateForm={val =>
+                validateForm(val, this.state, this.setState.bind(this))
+              }
+            />
+          )}
           <Description
             headerText="Anything else you'd like to tell us?"
             labelText="Enter text"
@@ -188,16 +258,8 @@ class RequestScreen extends Component {
             }
             displayErrors={displayErrors}
           />
-          <PayPalBlock
-            onChange={this.onChange}
-            payPalEmail={payPalEmail}
-            addTouched={this.addTouched}
-            validateForm={() =>
-              validateForm(false, this.state, this.setState.bind(this))
-            }
-            displayErrors={displayErrors}
-          />
           <DocumentBlock
+            fundsWithdrawn={requests + Number(amount) - contributions}
             onDocChange={this.onDocChange}
             addTouched={this.addTouched}
             validateForm={() =>

@@ -1,32 +1,23 @@
 import React from 'react'
 import { InfoText } from './styles'
+import { acceptedDocuments } from './constants'
+
+const AcceptedDocuments = () => (
+  <ul>
+    {acceptedDocuments.map(doc => (
+      <li>
+        <InfoText>{doc}</InfoText>
+      </li>
+    ))}
+  </ul>
+)
 
 const InformationText = () => (
   <ul>
     <li>
       <InfoText>Accepted documents include but are not limited to:</InfoText>
     </li>
-    <ul>
-      <li>
-        <InfoText>
-          Bills or receipts showing expenses related to the hardship and need
-          for funds.
-        </InfoText>
-      </li>
-      <li>
-        <InfoText>
-          Documents showing changes in income or expenses due (paystubs, late
-          notices, etc.)
-        </InfoText>
-      </li>
-      <li>
-        <InfoText>
-          Any other documents that provide supporting detail about the financial
-          hardship and need for funds (examples: bank statements, eviction
-          warnings, etc)
-        </InfoText>
-      </li>
-    </ul>
+    <AcceptedDocuments />
     <li>
       <InfoText>
         Accepted file types include PDF, PNG, or JPEG. Photos or screenshots are

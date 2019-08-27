@@ -12,7 +12,7 @@ jobs:
       if: branch = master AND commit_message =~ /\[DEPLOY\]/
       env:
         - REACT_APP_DEPLOY_ENV=staging
-        - REACT_APP_API_URL=https://boost-api-staging.us-east-1.elasticbeanstalk.com/graphql
+        - REACT_APP_API_URL=https://api-staging.grantcircles.org/graphql
       before_deploy:
         - npm run build
       deploy:
@@ -30,7 +30,7 @@ jobs:
       if: branch = production
       env:
         - REACT_APP_DEPLOY_ENV=production
-        - REACT_APP_API_URL=https://boost-api-production.us-east-1.elasticbeanstalk.com/graphql
+        - REACT_APP_API_URL=https://api-production.grantcircles.org/graphql
       before_deploy:
         - npm run build
       deploy:

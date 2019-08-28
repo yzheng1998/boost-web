@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import localStore from 'store'
-import HowItWorksButton from '../../components/HowItWorksButton'
 import Background from '../../components/Background'
 import theme from '../../theme'
 import { ButtonContainer, Container } from './styles'
 import { clearRedux } from '../../redux/actions'
 import ScreenSelector from './components/ScreenSelector'
+import BackButton from './components/BackButton'
+import NextButton from './components/NextButton'
 
 const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(clearRedux())
@@ -47,32 +48,18 @@ const HowItWorksScreen = ({ history, clear }) => {
       <Container>
         <ScreenSelector screen={screen} />
         <ButtonContainer buttonPlacement={isLoggedIn && screen === 0}>
-          {(!isLoggedIn || screen > 0) && (
-            <HowItWorksButton
-              text="Back"
-              onClick={() => {
-                clear()
-                handleBack()
-              }}
-              style={{
-                backgroundColor: theme.colors.tertiary,
-                color: theme.colors.primary
-              }}
-            />
-          )}
-          {(!isLoggedIn || screen < 5) && (
-            <HowItWorksButton
-              text={screen === 5 ? 'Sign Up' : 'Next'}
-              onClick={() => {
-                clear()
-                handleNext()
-              }}
-              style={{
-                backgroundColor: theme.colors.tertiary,
-                color: theme.colors.primary
-              }}
-            />
-          )}
+          <BackButton
+            isLoggedIn={isLoggedIn}
+            screen={screen}
+            clear={clear}
+            handleBack={handleBack}
+          />
+          <NextButton
+            isLoggedIn={isLoggedIn}
+            screen={screen}
+            clear={clear}
+            handleNext={handleNext}
+          />
         </ButtonContainer>
       </Container>
     </Background>

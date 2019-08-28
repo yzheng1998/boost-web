@@ -3,15 +3,15 @@ import constraints from './constraints'
 import validate from 'validate.js'
 import MultiselectBtn from '../../../../../../components/MultiselectBtn'
 import theme from '../../../../../../theme'
-import boostReasons from '../../../../constants/boostReasons'
 
 export const defaultState = (contributions, requests, balance) => ({
   openPDF: false,
   opened: false,
   selectedBoostReasons: [],
+  selectedEvents: [],
+  otherEvent: '',
   otherReason: '',
   amount: '',
-  experiencedHardship: undefined,
   hardshipExplanation: '',
   hardshipDate: '',
   additionalInfo: '',
@@ -22,7 +22,8 @@ export const defaultState = (contributions, requests, balance) => ({
   touched: {},
   contributions,
   requests,
-  balance
+  balance,
+  acceptTerms: false
 })
 
 export const validateForm = (isOnChangeText, state, setState) => {
@@ -56,8 +57,8 @@ export const validateForm = (isOnChangeText, state, setState) => {
   setState({ errors })
 }
 
-export const MakeButtons = (selectedBoostReasons, handleSelect) =>
-  boostReasons.map(boostReason =>
+export const MakeButtons = (selectedBoostReasons, handleSelect, reasonsList) =>
+  reasonsList.map(boostReason =>
     selectedBoostReasons.includes(boostReason) ? (
       <MultiselectBtn
         key={boostReason}

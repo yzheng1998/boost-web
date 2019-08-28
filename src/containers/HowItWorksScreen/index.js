@@ -15,7 +15,6 @@ const mapDispatchToProps = dispatch => ({
 const HowItWorksScreen = ({ history, clear }) => {
   const [screen, updateScreen] = useState(0)
   const isLoggedIn = localStore.get('user')
-  console.log(isLoggedIn)
 
   const handleNext = () => {
     if (screen === 5) {

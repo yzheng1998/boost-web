@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import HowItWorksButton from '../../components/HowItWorksButton'
+import localStore from 'store'
 import Background from '../../components/Background'
 import theme from '../../theme'
 import { ButtonContainer, Container } from './styles'
 import { clearRedux } from '../../redux/actions'
 import ScreenSelector from './components/ScreenSelector'
+import BackButton from './components/BackButton'
+import NextButton from './components/NextButton'
 
 const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(clearRedux())
@@ -13,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
 
 const HowItWorksScreen = ({ history, clear }) => {
   const [screen, updateScreen] = useState(0)
+  const isLoggedIn = localStore.get('user')
 
   const handleNext = () => {
     if (screen === 5) {
@@ -44,28 +47,18 @@ const HowItWorksScreen = ({ history, clear }) => {
     >
       <Container>
         <ScreenSelector screen={screen} />
-        <ButtonContainer>
-          <HowItWorksButton
-            text="Back"
-            onClick={() => {
-              clear()
-              handleBack()
-            }}
-            style={{
-              backgroundColor: theme.colors.tertiary,
-              color: theme.colors.primary
-            }}
+        <ButtonContainer buttonPlacement={isLoggedIn && screen === 0}>
+          <BackButton
+            isLoggedIn={isLoggedIn}
+            screen={screen}
+            clear={clear}
+            handleBack={handleBack}
           />
-          <HowItWorksButton
-            text={screen === 5 ? 'Sign Up' : 'Next'}
-            onClick={() => {
-              clear()
-              handleNext()
-            }}
-            style={{
-              backgroundColor: theme.colors.tertiary,
-              color: theme.colors.primary
-            }}
+          <NextButton
+            isLoggedIn={isLoggedIn}
+            screen={screen}
+            clear={clear}
+            handleNext={handleNext}
           />
         </ButtonContainer>
       </Container>

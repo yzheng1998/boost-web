@@ -7,7 +7,6 @@ import FormWrapper from '../../../../../../components/FormWrapper'
 import { defaultState, validateForm, MakeButtons } from './helpers'
 import AmountBlock from './components/AmountBlock'
 import ReasonsBlock from './components/ReasonsBlock'
-import Description from './components/Description'
 import PayPalBlock from './components/PayPalBlock'
 import DocumentBlock from './components/DocumentBlock'
 import RequestButton from './components/RequestButton'
@@ -159,7 +158,6 @@ class RequestScreen extends Component {
       documents,
       payPalEmail,
       hardshipDate,
-      additionalInfo,
       errors,
       balance,
       displayErrors,
@@ -246,18 +244,6 @@ class RequestScreen extends Component {
               }
             />
           )}
-          <Description
-            headerText="Anything else you'd like to tell us?"
-            labelText="Enter text"
-            name="additionalInfo"
-            onChange={this.onChange}
-            value={additionalInfo}
-            addTouched={() => this.addTouched('additionalInfo')}
-            validateForm={() =>
-              validateForm(false, this.state, this.setState.bind(this))
-            }
-            displayErrors={displayErrors}
-          />
           <DocumentBlock
             fundsWithdrawn={requests + Number(amount) - contributions}
             onDocChange={this.onDocChange}

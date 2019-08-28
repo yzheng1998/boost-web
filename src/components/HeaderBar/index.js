@@ -9,8 +9,8 @@ import HomeIcon from '@material-ui/icons/Home'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
 import theme from '../../theme'
+import ItemText from './components/ItemText'
 
 const HeaderBar = classes => {
   const [left, setLeft] = useState(false)
@@ -63,9 +63,9 @@ const HeaderBar = classes => {
             <List>
               {isLoggedIn &&
                 headerItems.map(({ text, url }) => (
-                  <Link key={text} to={url}>
+                  <Link key={text} to={url} style={{ textDecoration: 'none' }}>
                     <ListItem button key={text}>
-                      <ListItemText primary={text} />
+                      <ItemText text={text} />
                     </ListItem>
                   </Link>
                 ))}

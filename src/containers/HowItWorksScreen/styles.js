@@ -8,7 +8,8 @@ export const BtnRow = styled(Flex)`
 
 export const ButtonContainer = styled(Flex)`
   justify-content: space-between;
-  flex-direction: row;
+  flex-direction: ${({ buttonPlacement }) =>
+    buttonPlacement ? 'row-reverse' : 'row'};
   margin-top: 15px;
   padding-left: 10px;
   padding-right: 10px;

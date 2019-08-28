@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import localStore from 'store'
 import HowItWorksButton from '../../components/HowItWorksButton'
 import Background from '../../components/Background'
 import theme from '../../theme'
@@ -13,6 +14,8 @@ const mapDispatchToProps = dispatch => ({
 
 const HowItWorksScreen = ({ history, clear }) => {
   const [screen, updateScreen] = useState(0)
+  const isLoggedIn = localStore.get('user')
+  console.log(isLoggedIn)
 
   const handleNext = () => {
     if (screen === 5) {
@@ -44,29 +47,33 @@ const HowItWorksScreen = ({ history, clear }) => {
     >
       <Container>
         <ScreenSelector screen={screen} />
-        <ButtonContainer>
-          <HowItWorksButton
-            text="Back"
-            onClick={() => {
-              clear()
-              handleBack()
-            }}
-            style={{
-              backgroundColor: theme.colors.tertiary,
-              color: theme.colors.primary
-            }}
-          />
-          <HowItWorksButton
-            text={screen === 5 ? 'Sign Up' : 'Next'}
-            onClick={() => {
-              clear()
-              handleNext()
-            }}
-            style={{
-              backgroundColor: theme.colors.tertiary,
-              color: theme.colors.primary
-            }}
-          />
+        <ButtonContainer buttonPlacement={isLoggedIn && screen === 0}>
+          {(!isLoggedIn || screen > 0) && (
+            <HowItWorksButton
+              text="Back"
+              onClick={() => {
+                clear()
+                handleBack()
+              }}
+              style={{
+                backgroundColor: theme.colors.tertiary,
+                color: theme.colors.primary
+              }}
+            />
+          )}
+          {(!isLoggedIn || screen < 5) && (
+            <HowItWorksButton
+              text={screen === 5 ? 'Sign Up' : 'Next'}
+              onClick={() => {
+                clear()
+                handleNext()
+              }}
+              style={{
+                backgroundColor: theme.colors.tertiary,
+                color: theme.colors.primary
+              }}
+            />
+          )}
         </ButtonContainer>
       </Container>
     </Background>

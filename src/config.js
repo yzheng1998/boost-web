@@ -1,3 +1,4 @@
 export default {
-  graphqlUrl: process.env.REACT_APP_API_URL || 'http://localhost:5000/graphql'
+  graphqlUrl: process.env.REACT_APP_API_URL || 'http://localhost:5000/graphql',
+  gaTrackingCode: 'UA-143197748-1'
 }

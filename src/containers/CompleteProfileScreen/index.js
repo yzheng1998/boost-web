@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect, ReactReduxContext } from 'react-redux'
 import { Mutation } from 'react-apollo'
 import localStore from 'store'
+import ReactGA from 'react-ga'
 import { REGISTER_USER } from './graphql'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
@@ -23,6 +24,9 @@ import theme from '../../theme'
 import { addInfo, clearRedux } from '../../redux/actions'
 import { SubHeader } from './styles'
 import LoadingIcon from '../../components/LoadingIcon'
+import config from '../../config'
+
+ReactGA.initialize(config.gaTrackingCode)
 
 const mapStateToProps = state => ({
   registerInfo: state.registrationReducer,
@@ -274,6 +278,10 @@ class CompleteProfileScreen extends Component {
                       color: enabled ? theme.colors.primary : '#D3D3D3'
                     }}
                     onClick={() => {
+                      ReactGA.event({
+                        category: 'Register',
+                        action: 'Registration Complete'
+                      })
                       this.handleSubmit(store, register)
                     }}
                     disabled={!enabled || loading}

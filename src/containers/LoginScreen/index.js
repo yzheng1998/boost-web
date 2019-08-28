@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Mutation } from 'react-apollo'
 import { useAlert } from 'react-alert'
+import ReactGA from 'react-ga'
 import localStore from 'store'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
@@ -18,7 +19,10 @@ import {
   Image
 } from './styles'
 import { LOGIN_USER } from './mutations'
+import config from '../../config'
 import { Typography } from '@material-ui/core'
+
+ReactGA.initialize(config.gaTrackingCode)
 
 const Login = ({ history }) => {
   const alert = useAlert()
@@ -110,9 +114,13 @@ const Login = ({ history }) => {
             color: 'black',
             marginTop: 15
           }}
-          onClick={() =>
+          onClick={() => {
+            ReactGA.event({
+              category: 'Register',
+              action: 'Get Started Pressed'
+            })
             history.push({ pathname: '/howItWorks', state: { register: true } })
-          }
+          }}
         />
       </Wrapper>
     </Background>

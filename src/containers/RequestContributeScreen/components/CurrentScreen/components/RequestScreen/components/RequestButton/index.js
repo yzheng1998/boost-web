@@ -29,12 +29,12 @@ const RequestButton = ({
     amount,
     selectedBoostReasons,
     otherReason,
-    experiencedHardship,
+    selectedEvents,
+    otherEvent,
     hardshipExplanation,
     hardshipDate,
     payPalEmail,
     documents,
-    additionalInfo,
     openPDF
   } = state
   return (
@@ -54,12 +54,10 @@ const RequestButton = ({
             requests,
             amount: Number(amount),
             reason: selectedBoostReasons.concat([otherReason]).join(', '),
-            financialHardship: Boolean(experiencedHardship),
-            hardshipExplanation,
-            hardshipDate,
+            events: selectedEvents.concat([otherEvent]).join(', '),
+            eventsExplanation: hardshipExplanation.concat(hardshipDate),
             payPalEmail,
-            documents,
-            additionalInfo
+            documents
           }
         }
         return (

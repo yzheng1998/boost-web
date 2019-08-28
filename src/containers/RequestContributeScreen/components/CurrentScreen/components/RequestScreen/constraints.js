@@ -11,15 +11,6 @@ const constraints = {
       lessThanOrEqualTo: 1000
     }
   },
-  hardshipExplanation: {
-    presence
-  },
-  hardshipDate: {
-    presence
-  },
-  additionalInfo: {
-    presence
-  },
   payPalEmail: {
     presence,
     email: {

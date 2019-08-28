@@ -14,7 +14,6 @@ export const defaultState = (contributions, requests, balance) => ({
   amount: '',
   hardshipExplanation: '',
   hardshipDate: '',
-  additionalInfo: '',
   documents: [],
   payPalEmail: '',
   displayErrors: {},
@@ -30,9 +29,6 @@ export const validateForm = (isOnChangeText, state, setState) => {
   const errors = validate(
     {
       amount: state.amount,
-      hardshipExplanation: state.hardshipExplanation,
-      hardshipDate: state.hardshipDate,
-      additionalInfo: state.additionalInfo,
       payPalEmail: state.payPalEmail
     },
     constraints

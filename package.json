@@ -32,6 +32,7 @@
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.1.7",
     "react-file-picker": "0.0.6",
+    "react-ga": "^2.6.0",
     "react-native-confirmation-code-input": "^1.0.4",
     "react-paypal-express-checkout": "^1.0.5",
     "react-plaid-link": "^1.2.0",

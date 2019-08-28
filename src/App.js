@@ -6,6 +6,7 @@ import {
   Redirect,
   BrowserRouter as Router
 } from 'react-router-dom'
+import withTracker from './withTracker'
 import { ThemeProvider } from 'styled-components'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
@@ -85,51 +86,63 @@ class App extends React.Component {
                       <div className="App">
                         <HeaderBar />
                         <Switch>
-                          <Route path="/howItWorks" component={HowItWorks} />
+                          <Route
+                            path="/howItWorks"
+                            component={withTracker(HowItWorks)}
+                          />
                           <Route
                             path="/explanation"
-                            component={ExplanationScreen}
+                            component={withTracker(ExplanationScreen)}
                           />
-                          <Route path="/login" component={LoginScreen} />
-                          <Route path="/register" component={WorkEmailScreen} />
+                          <Route
+                            path="/login"
+                            component={withTracker(LoginScreen)}
+                          />
+                          <Route
+                            path="/register"
+                            component={withTracker(WorkEmailScreen)}
+                          />
                           <Route
                             path="/register-cont"
-                            component={PersonalDetailsScreen}
+                            component={withTracker(PersonalDetailsScreen)}
                           />
                           <Route
                             path="/bank-info"
-                            component={EnterBankInfoScreen}
+                            component={withTracker(EnterBankInfoScreen)}
                           />
                           <Route
                             path="/complete-profile"
-                            component={CompleteProfileScreen}
+                            component={withTracker(CompleteProfileScreen)}
                           />
                           <Route
                             path="/recovery"
-                            component={EmailRecoveryScreen}
+                            component={withTracker(EmailRecoveryScreen)}
                           />
                           <Route
                             path="/verification"
-                            component={VerificationCodeScreen}
+                            component={withTracker(VerificationCodeScreen)}
                           />
                           <Route
                             path="/new-password"
-                            component={NewPasswordScreen}
+                            component={withTracker(NewPasswordScreen)}
                           />
                           <PrivateRoute
                             path="/profile"
-                            component={EditProfileScreen}
+                            component={withTracker(EditProfileScreen)}
                           />
                           <PrivateRoute
                             path="/request"
-                            component={RequestContributeScreen}
+                            component={withTracker(RequestContributeScreen)}
                           />
                           <PrivateRoute
                             path="/activity"
-                            component={RequestLedger}
+                            component={withTracker(RequestLedger)}
                           />
-                          <Route path="/faq" component={FAQ} />
-                          <PrivateRoute path="/welcome" component={Welcome} />
+                          <Route path="/faq" component={withTracker(FAQ)} />
+                          <PrivateRoute
+                            path="/welcome"
+                            component={withTracker(Welcome)}
+                          />
                           <Redirect from="/" to="/welcome" />
                         </Switch>
                         <PageFooter />

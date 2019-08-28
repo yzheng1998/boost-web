@@ -33,12 +33,15 @@ const AddToWaitListButton = ({
     >
       {(addToWaitList, { loading }) => (
         <PrimaryButton
-          text={added ? 'Close modal' : 'Add to waitlist'}
+          text={added ? 'Ok' : 'Add to waitlist'}
           disabled={loading}
           onClick={() =>
             added ? handleClose() : addToWaitList({ variables: { email } })
           }
-          style={{ backgroundColor: theme.colors.tertiary }}
+          style={{
+            backgroundColor: theme.colors.tertiary,
+            marginRight: 15
+          }}
         />
       )}
     </Mutation>

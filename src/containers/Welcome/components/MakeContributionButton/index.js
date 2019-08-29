@@ -5,15 +5,15 @@ import theme from '../../../../theme'
 
 const MakeContributionButton = ({ history }) => (
   <ButtonContainer>
-    <InfoText style={{ textAlign: 'center' }}>
+    <InfoText>
       Please consider donating so the fund can serve more members of your
-      workplace community
+      workplace community.
     </InfoText>
     <PrimaryButton
       text="Make a Contribution"
       style={{
-        color: theme.colors.background,
-        backgroundColor: theme.colors.tertiary
+        backgroundColor: theme.colors.background,
+        color: theme.colors.tertiary
       }}
       onClick={() =>
         history.push({ pathname: './request', state: { request: 1 } })

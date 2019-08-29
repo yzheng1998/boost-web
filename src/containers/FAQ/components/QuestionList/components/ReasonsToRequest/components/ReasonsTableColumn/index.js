@@ -5,7 +5,9 @@ import { Typography } from '@material-ui/core'
 const RenderedList = ({ reasons }) => (
   <ul>
     {reasons.map(reason => (
-      <li>{reason}</li>
+      <li>
+        <Typography>{reason}</Typography>
+      </li>
     ))}
   </ul>
 )

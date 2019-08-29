@@ -1,7 +1,12 @@
 import React from 'react'
 import Header from '../../../../../../components/Header'
 import theme from '../../../../../../theme'
-import { Container, EnvelopeGraphic, Paragraph } from './styles'
+import {
+  Container,
+  EnvelopeGraphic,
+  Paragraph,
+  GraphicContainer
+} from './styles'
 import NavNumbers from '../NavNumbers'
 
 const HowItWorks2 = () => (
@@ -18,7 +23,9 @@ const HowItWorks2 = () => (
       Frequently Asked Questions).
     </Paragraph>
     <NavNumbers activeScreen={2} />
-    <EnvelopeGraphic />
+    <GraphicContainer>
+      <EnvelopeGraphic />
+    </GraphicContainer>
   </Container>
 )
 

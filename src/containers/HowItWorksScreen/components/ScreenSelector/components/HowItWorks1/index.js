@@ -1,7 +1,12 @@
 import React from 'react'
 import Header from '../../../../../../components/Header'
 import theme from '../../../../../../theme'
-import { Container, Paragraph, LightningGraphic } from './styles'
+import {
+  Container,
+  Paragraph,
+  LightningGraphic,
+  GraphicContainer
+} from './styles'
 import NavNumbers from '../NavNumbers'
 
 // eslint-disable-next-line arrow-body-style
@@ -18,7 +23,9 @@ const HowItWorks1 = () => {
         Grant Circle by submitting a request online.
       </Paragraph>
       <NavNumbers activeScreen={1} />
-      <LightningGraphic />
+      <GraphicContainer>
+        <LightningGraphic />
+      </GraphicContainer>
     </Container>
   )
 }

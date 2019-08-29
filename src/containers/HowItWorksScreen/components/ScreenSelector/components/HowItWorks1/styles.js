@@ -28,16 +28,14 @@ export const LightningGraphic = styled.img.attrs(() => ({
   src: How3,
   alt: 'Graphic'
 }))`
-  width: 130px;
-  height: 130px;
-  margin: 16px;
-  margin-bottom: 24px;
+  width: 230px;
+  height: 230px;
 `
 
 export const NumbersContainer = styled(Flex)`
   width: 100%;
   height: 100px;
-  margin-top: 60px;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
   align-self: center;
@@ -57,4 +55,11 @@ export const Container = styled(Flex)`
       theme.breakpoints.mobile.ceiling}) {
     width: 100%;
   }
+`
+
+export const GraphicContainer = styled(Flex)`
+  width: 100%;
+  height: 260px;
+  justify-content: center;
+  align-items: center;
 `

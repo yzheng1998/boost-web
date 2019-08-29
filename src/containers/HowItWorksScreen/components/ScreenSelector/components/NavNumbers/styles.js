@@ -4,7 +4,7 @@ import { Flex } from 'grid-styled'
 export const NumbersContainer = styled(Flex)`
   width: 100%;
   height: 100px;
-  margin-top: 60px;
+  margin-top: 15px;
   align-items: center;
   justify-content: center;
   align-self: center;

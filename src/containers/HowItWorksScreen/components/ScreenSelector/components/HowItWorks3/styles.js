@@ -28,16 +28,14 @@ export const FormGraphic = styled.img.attrs(() => ({
   src: How7,
   alt: 'Graphic'
 }))`
-  width: 100px;
-  height: 100px;
-  margin: 30px;
-  margin-bottom: 40px;
+  width: 180px;
+  height: 180px;
 `
 
 export const NumbersContainer = styled(Flex)`
   width: 100%;
   height: 100px;
-  margin-top: 60px;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
   align-self: center;
@@ -57,4 +55,11 @@ export const Container = styled(Flex)`
       theme.breakpoints.mobile.ceiling}) {
     width: 100%;
   }
+`
+
+export const GraphicContainer = styled(Flex)`
+  width: 100%;
+  height: 260px;
+  justify-content: center;
+  align-items: center;
 `

@@ -1,7 +1,12 @@
 import React from 'react'
 import Header from '../../../../../../components/Header'
 import theme from '../../../../../../theme'
-import { Container, ContributeGraphic, Paragraph } from './styles'
+import {
+  Container,
+  ContributeGraphic,
+  Paragraph,
+  GraphicContainer
+} from './styles'
 import NavNumbers from '../NavNumbers'
 
 const HowItWorks4 = () => (
@@ -18,7 +23,9 @@ const HowItWorks4 = () => (
       availible via PayPal.
     </Paragraph>
     <NavNumbers activeScreen={4} />
-    <ContributeGraphic />
+    <GraphicContainer>
+      <ContributeGraphic />
+    </GraphicContainer>
   </Container>
 )
 

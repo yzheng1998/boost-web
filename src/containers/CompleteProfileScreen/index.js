@@ -6,7 +6,6 @@ import ReactGA from 'react-ga'
 import { REGISTER_USER } from './graphql'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
-import DropdownMenu from '../../components/DropdownMenu'
 import PrimaryButton from '../../components/PrimaryButton'
 import ProfileWrapper from '../../components/ProfileWrapper'
 import {
@@ -22,9 +21,10 @@ import {
 } from './menuItems'
 import theme from '../../theme'
 import { addInfo, clearRedux } from '../../redux/actions'
-import { SubHeader } from './styles'
+import { SubHeader, ErrorText, ErrorContainer } from './styles'
 import LoadingIcon from '../../components/LoadingIcon'
 import config from '../../config'
+import RadioGroup from './components/RadioGroup'
 
 ReactGA.initialize(config.gaTrackingCode)
 
@@ -54,32 +54,16 @@ class CompleteProfileScreen extends Component {
         this.props.registerInfo.confidenceInInsurance || '',
       plansAhead: this.props.registerInfo.plansAhead || ''
     },
-    financialStressOpen: false,
-    spendingVsIncomeOpen: false,
-    billsPaidOnTimeOpen: false,
-    canCoverExpensesOpen: false,
-    confidenceInLongTermGoalsOpen: false,
-    levelOfDebtOpen: false,
-    selfReportedCreditScoreOpen: false,
-    confidenceInInsuranceOpen: false,
-    plansAheadOpen: false,
     submitPressed: false
   }
 
-  onChangeDropdown = (event, child) => {
+  onChangeRadio = event => {
     this.setState({
       registerInput: {
         ...this.state.registerInput,
-        [event.target.name]: child.key
+        [event.target.name]: event.target.value
       }
     })
-  }
-
-  displayError = key => {
-    if (!this.state.registerInput[key].length && this.state.submitPressed) {
-      return '^Cannot be blank'
-    }
-    return null
   }
 
   valid = () => {
@@ -111,12 +95,6 @@ class CompleteProfileScreen extends Component {
     }
   }
 
-  toggleOpen = toggleOpenName => {
-    this.setState({
-      [toggleOpenName]: !this.state[toggleOpenName]
-    })
-  }
-
   render() {
     const enabled = this.valid
     const {
@@ -138,119 +116,87 @@ class CompleteProfileScreen extends Component {
           paddingTop: 30
         }}
       >
-        <ProfileWrapper>
+        <ProfileWrapper style={{ width: '50%', padding: '50px' }}>
           <Header
             text="Step 3 of 3: Your financial wellness"
             color={theme.colors.header}
-            style={{ alignSelf: 'center' }}
+            style={{ alignSelf: 'center', marginBottom: '30px' }}
           />
-          <DropdownMenu
+          <RadioGroup
             title="How much stress are your finances causing you today?"
-            value={financialStressItems[financialStress] || ''}
-            open={this.state.financialStressOpen}
-            inputTitle="Choose one"
-            inputName="financialStress"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('financialStress')}
-            toggleOpen={() => this.toggleOpen('financialStressOpen')}
+            value={financialStress}
+            name="financialStress"
+            onChange={this.onChangeRadio}
             menuItems={financialStressItems}
           />
-          <SubHeader>
+          <SubHeader styles={{ textAlign: 'left' }}>
             In the following questions, “household” includes you and others
             living with you who contribute financially to your home. If you live
             alone, or do not consider anyone else to be a member of your
             household, please answer these questions as an individual.
           </SubHeader>
-          <DropdownMenu
+          <RadioGroup
             title="Which of the following statements best describes how your household’s total spending compared to total income, over the last 12 months?"
-            value={spendingVsIncomeItems[spendingVsIncome] || ''}
-            open={this.state.spendingVsIncomeOpen}
-            inputTitle="Choose one"
-            inputName="spendingVsIncome"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('spendingVsIncome')}
-            toggleOpen={() => this.toggleOpen('spendingVsIncomeOpen')}
+            value={spendingVsIncome}
+            name="spendingVsIncome"
+            onChange={this.onChangeRadio}
             menuItems={spendingVsIncomeItems}
           />
-          <DropdownMenu
+          <RadioGroup
             title="Which of the following statements best describes how your household has paid its bills over the last 12 months? My household has been financially able to:"
-            value={billsPaidOnTimeItems[billsPaidOnTime] || ''}
-            open={this.state.billsPaidOnTimeOpen}
-            inputTitle="Choose one"
-            inputName="billsPaidOnTime"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('billsPaidOnTime')}
-            toggleOpen={() => this.toggleOpen('billsPaidOnTimeOpen')}
+            value={billsPaidOnTime}
+            name="billsPaidOnTime"
+            onChange={this.onChangeRadio}
             menuItems={billsPaidOnTimeItems}
           />
-          <DropdownMenu
+          <RadioGroup
             title="At your current level of spending, how long could you and your household afford to cover expenses, if you had to live only off the money you have readily available, without withdrawing money from retirement accounts or borrowing?"
-            value={canCoverExpensesItems[canCoverExpenses] || ''}
-            open={this.state.canCoverExpensesOpen}
-            inputTitle="Choose one"
-            inputName="canCoverExpenses"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('canCoverExpenses')}
-            toggleOpen={() => this.toggleOpen('canCoverExpensesOpen')}
+            value={canCoverExpenses}
+            name="canCoverExpenses"
+            onChange={this.onChangeRadio}
             menuItems={canCoverExpensesItems}
           />
-          <DropdownMenu
+          <RadioGroup
             title="Thinking about your household’s longer term financial goals such as saving for a vacation, starting a business, buying or paying off a home, saving up for education, putting money away for retirement, or making retirement funds last… How confident are you that your household is currently doing what is needed to meet your longer term goals?"
-            value={
-              confidenceInLongTermGoalsItems[confidenceInLongTermGoals] || ''
-            }
-            open={this.state.confidenceInLongTermGoalsOpen}
-            inputTitle="Choose one"
-            inputName="confidenceInLongTermGoals"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('confidenceInLongTermGoals')}
-            toggleOpen={() => this.toggleOpen('confidenceInLongTermGoalsOpen')}
+            value={confidenceInLongTermGoals}
+            name="confidenceInLongTermGoals"
+            onChange={this.onChangeRadio}
             menuItems={confidenceInLongTermGoalsItems}
           />
-          <DropdownMenu
+          <RadioGroup
             title="Thinking about all of your household’s current debts, including mortgages, bank loans, student loans, money owed to people, medical debt, past-due bills, and credit card balances that are carried over from prior months... As of today, which of the following statements describes how manageable your household debt is?"
-            value={levelOfDebtItems[levelOfDebt] || ''}
-            open={this.state.levelOfDebtOpen}
-            inputTitle="Choose one"
-            inputName="levelOfDebt"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('levelOfDebt')}
-            toggleOpen={() => this.toggleOpen('levelOfDebtOpen')}
+            value={levelOfDebt}
+            name="levelOfDebt"
+            onChange={this.onChangeRadio}
             menuItems={levelOfDebtItems}
           />
-          <DropdownMenu
+          <RadioGroup
             title="How would you rate your credit score? Your credit score is a number that tells lenders how risky or safe you are as a borrower."
-            value={selfReportedCreditScoreItems[selfReportedCreditScore] || ''}
-            open={this.state.selfReportedCreditScoreOpen}
-            inputTitle="Choose one"
-            inputName="selfReportedCreditScore"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('selfReportedCreditScore')}
-            toggleOpen={() => this.toggleOpen('selfReportedCreditScoreOpen')}
+            value={selfReportedCreditScore}
+            name="selfReportedCreditScore"
+            onChange={this.onChangeRadio}
             menuItems={selfReportedCreditScoreItems}
           />
-          <DropdownMenu
+          <RadioGroup
             title="Thinking about all of the types of personal and household insurance you and others in your household have, how confident are you that those insurance policies will provide enough support in case of an emergency?"
-            value={confidenceInInsuranceItems[confidenceInInsurance] || ''}
-            open={this.state.confidenceInInsuranceOpen}
-            inputTitle="Choose one"
-            inputName="confidenceInInsurance"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('confidenceInInsurance')}
-            toggleOpen={() => this.toggleOpen('confidenceInInsuranceOpen')}
+            value={confidenceInInsurance}
+            name="confidenceInInsurance"
+            onChange={this.onChangeRadio}
             menuItems={confidenceInInsuranceItems}
           />
-          <DropdownMenu
+          <RadioGroup
             title="To what extent do you agree or disagree with the following statement: “My household plans ahead financially.”"
-            value={plansAheadItems[plansAhead] || ''}
-            open={this.state.plansAheadOpen}
-            inputTitle="Choose one"
-            inputName="plansAhead"
-            onChange={this.onChangeDropdown}
-            errorMessage={this.displayError('plansAhead')}
-            toggleOpen={() => this.toggleOpen('plansAheadOpen')}
+            value={plansAhead}
+            name="plansAhead"
+            onChange={this.onChangeRadio}
             menuItems={plansAheadItems}
           />
+          <ErrorContainer>
+            {this.state.submitPressed && enabled && (
+              <ErrorText>All fields must be entered.</ErrorText>
+            )}
+          </ErrorContainer>
+
           <ReactReduxContext.Consumer>
             {store => (
               // <Mutation

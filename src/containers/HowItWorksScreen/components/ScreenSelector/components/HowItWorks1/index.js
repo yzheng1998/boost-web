@@ -14,7 +14,7 @@ const HowItWorks1 = () => {
         style={{ alignSelf: 'center' }}
       />
       <Paragraph>
-        If you experience a financial hardship, you can request funds from the
+        If you experience a financial hardship, you can seek funds from the
         Grant Circle by submitting a request online.
       </Paragraph>
       <NavNumbers activeScreen={1} />

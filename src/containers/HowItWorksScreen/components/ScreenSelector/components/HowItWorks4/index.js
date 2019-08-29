@@ -13,9 +13,9 @@ const HowItWorks4 = () => (
     />
     <Paragraph>
       You can donate to the fund at any time. When you do, up to $400 of your
-      contributions will become availible for you to request again without
-      documentation (like your first $400). Contributions and grants are made
-      availible via PayPal.
+      contributions will become available for you to request again without
+      documentation (like your first $400). Contributions are accepted and
+      grants are currently only made with PayPal.
     </Paragraph>
     <NavNumbers activeScreen={4} />
     <ContributeGraphic />

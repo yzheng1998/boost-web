@@ -14,14 +14,14 @@ const GrantCircle = () => {
         style={{ alignSelf: 'center' }}
       />
       <CenterParagraph>
-        The Grant Circle is ha shared fund availible through your workplace.
-        Funds are availible to help you and your colleagues in times of need.
+        The Grant Circle is a shared fund available through your workplace.
+        Funds are available to help you and your colleagues in times of need.
       </CenterParagraph>
       <MoneyGraphic />
       <CenterParagraph>
-        The Grant Circle was started by a philanthropic donation. You and your
-        colleagues can also contribute so that the fund can reach more members
-        of your workplace community.
+        The Grant Circle was started with a charitable donation. You and your
+        colleagues can also contribute so the fund can reach more members of
+        your workplace community.
       </CenterParagraph>
     </Container>
   )

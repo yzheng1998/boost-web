@@ -5,14 +5,14 @@ import theme from '../../../../theme'
 
 const MakeRequestButton = ({ history }) => (
   <ButtonContainer>
-    <InfoText style={{ textAlign: 'center' }}>
+    <InfoText>
       If you are facing financial hardship, we may be able to help!
     </InfoText>
     <PrimaryButton
       text="Make a Request"
       style={{
-        color: theme.colors.tertiary,
-        backgroundColor: theme.colors.background
+        backgroundColor: theme.colors.tertiary,
+        color: theme.colors.background
       }}
       onClick={() =>
         history.push({ pathname: './request', state: { request: 0 } })

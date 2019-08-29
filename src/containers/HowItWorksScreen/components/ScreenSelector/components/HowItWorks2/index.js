@@ -12,9 +12,10 @@ const HowItWorks2 = () => (
       style={{ alignSelf: 'center' }}
     />
     <Paragraph>
-      You can recieve your first $400 in 1-2 business days by simply answering a
+      You can receive your first $400 in 1-2 business days by simply answering a
       few questions in the request form. This is a one-time benefit unless you
-      contribute back into the fund. (See Step 4 or the FAQ for more detail).
+      contribute back into the fund. (For more detail, see Step 4 or the
+      Frequently Asked Questions).
     </Paragraph>
     <NavNumbers activeScreen={2} />
     <EnvelopeGraphic />

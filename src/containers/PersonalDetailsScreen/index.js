@@ -244,7 +244,9 @@ class PersonalDetailsScreen extends Component {
           />
           <TextContainer>
             <CheckboxText>I agree to the Grant Circle </CheckboxText>
-            <FAQLink href="/faq">Terms and Conditions</FAQLink>
+            <FAQLink href="/faq" target="_blank" rel="noopener noreferrer">
+              Terms and Conditions
+            </FAQLink>
             <CheckboxText> and Data Sharing Policy.</CheckboxText>
           </TextContainer>
         </CheckContainer>

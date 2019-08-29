@@ -13,6 +13,7 @@ import RequestButton from './components/RequestButton'
 import EventsBlock from './components/EventsBlock'
 import { events, boostReasons } from './constants'
 import EventExplanationBlock from './components/EventExplanationBlock'
+import AgreementBlock from './components/AgreementBlock'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -182,15 +183,10 @@ class RequestScreen extends Component {
         <FormWrapper
           style={{ marginTop: 20, paddingRight: 20, paddingLeft: 20 }}
         >
-          <div>
-            <input
-              type="checkbox"
-              onChange={() => this.setState({ acceptTerms: !acceptTerms })}
-            />
-            I hereby certify that all of the information submitted below is true
-            and correct to the best of my knowledge, and that I am requesting
-            funds to overcome a financial hardship.
-          </div>
+          <AgreementBlock
+            setState={this.setState.bind(this)}
+            acceptTerms={acceptTerms}
+          />
           <AmountBlock
             amount={amount}
             balance={balance}

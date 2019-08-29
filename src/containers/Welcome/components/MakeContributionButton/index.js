@@ -1,7 +1,11 @@
 import React from 'react'
 import { InfoText, ButtonContainer } from './styles'
+import ReactGA from 'react-ga'
 import PrimaryButton from '../../../../components/PrimaryButton'
 import theme from '../../../../theme'
+import config from '../../../../config'
+
+ReactGA.initialize(config.gaTrackingCode)
 
 const MakeContributionButton = ({ history }) => (
   <ButtonContainer>
@@ -15,9 +19,13 @@ const MakeContributionButton = ({ history }) => (
         color: theme.colors.background,
         backgroundColor: theme.colors.tertiary
       }}
-      onClick={() =>
+      onClick={() => {
+        ReactGA.event({
+          category: 'Contributions',
+          action: 'Form Opened'
+        })
         history.push({ pathname: './request', state: { request: 1 } })
-      }
+      }}
     />
   </ButtonContainer>
 )

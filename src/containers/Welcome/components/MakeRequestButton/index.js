@@ -1,7 +1,11 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import { InfoText, ButtonContainer } from './styles'
 import PrimaryButton from '../../../../components/PrimaryButton'
 import theme from '../../../../theme'
+import config from '../../../../config'
+
+ReactGA.initialize(config.gaTrackingCode)
 
 const MakeRequestButton = ({ history }) => (
   <ButtonContainer>
@@ -14,9 +18,13 @@ const MakeRequestButton = ({ history }) => (
         color: theme.colors.tertiary,
         backgroundColor: theme.colors.background
       }}
-      onClick={() =>
+      onClick={() => {
+        ReactGA.event({
+          category: 'Requests',
+          action: 'Form Opened'
+        })
         history.push({ pathname: './request', state: { request: 0 } })
-      }
+      }}
     />
   </ButtonContainer>
 )

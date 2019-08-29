@@ -2,12 +2,16 @@ import React, { useState, forwardRef } from 'react'
 import { Mutation } from 'react-apollo'
 import { Dialog } from '@material-ui/core'
 import Slide from '@material-ui/core/Slide'
+import ReactGA from 'react-ga'
 import { REQUEST_FUNDS, GET_USER } from './graphql'
 import RequestSubmittedModal from '../RequestSubmittedModal'
 import RequestDocumentsModal from '../RequestDocumentsModal'
 import PrimaryButton from '../../../../../../../../components/PrimaryButton'
 import LoadingIcon from '../../../../../../../../components/LoadingIcon'
 import theme from '../../../../../../../../theme'
+import config from '../../../../../../../../config'
+
+ReactGA.initialize(config.gaTrackingCode)
 
 const Transition = forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
@@ -75,6 +79,10 @@ const RequestButton = ({
                 marginBottom: 45
               }}
               onClick={() => {
+                ReactGA.event({
+                  category: 'Requests',
+                  action: 'Request Made'
+                })
                 handleSubmit(() => request({ variables }))
               }}
               disabled={disabled || loading}

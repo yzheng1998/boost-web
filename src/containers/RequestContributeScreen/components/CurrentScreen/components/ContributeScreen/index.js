@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { withAlert } from 'react-alert'
+import ReactGA from 'react-ga'
 import apolloClient from '../../../../../../client'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 import Subheader from '../../../../../../components/Subheader'
@@ -13,6 +14,9 @@ import theme from '../../../../../../theme'
 import { Span } from '../RequestScreen/styles'
 import { GET_USER, PAYMENT } from './graphql'
 import LoadingIcon from '../../../../../../components/LoadingIcon'
+import config from '../../../../../../config'
+
+ReactGA.initialize(config.gaTrackingCode)
 
 class ContributeScreen extends Component {
   constructor(props) {
@@ -40,7 +44,10 @@ class ContributeScreen extends Component {
         'AS9vvZrYslvm34pUsOcsT_rUntr-msY2GkSsEJYB9kyk8WzsDHzf3-5bvuTdZM_Gu-X6xs3Iu9cLC-1j'
     }
     const onSuccess = async payment => {
-      console.log('The payment has succeeded!', payment)
+      ReactGA.event({
+        category: 'Contributions',
+        action: 'Contribution Made'
+      })
       this.props.alert.success('The payment has succeeded!')
       this.setState({ amount: '' })
 

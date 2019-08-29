@@ -33,7 +33,7 @@ const Welcome = ({ history }) => {
   return (
     <WelcomeScreen>
       <Header
-        text="WELCOME TO"
+        text="WELCOME TO THE"
         color={theme.colors.header}
         style={createStyle(window.innerWidth)}
       />

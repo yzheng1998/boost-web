@@ -2,8 +2,7 @@ import React from 'react'
 import Description from '../Description'
 
 const EventExplanationBlock = ({
-  hardshipExplanation,
-  hardshipDate,
+  eventsExplanation,
   onChange,
   addTouched,
   validateForm,
@@ -11,21 +10,10 @@ const EventExplanationBlock = ({
 }) => (
   <>
     <Description
-      headerText="Please describe what happened:"
+      headerText="Please provide a brief description of the situation, including approximate dates for any of the events you selected above and how they created the need for funds:"
       labelText="Enter Description"
       name="hardshipExplanation"
-      value={hardshipExplanation}
-      onChange={onChange}
-      addTouched={addTouched}
-      validateForm={validateForm}
-      displayErrors={displayErrors}
-    />
-
-    <Description
-      headerText="When did this happen?"
-      labelText="Describe the time it happened here"
-      name="hardshipDate"
-      value={hardshipDate}
+      value={eventsExplanation}
       onChange={onChange}
       addTouched={addTouched}
       validateForm={validateForm}

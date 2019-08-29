@@ -35,8 +35,7 @@ const RequestButton = ({
     otherReason,
     selectedEvents,
     otherEvent,
-    hardshipExplanation,
-    hardshipDate,
+    eventsExplanation,
     payPalEmail,
     documents,
     openPDF
@@ -59,7 +58,7 @@ const RequestButton = ({
             amount: Number(amount),
             reason: selectedBoostReasons.concat([otherReason]).join(', '),
             events: selectedEvents.concat([otherEvent]).join(', '),
-            eventsExplanation: hardshipExplanation.concat(hardshipDate),
+            eventsExplanation,
             payPalEmail,
             documents
           }

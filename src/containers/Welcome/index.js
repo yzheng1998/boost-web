@@ -1,5 +1,4 @@
 import React, { forwardRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Dialog } from '@material-ui/core'
 import Slide from '@material-ui/core/Slide'
 import Header from '../../components/Header'
@@ -8,6 +7,7 @@ import { WelcomeScreen, InfoText, ButtonsContainer } from './styles'
 import FinancialHealthPollModal from './components/FinancialHealthPollModal'
 import MakeRequestButton from './components/MakeRequestButton'
 import MakeContributionButton from './components/MakeContributionButton'
+import InformationBlock from './components/InformationBlock'
 
 const Transition = forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
@@ -17,7 +17,11 @@ const Welcome = ({ history }) => {
   const [open, setOpen] = useState(history.location.state)
 
   const createStyle = width => {
-    const webStyle = { justifyContent: 'center' }
+    const webStyle = {
+      justifyContent: 'center',
+      fontSize: 13,
+      fontFamily: theme.fonts.medium.family
+    }
     const mobileStyle = {
       justifyContent: 'center',
       fontSize: 25,
@@ -29,9 +33,20 @@ const Welcome = ({ history }) => {
   return (
     <WelcomeScreen>
       <Header
-        text="Welcome to the Grant Circle"
+        text="WELCOME TO"
         color={theme.colors.header}
         style={createStyle(window.innerWidth)}
+      />
+      <Header
+        style={{
+          justifyContent: 'center',
+          fontSize: 60,
+          fontFamily: theme.fonts.medium.family,
+          textAlign: 'center',
+          marginBottom: 10
+        }}
+        text="GRANT CIRCLE"
+        color={theme.colors.header}
       />
       <InfoText green>
         The purpose of the Grant Circle is to help workers like you in times of
@@ -44,14 +59,7 @@ const Welcome = ({ history }) => {
       <Dialog open={open} TransitionComponent={Transition}>
         <FinancialHealthPollModal setOpen={setOpen} />
       </Dialog>
-      <InfoText>
-        Need to view or edit an open request for funds? Go to&nbsp;
-        <Link to="/activity">My Activity.</Link>
-      </InfoText>
-      <InfoText>
-        Have questions? Check out the&nbsp;
-        <Link to="/faq">Frequently Asked Questions.</Link>
-      </InfoText>
+      <InformationBlock />
     </WelcomeScreen>
   )
 }

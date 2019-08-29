@@ -159,7 +159,6 @@ class RequestScreen extends Component {
       payPalEmail,
       hardshipDate,
       errors,
-      balance,
       displayErrors,
       acceptTerms,
       requests,
@@ -193,7 +192,6 @@ class RequestScreen extends Component {
           </div>
           <AmountBlock
             amount={amount}
-            balance={balance}
             displayErrors={displayErrors}
             onChange={this.onChange}
             addTouched={this.addTouched}

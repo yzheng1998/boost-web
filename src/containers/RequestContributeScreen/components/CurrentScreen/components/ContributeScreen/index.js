@@ -49,7 +49,6 @@ class ContributeScreen extends Component {
         action: 'Contribution Made'
       })
       this.props.alert.success('The payment has succeeded!')
-      this.setState({ amount: '' })
 
       try {
         await apolloClient.mutate({
@@ -65,6 +64,8 @@ class ContributeScreen extends Component {
       } catch (error) {
         throw error
       }
+
+      this.setState({ amount: '' })
     }
 
     const onCancel = data => {

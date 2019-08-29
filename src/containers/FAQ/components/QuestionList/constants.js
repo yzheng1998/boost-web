@@ -3,13 +3,14 @@ import ReasonsToRequest from './components/ReasonsToRequest'
 import RequiredInformationAndDocumentation from './components/RequiredInformationAndDocumentation'
 import ContactInfo from './components/ContactInfo'
 import DataUsage from './components/DataUsage'
+import TermsAndConditions from './components/TermsAndConditions'
 
 export const Questions = [
   {
     id: 1,
     question: 'What is the GreenPath Grant Circle?',
     answer:
-      'The Grant Circle is a shared fund available through your workplace. Funds are available to help you and your colleagues in times of need. The Grant Circle was started by a charitable donation. You and your colleagues can also contribute so that the fund can reach more members of  your workplace community'
+      'The Grant Circle was established and is managed by a small team of researchers and entrepreneurs at Capital Access Strategies, LLC, who are working on an initiative sponsored by the nonprofit organization The Workers Lab. Our mission is to improve the resources that working Americans have to address financial security challenges.'
   },
   {
     id: 2,
@@ -101,15 +102,28 @@ export const Questions = [
   },
   {
     id: 16,
+    question: 'What is the tax status of my contributions?',
+    answer:
+      'At this time, Grant Circle does not provide contributors with contribution receipts for tax purposes. Hence, contributions should not be considered tax deductible for those who itemize charitable contributions on their tax returns. (For reference, standard deduction amounts in 2019 are $12,200 for individuals, $18,350 for heads of household, and $24,400 for married couples filing jointly and surviving spouses. If you take the standard deduction, you do not need to itemize charitable contributions.)'
+  },
+  {
+    id: 17,
     question: 'Why is this a pilot and what does that mean?',
     answer:
       'We are pilot-testing the Grant Circles product in order to understand whether and how it impacts the financial health of workers, and what impact it has on workplace metrics, such as turnover and worker productivity. The information collected during this and other pilots help us address key hypotheses and determine the future direction of the Grant Circles product. A pilot means that only a small group of workers has access to the Grant Circles product, and for a defined period of time. In this case, we estimate that the pilot will last around 6 months, but that timeframe is dependent upon what occurs post pilot launch. We may expand the pilot to more of your colleagues, extend the pilot, and/or end the pilot before the 6 months, depending upon a number of factors, including funds availability.'
   },
   {
-    id: 17,
+    id: 18,
     question:
       'Who can I contact if I have more questions, suggestions, or feedback?',
     answer: '',
     component: <ContactInfo />
+  },
+  {
+    id: 19,
+    question:
+      'Grant Circle’s Full Terms and Conditions and Data Sharing Policy',
+    answer: '',
+    component: <TermsAndConditions />
   }
 ]

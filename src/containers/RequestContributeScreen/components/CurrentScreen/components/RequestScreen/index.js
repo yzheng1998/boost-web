@@ -4,7 +4,12 @@ import { withAlert } from 'react-alert'
 import _ from 'lodash'
 import Background from '../../../../../../components/Background'
 import FormWrapper from '../../../../../../components/FormWrapper'
-import { defaultState, validateForm, MakeButtons } from './helpers'
+import {
+  defaultState,
+  validateForm,
+  MakeButtons,
+  MakeCheckList
+} from './helpers'
 import AmountBlock from './components/AmountBlock'
 import ReasonsBlock from './components/ReasonsBlock'
 import PayPalBlock from './components/PayPalBlock'
@@ -19,8 +24,8 @@ class RequestScreen extends Component {
   constructor(props) {
     super(props)
     const { contributions, requests } = this.props.data
-    const { balance } = this.props
-    this.state = defaultState(contributions, requests, balance)
+    const { balance, personalEmail } = this.props
+    this.state = defaultState(contributions, requests, balance, personalEmail)
   }
 
   componentDidMount = () => {
@@ -155,10 +160,9 @@ class RequestScreen extends Component {
       selectedBoostReasons,
       otherReason,
       amount,
-      hardshipExplanation,
+      eventsExplanation,
       documents,
       payPalEmail,
-      hardshipDate,
       errors,
       displayErrors,
       acceptTerms,
@@ -175,7 +179,7 @@ class RequestScreen extends Component {
       this.handleSelect,
       boostReasons
     )
-    const Events = MakeButtons(selectedEvents, this.handleEventSelect, events)
+    const Events = MakeCheckList(selectedEvents, this.handleEventSelect, events)
 
     return (
       <Background style={{ justifyContent: 'flex-start' }}>
@@ -228,8 +232,7 @@ class RequestScreen extends Component {
           />
           {!selectedEvents.includes('None') && (
             <EventExplanationBlock
-              hardshipExplanation={hardshipExplanation}
-              hardshipDate={hardshipDate}
+              eventsExplanation={eventsExplanation}
               displayErrors={displayErrors}
               onChange={this.onChange}
               addTouched={this.addTouched}

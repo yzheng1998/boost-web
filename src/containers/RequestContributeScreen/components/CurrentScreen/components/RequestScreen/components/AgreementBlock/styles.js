@@ -4,4 +4,5 @@ import { Flex } from '@rebass/grid'
 export const AgreementBlockContainer = styled(Flex)`
   font-family: ${({ theme }) => theme.fonts.medium.family};
   text-align: justify;
+  margin-bottom: 15px;
 `

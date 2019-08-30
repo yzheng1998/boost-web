@@ -13,7 +13,7 @@ const EventsBlock = ({
   displayErrors,
   onChange
 }) => (
-  <>
+  <div style={{ marginBottom: 15 }}>
     <Subheader text="What has led to the need for funds? (select all that apply)" />
     <WrappedRow style={{ justifyContent: 'flex-start' }}>{Events}</WrappedRow>
     {_.includes(selectedEvents, 'Other') && (
@@ -30,7 +30,7 @@ const EventsBlock = ({
         errorMessage={displayErrors.otherEvent}
       />
     )}
-  </>
+  </div>
 )
 
 export default EventsBlock

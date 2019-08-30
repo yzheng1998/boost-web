@@ -13,7 +13,7 @@ const ReasonsBlock = ({
   displayErrors,
   onChange
 }) => (
-  <>
+  <div style={{ marginBottom: 15 }}>
     <Subheader text="What expenses do you need the funds for? (select all that apply)" />
     <WrappedRow>{Buttons}</WrappedRow>
     {_.includes(selectedBoostReasons, 'Other') && (
@@ -30,7 +30,7 @@ const ReasonsBlock = ({
         errorMessage={displayErrors.otherReason}
       />
     )}
-  </>
+  </div>
 )
 
 export default ReasonsBlock

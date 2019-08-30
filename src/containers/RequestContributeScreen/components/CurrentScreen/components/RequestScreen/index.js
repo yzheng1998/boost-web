@@ -36,10 +36,10 @@ class RequestScreen extends Component {
     )
   }
 
-  onDocChange = ({ url, name }) => {
+  onDocChange = ({ keyName, name }) => {
     this.setState(
       {
-        documents: [...this.state.documents, { url, name }]
+        documents: [...this.state.documents, { keyName, name }]
       },
       () => validateForm(true, this.state, this.setState.bind(this))
     )

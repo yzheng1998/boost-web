@@ -22,11 +22,11 @@ const DocumentInput = ({ onChange, alert, ...rest }) => {
       })
       .then(async ({ data }) => {
         const {
-          signS3Url: { url }
+          signS3Url: { url, keyName }
         } = data
         await axios
           .put(url, file, options)
-          .then(() => onChange({ url, name: file.name }))
+          .then(() => onChange({ keyName, name: file.name }))
           .catch(() => alert.error('Could not upload file'))
       })
   }

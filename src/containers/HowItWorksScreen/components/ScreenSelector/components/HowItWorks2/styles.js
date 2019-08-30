@@ -63,3 +63,8 @@ export const GraphicContainer = styled(Flex)`
   justify-content: center;
   align-items: center;
 `
+
+export const FAQLink = styled.a`
+  font-size: 16px;
+  font-family: ${({ theme }) => theme.fonts.medium.family};
+`

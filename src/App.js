@@ -140,10 +140,10 @@ class App extends React.Component {
                           />
                           <Route path="/faq" component={withTracker(FAQ)} />
                           <PrivateRoute
-                            path="/welcome"
+                            path="/home"
                             component={withTracker(Welcome)}
                           />
-                          <Redirect from="/" to="/welcome" />
+                          <Redirect from="/" to="/home" />
                         </Switch>
                         <PageFooter />
                       </div>

@@ -3,7 +3,7 @@ import Header from '../../../../../../components/Header'
 import theme from '../../../../../../theme'
 import CenterParagraph from '../CenterParagraph'
 
-import { Container, FundsGraphic } from './styles'
+import { Container, FundsGraphic, FAQLink } from './styles'
 
 const Funds = () => (
   <Container>
@@ -22,7 +22,11 @@ const Funds = () => (
       Funds can be requested to cover both both smaller or more serious
       hardships, as long as the funds are needed to address a difficult
       financial situation. You can review the full Fund Use Policy in the
-      Frequently Asked Questions here.
+      Frequently Asked Questions{' '}
+      <FAQLink href="/faq" target="_blank" rel="noopener noreferrer">
+        here
+      </FAQLink>
+      .
     </CenterParagraph>
   </Container>
 )

@@ -49,3 +49,8 @@ export const Container = styled(Flex)`
     width: 100%;
   }
 `
+
+export const FAQLink = styled.a`
+  font-size: 16px;
+  font-family: ${({ theme }) => theme.fonts.medium.family};
+`

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Flex } from 'grid-styled'
 
-export const StyledParagraph = styled(Flex)`
+export const StyledParagraph = styled.p`
   font-family: ${({ theme }) => theme.fonts.medium.family};
   padding-left: 20px;
   padding-right: 20px;

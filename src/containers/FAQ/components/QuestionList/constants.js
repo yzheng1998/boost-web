@@ -14,9 +14,10 @@ export const Questions = [
   },
   {
     id: 2,
-    question: 'Who manages the Grant Circle and why are we doing this?',
-    answer:
-      'The Grant Circle was established and is managed by a small team of researchers and entrepreneurs at Capital Access Strategies, LLC. Our mission is to improve the resources that working Americans have to address financial security challenges.'
+    question:
+      'Grant Circle’s Full Terms and Conditions and Data Sharing Policy',
+    answer: '',
+    component: <TermsAndConditions />
   },
   {
     id: 3,
@@ -121,9 +122,8 @@ export const Questions = [
   },
   {
     id: 19,
-    question:
-      'Grant Circle’s Full Terms and Conditions and Data Sharing Policy',
-    answer: '',
-    component: <TermsAndConditions />
+    question: 'Who manages the Grant Circle and why are we doing this?',
+    answer:
+      'The Grant Circle was established and is managed by a small team of researchers and entrepreneurs at Capital Access Strategies, LLC. Our mission is to improve the resources that working Americans have to address financial security challenges.'
   }
 ]

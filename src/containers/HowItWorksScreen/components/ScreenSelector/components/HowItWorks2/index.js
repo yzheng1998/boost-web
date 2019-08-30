@@ -5,7 +5,8 @@ import {
   Container,
   EnvelopeGraphic,
   Paragraph,
-  GraphicContainer
+  GraphicContainer,
+  FAQLink
 } from './styles'
 import NavNumbers from '../NavNumbers'
 
@@ -19,8 +20,11 @@ const HowItWorks2 = () => (
     <Paragraph>
       You can receive your first $400 in 1-2 business days by simply answering a
       few questions in the request form. This is a one-time benefit unless you
-      contribute back into the fund. (For more detail, see Step 4 or the
-      Frequently Asked Questions).
+      contribute back into the fund. (For more detail, see Step 4 or the&nbsp;
+      <FAQLink href="/faq" target="_blank" rel="noopener noreferrer">
+        Terms and Conditions
+      </FAQLink>
+      ).
     </Paragraph>
     <NavNumbers activeScreen={2} />
     <GraphicContainer>

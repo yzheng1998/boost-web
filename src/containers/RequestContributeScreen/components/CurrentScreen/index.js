@@ -41,7 +41,12 @@ const CurrentScreen = ({ tab, setState, history }) => {
         // If the tab value is set to REQUEST_SCREEN, render RequestScreen
         if (tab === REQUEST_SCREEN) {
           return (
-            <RequestScreen data={state} balance={balance} history={history} />
+            <RequestScreen
+              data={state}
+              personalEmail={user.personalEmail}
+              balance={balance}
+              history={history}
+            />
           )
 
           // If the tab value is set to CONTRIBUTE_SCREEN, render ContributeScreen

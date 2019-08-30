@@ -4,7 +4,12 @@ import validate from 'validate.js'
 import MultiselectBtn from '../../../../../../components/MultiselectBtn'
 import theme from '../../../../../../theme'
 
-export const defaultState = (contributions, requests, balance) => ({
+export const defaultState = (
+  contributions,
+  requests,
+  balance,
+  personalEmail
+) => ({
   openPDF: false,
   opened: false,
   selectedBoostReasons: [],
@@ -12,10 +17,9 @@ export const defaultState = (contributions, requests, balance) => ({
   otherEvent: '',
   otherReason: '',
   amount: '',
-  hardshipExplanation: '',
-  hardshipDate: '',
+  eventsExplanation: '',
   documents: [],
-  payPalEmail: '',
+  payPalEmail: personalEmail,
   displayErrors: {},
   errors: {},
   touched: {},
@@ -75,3 +79,24 @@ export const MakeButtons = (selectedBoostReasons, handleSelect, reasonsList) =>
       />
     )
   )
+
+export const MakeCheckList = (selectedEvents, handleEventSelect, eventsList) =>
+  eventsList.map(event => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        fontFamily: theme.fonts.medium.family,
+        marginBottom: 10,
+        width: '100%'
+      }}
+    >
+      <input
+        type="checkbox"
+        onChange={e => handleEventSelect(e.target.name)}
+        name={event}
+        checked={selectedEvents.includes(event)}
+      />
+      &nbsp;{event}
+    </div>
+  ))

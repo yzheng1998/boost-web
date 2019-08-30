@@ -6,9 +6,9 @@ import DocumentList from '../DocumentList'
 import InformationText from './components/InformationText'
 
 const DocumentTitle = ({ fundsWithdrawn }) =>
-  fundsWithdrawn >= 400
-    ? 'Documentation of the financial hardship is required for this request. For more detail on eligible fund uses and documentation requirements, please refer to the FAQ.'
-    : 'Documentation of the financial hardship is optional for this request'
+  fundsWithdrawn > 400
+    ? 'Documentation of the financial hardship is REQUIRED for this request. For more detail on eligible fund uses and documentation requirements, please refer to the FAQ.'
+    : 'Documentation of the financial hardship is OPTIONAL for this request'
 
 const DocumentBlock = ({
   fundsWithdrawn,

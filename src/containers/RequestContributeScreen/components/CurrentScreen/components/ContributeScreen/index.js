@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Query } from 'react-apollo'
 import { withAlert } from 'react-alert'
 import ReactGA from 'react-ga'
 import apolloClient from '../../../../../../client'
@@ -12,8 +11,7 @@ import Header from '../../../../../../components/Header'
 import Row from '../../../../../../components/Row'
 import theme from '../../../../../../theme'
 import { Span } from '../RequestScreen/styles'
-import { GET_USER, PAYMENT } from './graphql'
-import LoadingIcon from '../../../../../../components/LoadingIcon'
+import { PAYMENT } from './graphql'
 import config from '../../../../../../config'
 
 ReactGA.initialize(config.gaTrackingCode)
@@ -97,31 +95,17 @@ class ContributeScreen extends Component {
           />
           <Subheader
             text="The Grant Circle launched with funding from a charitable donation. Contributions from workers like you can help it grow and reach more members of your workplace community."
-            style={{ marginBottom: 30 }}
+            style={{ marginBottom: 30, textAlign: 'justify' }}
           />
           <Subheader
             text="In addition to helping support the Grant Circle generally, your contributions enable you to request additional funds without documentation. When you contribute to the fund, up to $400 of your contributions will become available for you to request again without submitting documentation (like the first $400 requested)."
-            style={{ marginBottom: 30 }}
+            style={{ marginBottom: 30, textAlign: 'justify' }}
           />
-          <Query query={GET_USER}>
-            {({ loading, data, error }) => {
-              if (loading) return <LoadingIcon />
-              if (error) return `Error! ${error.messsage}`
-              const { user } = data.viewer
-              if (user.requests)
-                return (
-                  <Subheader
-                    text={`Worker Contributions also supported your requests of $${user.requests.toFixed(
-                      2
-                    )}`}
-                    style={{ marginBottom: 30 }}
-                  />
-                )
-              return null
-            }}
-          </Query>
 
-          <Subheader text="How much would like to contribute today?" />
+          <Subheader
+            text="How much would like to contribute today?"
+            style={{ textAlign: 'justify' }}
+          />
           <Row justifyContent="flex-start">
             <Span>$</Span>
             <TextInput

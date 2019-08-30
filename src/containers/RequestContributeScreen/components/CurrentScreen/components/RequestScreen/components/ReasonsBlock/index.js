@@ -14,7 +14,7 @@ const ReasonsBlock = ({
   onChange
 }) => (
   <>
-    <Subheader text="What is your boost for?" />
+    <Subheader text="What expenses do you need the funds for? (select all that apply)" />
     <WrappedRow>{Buttons}</WrappedRow>
     {_.includes(selectedBoostReasons, 'Other') && (
       <TextInput

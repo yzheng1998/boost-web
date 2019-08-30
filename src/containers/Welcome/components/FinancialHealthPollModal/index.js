@@ -10,7 +10,9 @@ const FinancialHealthPollModal = ({ setOpen }) => {
   const [financialHealthRating, setFinancialHealthRating] = useState('0')
   return (
     <ModalContainer>
-      <DialogTitle>How is your financial health?</DialogTitle>
+      <DialogTitle>
+        How much stress are your finances causing you today?
+      </DialogTitle>
       <DialogContent
         style={{
           display: 'flex',

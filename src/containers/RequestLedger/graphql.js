@@ -32,6 +32,7 @@ export const ADD_DOCUMENT = gql`
       success
       document {
         id
+        keyName
         url
         createdAt
       }

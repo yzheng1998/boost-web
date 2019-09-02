@@ -11,8 +11,8 @@ import DocumentList from '../../../RequestContributeScreen/components/CurrentScr
 const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
   const [documents, updateDocuments] = useState([])
 
-  const onDocChange = ({ url, name }) => {
-    updateDocuments([...documents, { url, name }])
+  const onDocChange = ({ keyName, name }) => {
+    updateDocuments([...documents, { keyName, name }])
   }
   return (
     <ModalContainer>
@@ -24,7 +24,9 @@ const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
           <DocumentList
             documents={documents}
             removeDoc={docName =>
-              updateDocuments(documents.filter(({ url }) => url !== docName))
+              updateDocuments(
+                documents.filter(({ keyName }) => keyName !== docName)
+              )
             }
           />
         </Row>
@@ -32,8 +34,8 @@ const AddDocumentsModal = ({ setOpen, addDocs, requestId }) => {
           <Button onClick={() => setOpen(false)}>Cancel</Button>
           <Button
             onClick={() => {
-              documents.map(({ url, name }) =>
-                addDocs({ variables: { input: { url, requestId, name } } })
+              documents.map(({ keyName, name }) =>
+                addDocs({ variables: { input: { keyName, requestId, name } } })
               )
               setOpen(false)
             }}

@@ -66,13 +66,11 @@ class ContributeScreen extends Component {
       this.setState({ amount: '' })
     }
 
-    const onCancel = data => {
-      console.log('The payment was cancelled!', data)
+    const onCancel = () => {
       this.props.alert.show('The payment was cancelled')
     }
 
-    const onError = err => {
-      console.log('Error!', err)
+    const onError = () => {
       this.props.alert.error('The payment has failed!')
     }
 

@@ -37,7 +37,7 @@ const HealthOptions = ({ onChange, currentValue }) => {
           <FormControlLabel
             value="100"
             control={<Radio />}
-            label="High Stress"
+            label="High stress"
           />
           <FormControlLabel
             value="66"

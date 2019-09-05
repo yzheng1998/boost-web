@@ -7,8 +7,7 @@ const constraints = {
   amount: {
     presence,
     numericality: {
-      greaterThan: 0,
-      lessThanOrEqualTo: 1000
+      greaterThan: 0
     }
   },
   payPalEmail: {

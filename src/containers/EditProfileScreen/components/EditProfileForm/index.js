@@ -164,6 +164,17 @@ class EditProfileForm extends Component {
           style={{ marginBottom: 12 }}
           inputStyle={{ width: '100%' }}
         />
+        <PrimaryButton
+          text="Change Password"
+          style={{
+            backgroundColor: theme.colors.quaternary,
+            color: theme.colors.primary,
+            alignSelf: 'flex-start'
+          }}
+          onClick={() => {
+            this.props.history.push('/recovery')
+          }}
+        />
         <DropdownMenu
           title="Spending vs Income"
           value={spendingVsIncomeItems[spendingVsIncome] || ''}

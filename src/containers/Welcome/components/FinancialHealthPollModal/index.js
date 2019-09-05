@@ -8,17 +8,13 @@ import HealthOptions from './components/HealthOptions'
 
 const FinancialHealthPollModal = ({ setOpen }) => {
   const [financialHealthRating, setFinancialHealthRating] = useState('0')
+
   return (
     <ModalContainer>
       <DialogTitle>
         How much stress are your finances causing you today?
       </DialogTitle>
-      <DialogContent
-        style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}
-      >
+      <DialogContent style={{ display: 'flex', flexDirection: 'column' }}>
         <HealthOptions
           onChange={setFinancialHealthRating}
           currentValue={financialHealthRating}

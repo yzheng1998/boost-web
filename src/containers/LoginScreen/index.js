@@ -64,7 +64,7 @@ const Login = ({ history }) => {
               const { token } = data.loginUser
               await localStore.set('user', { token })
               history.push({
-                pathname: './welcome',
+                pathname: './home',
                 state: { loggingIn: true }
               })
               alert.success('Successfully logged in!')

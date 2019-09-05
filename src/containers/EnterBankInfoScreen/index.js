@@ -74,7 +74,10 @@ class EnterBankInfo extends Component {
           </StyledList>
           <StyledText>
             If you have questions or concerns, please email
-            <a href="mailto:info@grantcircles.org">info@grantcircles.org</a>.
+            <a href="mailto:greenpath@grantcircles.org">
+              greenpath@grantcircles.org
+            </a>
+            .
           </StyledText>
         </TextContainer>
         <PlaidLinkContainer>

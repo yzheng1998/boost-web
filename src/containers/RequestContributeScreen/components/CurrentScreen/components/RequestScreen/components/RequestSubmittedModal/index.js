@@ -15,7 +15,9 @@ const RequestSubmittedModal = ({ handleSuccess }) => (
         days. If you need to view or add documents to your request, you can do
         so by visiting the My Activity page. If you have any questions about the
         request review process, you can email us at{' '}
-        <a href="mailto:info@grantcircles.org">info@grantcircles.org</a>
+        <a href="mailto:greenpath@grantcircles.org">
+          greenpath@grantcircles.org
+        </a>
       </DialogContentText>
       <DialogActions>
         <Button onClick={() => handleSuccess()}>Ok</Button>

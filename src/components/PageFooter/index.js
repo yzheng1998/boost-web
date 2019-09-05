@@ -6,7 +6,10 @@ const PageFooter = () => (
     <FooterText>
       <address>
         Please email{' '}
-        <a href="mailto:info@grantcircles.org">info@grantcircles.org</a> with
+        <a href="mailto:greenpath@grantcircles.org">
+          greenpath@grantcircles.org
+        </a>{' '}
+        with
         <br />
         any questions, issues, or feedback.
       </address>

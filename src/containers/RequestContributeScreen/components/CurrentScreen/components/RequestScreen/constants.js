@@ -11,8 +11,8 @@ export const events = [
   'Reduction in hours or income from my primary job',
   'Reduction or loss of another source of household income',
   'Loss of other supplemental income (such as assistance from family/friends, public benefits, etc.)',
-  'Other',
-  'None'
+  'Other (please specify)',
+  'Nothing'
 ]
 
 export const boostReasons = [
@@ -33,5 +33,5 @@ export const boostReasons = [
   'Childcare expenses (non-medical)',
   'Elder care expenses (non-medical)',
   'Debt payments (non-mortgage)',
-  'Other'
+  'Other (please specify)'
 ]

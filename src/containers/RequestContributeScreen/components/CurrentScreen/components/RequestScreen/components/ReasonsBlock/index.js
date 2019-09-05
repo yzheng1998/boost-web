@@ -16,7 +16,7 @@ const ReasonsBlock = ({
   <div style={{ marginBottom: 15 }}>
     <Subheader text="What expenses do you need the funds for? (select all that apply)" />
     <WrappedRow>{Buttons}</WrappedRow>
-    {_.includes(selectedBoostReasons, 'Other') && (
+    {_.includes(selectedBoostReasons, 'Other (please specify)') && (
       <TextInput
         type="text"
         labelText="Please Specify "

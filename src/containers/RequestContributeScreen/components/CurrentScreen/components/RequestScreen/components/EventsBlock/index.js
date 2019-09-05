@@ -16,7 +16,7 @@ const EventsBlock = ({
   <div style={{ marginBottom: 15 }}>
     <Subheader text="What has led to the need for funds? (select all that apply)" />
     <WrappedRow style={{ justifyContent: 'flex-start' }}>{Events}</WrappedRow>
-    {_.includes(selectedEvents, 'Other') && (
+    {_.includes(selectedEvents, 'Other (please specify)') && (
       <TextInput
         type="text"
         labelText="Please Specify "

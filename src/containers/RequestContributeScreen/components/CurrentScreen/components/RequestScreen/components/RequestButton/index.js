@@ -92,7 +92,7 @@ const RequestButton = ({
               TransitionComponent={Transition}
             >
               <RequestDocumentsModal
-                setOpen={openPDF}
+                setOpen={setState}
                 request={() => request({ variables })}
               />
             </Dialog>

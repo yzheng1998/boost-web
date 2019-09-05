@@ -199,15 +199,6 @@ class RequestScreen extends Component {
               validateForm(val, this.state, this.setState.bind(this))
             }
           />
-          <PayPalBlock
-            onChange={this.onChange}
-            payPalEmail={payPalEmail}
-            addTouched={this.addTouched}
-            validateForm={() =>
-              validateForm(false, this.state, this.setState.bind(this))
-            }
-            displayErrors={displayErrors}
-          />
           <ReasonsBlock
             Buttons={Buttons}
             selectedBoostReasons={selectedBoostReasons}
@@ -251,6 +242,15 @@ class RequestScreen extends Component {
             displayErrors={displayErrors}
             documents={documents}
             setState={this.setState.bind(this)}
+          />
+          <PayPalBlock
+            onChange={this.onChange}
+            payPalEmail={payPalEmail}
+            addTouched={this.addTouched}
+            validateForm={() =>
+              validateForm(false, this.state, this.setState.bind(this))
+            }
+            displayErrors={displayErrors}
           />
           <RequestButton
             state={this.state}

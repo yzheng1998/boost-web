@@ -18,7 +18,7 @@ const RequestDocumentsModal = ({ setOpen, request }) => (
         your request may be delayed.
       </DialogContentText>
       <DialogActions>
-        <Button onClick={() => setOpen(false)}>Cancel</Button>
+        <Button onClick={() => setOpen({ openPDF: false })}>Cancel</Button>
         <Button onClick={() => request()}>Procceed with Request</Button>
       </DialogActions>
     </DialogContent>

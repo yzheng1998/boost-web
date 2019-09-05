@@ -10,7 +10,7 @@ ReactGA.initialize(config.gaTrackingCode)
 const MakeContributionButton = ({ history }) => (
   <ButtonContainer>
     <InfoText>
-      Please consider donating so the fund can serve more members of your
+      Please consider donating, so the fund can serve more members of your
       workplace community.
     </InfoText>
     <PrimaryButton

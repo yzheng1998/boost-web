@@ -119,7 +119,7 @@ class RequestScreen extends Component {
   handleSubmit = request => {
     const { requests, contributions, amount, documents } = this.state
     const fundsWithdrawn = requests + Number(amount) - contributions
-    if (fundsWithdrawn >= 400 && documents.length === 0) {
+    if (fundsWithdrawn > 400 && documents.length === 0) {
       this.setState({ openPDF: true })
       return null
     }

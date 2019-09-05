@@ -192,7 +192,7 @@ class CompleteProfileScreen extends Component {
             menuItems={plansAheadItems}
           />
           <ErrorContainer>
-            {this.state.submitPressed && enabled && (
+            {this.state.submitPressed && !enabled && (
               <ErrorText>All fields must be entered.</ErrorText>
             )}
           </ErrorContainer>

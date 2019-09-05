@@ -33,7 +33,7 @@ const RadioGroupSelector = ({ onChange, value, title, name, menuItems }) => {
           value={value}
           onChange={onChange}
         >
-          {Object.entries(menuItems).map(item => (
+          {menuItems.map(item => (
             <FormControlLabel
               value={item[0]}
               control={<Radio />}

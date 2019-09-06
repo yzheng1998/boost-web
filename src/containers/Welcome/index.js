@@ -40,7 +40,7 @@ const Welcome = ({ history }) => {
       <Header
         style={{
           justifyContent: 'center',
-          fontSize: 60,
+          fontSize: 55,
           fontFamily: theme.fonts.medium.family,
           textAlign: 'center',
           marginBottom: 10

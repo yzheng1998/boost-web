@@ -16,7 +16,9 @@ const MakeRequestButton = ({ history }) => (
       text="Make a Request"
       style={{
         backgroundColor: theme.colors.tertiary,
-        color: theme.colors.background
+        color: theme.colors.background,
+        fontSize: 18,
+        width: 250
       }}
       onClick={() => {
         ReactGA.event({

@@ -3,11 +3,11 @@ import { Flex } from '@rebass/grid'
 
 export const ButtonContainer = styled(Flex)`
   flex-direction: column;
-  width: 450px;
-  height: 450px;
+  width: 400px;
+  height: 400px;
   justify-content: center;
   align-items: center;
-  border-radius: 225px;
+  border-radius: 200px;
   border: 3px solid ${({ theme }) => theme.colors.header};
   background-color: ${({ theme }) => theme.colors.background};
   @media screen and (max-width: ${({ theme }) =>
@@ -30,6 +30,7 @@ export const InfoText = styled(Flex)`
   padding-left: 30px;
   padding-right: 30px;
   font-size: 25px;
+  margin-bottom: 20px;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {
     font-size: 18px;

@@ -2,14 +2,10 @@
 import React, { Component } from 'react'
 import { withAlert } from 'react-alert'
 import _ from 'lodash'
+import { Typography } from '@material-ui/core'
 import Background from '../../../../../../components/Background'
 import FormWrapper from '../../../../../../components/FormWrapper'
-import {
-  defaultState,
-  validateForm,
-  MakeButtons,
-  MakeCheckList
-} from './helpers'
+import { defaultState, validateForm, MakeCheckList } from './helpers'
 import AmountBlock from './components/AmountBlock'
 import ReasonsBlock from './components/ReasonsBlock'
 import PayPalBlock from './components/PayPalBlock'
@@ -19,6 +15,7 @@ import EventsBlock from './components/EventsBlock'
 import { events, boostReasons } from './constants'
 import EventExplanationBlock from './components/EventExplanationBlock'
 import AgreementBlock from './components/AgreementBlock'
+import theme from '../../../../../../theme'
 
 class RequestScreen extends Component {
   constructor(props) {
@@ -174,7 +171,7 @@ class RequestScreen extends Component {
       (selectedBoostReasons.length || otherReason.length) &&
       acceptTerms
 
-    const Buttons = MakeButtons(
+    const Buttons = MakeCheckList(
       selectedBoostReasons,
       this.handleSelect,
       boostReasons
@@ -252,6 +249,14 @@ class RequestScreen extends Component {
             }
             displayErrors={displayErrors}
           />
+          {!acceptTerms && (
+            <Typography
+              style={{ color: 'red', fontFamily: theme.fonts.medium.family }}
+            >
+              Please certify all the information above is true at the top of the
+              form.
+            </Typography>
+          )}
           <RequestButton
             state={this.state}
             setState={this.setState.bind(this)}

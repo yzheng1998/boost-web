@@ -16,7 +16,7 @@ export const events = [
 ]
 
 export const boostReasons = [
-  ' Car repair expenses',
+  'Car repair expenses',
   'Auto payments',
   'Home repair',
   'Mortgage/rent',

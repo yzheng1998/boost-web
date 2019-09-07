@@ -14,5 +14,5 @@ export const FooterText = styled(Flex)`
   text-align: center;
   align-items: center;
   justify-content: center;
-  font-family: 'Helvetica Neue, Helvetica, Liberation Sans, Arial, sans-serif';
+  font-family: ${({ theme }) => theme.fonts.medium.family};
 `

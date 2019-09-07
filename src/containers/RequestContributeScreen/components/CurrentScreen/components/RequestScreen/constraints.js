@@ -1,6 +1,6 @@
 const presence = {
   allowEmpty: false,
-  message: '^Cannot be blank '
+  message: '^Cannot be blank. '
 }
 
 const constraints = {
@@ -13,7 +13,7 @@ const constraints = {
   payPalEmail: {
     presence,
     email: {
-      message: '^Please provide a valid email'
+      message: '^Please provide a valid email.'
     }
   }
 }

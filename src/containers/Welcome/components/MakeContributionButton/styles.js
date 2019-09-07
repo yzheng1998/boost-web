@@ -3,11 +3,11 @@ import { Flex } from '@rebass/grid'
 
 export const ButtonContainer = styled(Flex)`
   flex-direction: column;
-  width: 450px;
-  height: 450px;
+  width: 400px;
+  height: 400px;
   justify-content: center;
   align-items: center;
-  border-radius: 225px;
+  border-radius: 200px;
   border: 3px solid ${({ theme }) => theme.colors.header};
   background-color: ${({ theme }) => theme.colors.tertiary};
   @media screen and (max-width: ${({ theme }) =>

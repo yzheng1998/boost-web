@@ -17,7 +17,9 @@ const MakeContributionButton = ({ history }) => (
       text="Make a Contribution"
       style={{
         backgroundColor: theme.colors.background,
-        color: theme.colors.tertiary
+        color: theme.colors.tertiary,
+        fontSize: 18,
+        width: 250
       }}
       onClick={() => {
         ReactGA.event({

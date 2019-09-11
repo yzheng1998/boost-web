@@ -10,7 +10,7 @@ export const Questions = [
     id: 1,
     question: 'What is the GreenPath Grant Circle?',
     answer:
-      'The Grant Circle was established and is managed by a small team of researchers and entrepreneurs at Capital Access Strategies, LLC, who are working on an initiative sponsored by the nonprofit organization The Workers Lab. Our mission is to improve the resources that working Americans have to address financial security challenges.'
+      "Grant Circle's mission is to increase the resources available for working Americans to address financial security challenges. \nThe Grant Circle is a shared fund available through your workplace. Funds are available to help you and your colleagues in times of need.\nThe Grant Circle was started by a charitable donation. You and your colleagues can also contribute so that the fund can reach more members of your workplace community."
   },
   {
     id: 2,
@@ -124,6 +124,6 @@ export const Questions = [
     id: 19,
     question: 'Who manages the Grant Circle and why are we doing this?',
     answer:
-      'The Grant Circle was established and is managed by a small team of researchers and entrepreneurs at Capital Access Strategies, LLC. Our mission is to improve the resources that working Americans have to address financial security challenges.'
+      'The Grant Circle was established and is managed by a small team of researchers and entrepreneurs at Capital Access Strategies, LLC, who are working on a national initiative supported by  The Workers Lab, a non-profit organization. Our mission is to improve the resources that working Americans have to address financial security challenges.'
   }
 ]

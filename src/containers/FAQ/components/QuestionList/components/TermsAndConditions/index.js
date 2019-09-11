@@ -17,22 +17,23 @@ const TermsAndConditions = () => (
   <TermsAndConditonsContainer>
     <p>
       <Typography>
-        The Grant Circle Pilot (pilot) is a research initiative operated by
-        Capital Access Strategies, LLC on behalf of The Worker’s Lab. The pilot
-        is designed to test a solution for providing strategic cash infusions to
-        workers that emerged out of research into the lives of working
-        Americans. It is scheduled to launch in September 2019; the duration of
-        the pilot is uncertain and wider adoption is not guaranteed.
+        The Grant Circle pilot is a research initiative operated by Capital
+        Access Strategies, LLC. This national initiative is being supported by
+        The Workers Lab, a non-profit organization. The pilot is designed to
+        test a solution for providing strategic cash infusions to workers that
+        emerged out of research into the lives of working Americans. It is
+        scheduled to launch in September 2019; the duration of the pilot is
+        uncertain and wider adoption is not guaranteed.
       </Typography>
     </p>
     <p>
       <Typography>
-        The Grant Circle started with a donation from a charitable foundation
-        and, as a result, has a limited amount of money which will be drawn down
-        by employee requests and expanded by employee contributions. The pilot
-        can not guarantee access to funds. Pilot participant requests will be
-        evaluated in accordance with fund use guidelines and funded as the
-        shared pool of funds permits.
+        The Grant Circle started with a donation from a charitable foundation to
+        test this effort and has a limited amount of money to be drawn down by
+        employee requests and expanded by employee contributions. The pilot does
+        not guarantee funds. Requests will be evaluated in accordance with
+        guidelines for fund usage and disbursed as the shared pool of funds
+        permit.
       </Typography>
     </p>
     <p>

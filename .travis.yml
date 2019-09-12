@@ -30,7 +30,7 @@ jobs:
       if: branch = production
       env:
         - REACT_APP_DEPLOY_ENV=production
-        - REACT_APP_API_URL=https://api-production.grantcircles.org/graphql
+        - REACT_APP_API_URL=https://greenpath-api.grantcircles.org/graphql
       before_deploy:
         - npm run build
       deploy:

@@ -14,7 +14,7 @@ const ProfileWrapper = styled(Flex)`
   overflow: hidden;
   @media screen and (max-width: ${({ theme }) =>
       theme.breakpoints.mobile.ceiling}) {
-    width: 70%;
+    width: 100%;
   }
 `
 export default ProfileWrapper

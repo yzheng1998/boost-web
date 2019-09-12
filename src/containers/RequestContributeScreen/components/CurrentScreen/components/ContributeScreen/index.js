@@ -74,7 +74,7 @@ class ContributeScreen extends Component {
       this.props.alert.error('The payment has failed!')
     }
 
-    const env = 'sandbox'
+    const env = 'production'
     const currency = 'USD'
 
     return (

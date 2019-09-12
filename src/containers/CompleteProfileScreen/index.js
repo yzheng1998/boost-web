@@ -116,7 +116,7 @@ class CompleteProfileScreen extends Component {
           paddingTop: 30
         }}
       >
-        <ProfileWrapper style={{ width: '50%', padding: '50px' }}>
+        <ProfileWrapper style={{ padding: '50px' }}>
           <Header
             text="Step 3 of 3: Your financial wellness"
             color={theme.colors.header}

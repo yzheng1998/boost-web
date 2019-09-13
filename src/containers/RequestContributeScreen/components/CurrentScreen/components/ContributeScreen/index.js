@@ -39,7 +39,7 @@ class ContributeScreen extends Component {
       sandbox:
         'AWgi5rBnomKUXPXBbo6qcWCO503j5hei7DOjAfqKqkCoMTvXIHROi92enkNPoWcVaFPe0XkW0eMzYdXQ',
       production:
-        'AS9vvZrYslvm34pUsOcsT_rUntr-msY2GkSsEJYB9kyk8WzsDHzf3-5bvuTdZM_Gu-X6xs3Iu9cLC-1j'
+        'AYYjLTUjkWBgA7WI9j-n_SfWcIHZmi9ubsrtQr4GXn47LsnfU2OjZqP7Ex5fxW3ZiFb6KgG8UIeX_W75'
     }
     const onSuccess = async payment => {
       ReactGA.event({

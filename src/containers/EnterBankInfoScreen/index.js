@@ -84,7 +84,7 @@ class EnterBankInfo extends Component {
           <StyledPlaidLink
             active={this.state.buttonActive}
             clientName="Boost"
-            env="sandbox"
+            env="live"
             product={['auth', 'transactions']}
             publicKey="fce3ab4dab4752ede9cb3363e3c575"
             onExit={this.handleOnExit}
@@ -103,7 +103,7 @@ class EnterBankInfo extends Component {
             <StyledPlaidLink
               active
               clientName="Boost"
-              env="sandbox"
+              env="live"
               product={['auth', 'transactions']}
               publicKey="fce3ab4dab4752ede9cb3363e3c575"
               onExit={this.handleOnExit}

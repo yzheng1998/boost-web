@@ -37,7 +37,7 @@ class ContributeScreen extends Component {
   render() {
     const client = {
       sandbox:
-        'AWgi5rBnomKUXPXBbo6qcWCO503j5hei7DOjAfqKqkCoMTvXIHROi92enkNPoWcVaFPe0XkW0eMzYdXQ',
+        'Ad6aamHGNL_rkQeJ5fSneO5koUv6_DP4v9HHBF4sFE6qjZo9UNMGJe5bPbafDGyTlFR9g9-91F0wD5th',
       production:
         'AS9vvZrYslvm34pUsOcsT_rUntr-msY2GkSsEJYB9kyk8WzsDHzf3-5bvuTdZM_Gu-X6xs3Iu9cLC-1j'
     }

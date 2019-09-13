@@ -38,7 +38,7 @@ class ContributeScreen extends Component {
     const client = {
       sandbox:
         'Aa195dlVPUWi5AaSX_MVxYO-IJNMzLxNJhFGiXHa7qfx0uHxWkOsjOv-dl15mmGVgubBTl-JiSHBLoJX',
-      live:
+      production:
         'AYYjLTUjkWBgA7WI9j-n_SfWcIHZmi9ubsrtQr4GXn47LsnfU2OjZqP7Ex5fxW3ZiFb6KgG8UIeX_W75'
     }
     const onSuccess = async payment => {
@@ -74,7 +74,7 @@ class ContributeScreen extends Component {
       this.props.alert.error('The payment has failed!')
     }
 
-    const env = 'live'
+    const env = 'production'
     const currency = 'USD'
 
     return (

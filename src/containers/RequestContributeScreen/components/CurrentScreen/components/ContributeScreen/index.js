@@ -46,6 +46,8 @@ class ContributeScreen extends Component {
         category: 'Contributions',
         action: 'Contribution Made'
       })
+      // eslint-disable-next-line no-console
+      console.log('PAYMENT', payment)
       this.props.alert.success('The payment has succeeded!')
 
       try {
